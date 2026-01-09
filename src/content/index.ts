@@ -1,15 +1,100 @@
-import { FloatingButton } from './FloatingButton';
+import { FloatingButton, type SelectionContext } from './FloatingButton';
+import { DiffModal } from './DiffModal';
 import {
   getSelectedText,
   getSelectionRect,
   isSelectionInEditableElement,
 } from '@/utils/selection';
 import { calculateButtonPosition } from '@/utils/positioning';
+import { mockPolish } from '@/utils/mockPolisher';
+import { replaceText } from '@/utils/textReplacer';
 import { DEBOUNCE_DELAY } from '@/constants/ui';
 
 // Global state
 let floatingButton: FloatingButton | null = null;
+let diffModal: DiffModal | null = null;
+let currentSelectionContext: SelectionContext | null = null;
 let debounceTimer: number | null = null;
+
+/**
+ * Handle polish button click - generate polished text and show diff modal
+ */
+function handlePolishClick(context: SelectionContext): void {
+  // Store context for regenerate/accept
+  currentSelectionContext = context;
+
+  // Generate polished text using mock polisher
+  const polishedText = mockPolish(context.selectedText);
+
+  // Hide button
+  if (floatingButton) {
+    floatingButton.hide();
+  }
+
+  // Show modal
+  if (!diffModal) {
+    diffModal = new DiffModal();
+  }
+
+  diffModal.show({
+    originalText: context.selectedText,
+    polishedText: polishedText,
+    position: context.buttonPosition,
+    targetElement: context.element,
+    onAccept: handleAccept,
+    onRegenerate: handleRegenerate,
+  });
+}
+
+/**
+ * Handle accept button - replace text in DOM
+ */
+function handleAccept(polishedText: string): void {
+  if (!currentSelectionContext) return;
+
+  // Replace text in the original element
+  const success = replaceText(currentSelectionContext.element, polishedText);
+
+  if (success) {
+    // Hide modal
+    if (diffModal) {
+      diffModal.hide();
+    }
+    // Clear selection context
+    currentSelectionContext = null;
+  } else {
+    // Fallback: copy to clipboard
+    navigator.clipboard
+      .writeText(polishedText)
+      .then(() => {
+        alert('Text copied to clipboard (direct replacement not supported)');
+        if (diffModal) {
+          diffModal.hide();
+        }
+        currentSelectionContext = null;
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error('Failed to copy to clipboard:', error);
+        alert('Failed to replace text. Please try again.');
+      });
+  }
+}
+
+/**
+ * Handle regenerate button - generate new polished version
+ */
+function handleRegenerate(): void {
+  if (!currentSelectionContext) return;
+
+  // Generate new polished version
+  const newPolishedText = mockPolish(currentSelectionContext.selectedText);
+
+  // Update modal with new polished text
+  if (diffModal) {
+    diffModal.updatePolishedText(newPolishedText);
+  }
+}
 
 /**
  * Handle text selection events
@@ -33,13 +118,31 @@ function handleSelection(): void {
       return;
     }
 
+    // Get the active element (where selection is)
+    const activeElement = document.activeElement as HTMLElement;
+    if (!activeElement) {
+      return;
+    }
+
     // Show button if we have a valid selection in an editable element
     if (selectionRect) {
       const position = calculateButtonPosition(selectionRect);
+
+      // Initialize button with callback if not created yet
       if (!floatingButton) {
-        floatingButton = new FloatingButton();
+        floatingButton = new FloatingButton({
+          onPolishClick: handlePolishClick,
+        });
       }
-      floatingButton.show(position);
+
+      // Create selection context
+      const context: SelectionContext = {
+        selectedText,
+        element: activeElement,
+        buttonPosition: position,
+      };
+
+      floatingButton.show(position, context);
     }
   }, DEBOUNCE_DELAY);
 }
@@ -115,10 +218,17 @@ function cleanup(): void {
     floatingButton = null;
   }
 
+  if (diffModal) {
+    diffModal.destroy();
+    diffModal = null;
+  }
+
   if (debounceTimer !== null) {
     window.clearTimeout(debounceTimer);
     debounceTimer = null;
   }
+
+  currentSelectionContext = null;
 }
 
 // Initialize when DOM is ready
