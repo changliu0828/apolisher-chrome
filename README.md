@@ -99,6 +99,26 @@ src/
 └── utils/           # Utilities
 ```
 
+## Support This Project
+
+If you find apolisher-chrome useful, please consider sponsoring! Your support helps keep this project free and open-source.
+
+[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-red?style=for-the-badge&logo=github-sponsors)](https://github.com/sponsors/changliu0828)
+
+**Ways to support:**
+- ⭐ Star this repository
+- 💖 [Become a sponsor](https://github.com/sponsors/changliu0828) (starting at $3/month)
+- 🐛 Report bugs and contribute code
+- 📢 Share with others who might find it useful
+
+### Sponsors
+
+Thank you to all our sponsors! 🙏
+
+<!-- sponsors --><!-- sponsors -->
+
+*Become the first sponsor and get your name here!*
+
 ## License
 
 MIT
