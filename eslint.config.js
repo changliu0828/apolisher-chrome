@@ -5,6 +5,9 @@ import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 
 export default [
+  {
+    ignores: ['dist/**', 'node_modules/**', 'build/**']
+  },
   js.configs.recommended,
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
@@ -14,8 +17,10 @@ export default [
       sourceType: 'module',
       globals: {
         chrome: 'readonly',
-        browser: true,
-        es2021: true
+        document: 'readonly',
+        window: 'readonly',
+        console: 'readonly',
+        __dirname: 'readonly',
       }
     },
     plugins: {
@@ -26,7 +31,8 @@ export default [
     rules: {
       'no-console': 'warn',
       '@typescript-eslint/no-unused-vars': 'warn',
-      '@typescript-eslint/no-explicit-any': 'warn'
+      '@typescript-eslint/no-explicit-any': 'warn',
+      'no-unused-vars': 'off',
     },
     settings: {
       react: {

@@ -7,6 +7,11 @@ node_modules/
 dist/
 build/
 
+# Chrome Extension
+*.crx
+*.pem
+*.zip
+
 # IDE
 .vscode/
 .idea/
@@ -16,3 +21,6 @@ build/
 
 # Logs
 *.log
+
+# Claude plans
+.claude/
