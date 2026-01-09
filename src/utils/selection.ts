@@ -82,6 +82,14 @@ export function getSelectionRect(): DOMRect | null {
   }
 
   const range = selection.getRangeAt(0);
+
+  // For multi-line selections, use the last line's rect to position button
+  // near where the selection ends (instead of a large bounding box)
+  const rects = range.getClientRects();
+  if (rects.length > 0) {
+    return rects[rects.length - 1];
+  }
+
   return range.getBoundingClientRect();
 }
 
