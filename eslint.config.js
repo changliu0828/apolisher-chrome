@@ -21,6 +21,18 @@ export default [
         window: 'readonly',
         console: 'readonly',
         __dirname: 'readonly',
+        HTMLDivElement: 'readonly',
+        HTMLButtonElement: 'readonly',
+        HTMLElement: 'readonly',
+        HTMLInputElement: 'readonly',
+        HTMLTextAreaElement: 'readonly',
+        Element: 'readonly',
+        Node: 'readonly',
+        MouseEvent: 'readonly',
+        KeyboardEvent: 'readonly',
+        DOMRect: 'readonly',
+        ShadowRoot: 'readonly',
+        EventListener: 'readonly',
       }
     },
     plugins: {
