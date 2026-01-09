@@ -65,7 +65,7 @@
 
 ## 5. Roadmap
 - [x] **v0.1:** Project Scaffold & Manifest V3 setup (ESLint, pre-commit hooks, basic manifest).
-- [ ] **v0.2:** Options Page (API Key storage).
+- [x] **v0.2:** Options Page (API Key storage, prompt presets, chrome.storage.sync, version management).
 - [ ] **v0.3:** Content Script (Selection detection & Floating button).
 - [ ] **v0.4:** AI Integration (Fetching responses).
 - [ ] **v0.5:** Diff View UI & Text Replacement logic.
