@@ -64,7 +64,7 @@
 ---
 
 ## 5. Roadmap
-- [ ] **v0.1:** Project Scaffold & Manifest V3 setup.
+- [x] **v0.1:** Project Scaffold & Manifest V3 setup (ESLint, pre-commit hooks, basic manifest).
 - [ ] **v0.2:** Options Page (API Key storage).
 - [ ] **v0.3:** Content Script (Selection detection & Floating button).
 - [ ] **v0.4:** AI Integration (Fetching responses).
