@@ -15,5 +15,7 @@ export function useSettings() {
       setSettings({ ...settings, selectedPreset: preset }),
     updateCustomPrompt: (customPrompt: string) =>
       setSettings({ ...settings, customPrompt }),
+    updateMaxCompletionTokens: (maxCompletionTokens: number) =>
+      setSettings({ ...settings, maxCompletionTokens }),
   };
 }

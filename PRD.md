@@ -30,12 +30,14 @@
 ### 3.1 Settings (Options Page)
 *The user configures these global preferences once:*
 * **AI Provider:** OpenAI (User inputs API Key).
-* **Prompt Presets (Style):**
+* **Prompt Presets (Style):** Each preset is stored in `src/prompts/` directory
     * *Standard:* "Fix grammar and flow."
     * *Professional:* "Make it formal and concise."
     * *Native:* "Rewrite to sound like a native speaker."
     * *Simplified:* "Make it easy to understand."
 * **Custom Prompt:** Ability to add specific instructions (e.g., "Use US English").
+* **Advanced Settings:**
+    * *Max Completion Tokens:* Control response length and API costs (100-4000 tokens, default: 2000).
 
 ### 3.2 The Interaction (Content Script)
 * **Trigger Logic:** Listens for text selection (`mouseup`). If selection > 0 characters, show the floating button.
@@ -68,4 +70,4 @@
 - [x] **v0.2:** Options Page (API Key storage, prompt presets, chrome.storage.sync, version management).
 - [x] **v0.3:** Content Script (Selection detection & Floating button, Shadow DOM isolation, editable element detection).
 - [x] **v0.4:** Diff View UI & Text Replacement logic (Mock Polisher, inline SVG icons, click-outside-to-close).
-- [ ] **v0.5:** AI Integration (OpenAI API, background service worker, message passing).
+- [x] **v0.5:** AI Integration (OpenAI API, background service worker, message passing, max tokens setting, modular prompt system).

@@ -1,18 +1,18 @@
+import { PROMPT_PRESETS } from '@/prompts';
+
 export interface Settings {
   apiKey: string;
   selectedPreset: 'standard' | 'professional' | 'native' | 'simplified' | 'custom';
   customPrompt: string;
+  maxCompletionTokens: number;
 }
 
-export const PROMPT_PRESETS = {
-  standard: 'Fix grammar and flow.',
-  professional: 'Make it formal and concise.',
-  native: 'Rewrite to sound like a native speaker.',
-  simplified: 'Make it easy to understand.',
-} as const;
+// Re-export PROMPT_PRESETS for backward compatibility
+export { PROMPT_PRESETS };
 
 export const DEFAULT_SETTINGS: Settings = {
   apiKey: '',
   selectedPreset: 'standard',
   customPrompt: '',
+  maxCompletionTokens: 2000,
 };
