@@ -2,12 +2,25 @@ import { createShadowRoot, injectStyles } from '@/utils/shadowDOM';
 import { BUTTON_STYLES } from './styles';
 import type { Position } from '@/utils/positioning';
 
+export interface SelectionContext {
+  selectedText: string;
+  element: HTMLElement;
+  buttonPosition: Position;
+}
+
+interface FloatingButtonConfig {
+  onPolishClick?: (context: SelectionContext) => void;
+}
+
 export class FloatingButton {
   private container: HTMLDivElement | null = null;
   private button: HTMLButtonElement | null = null;
   private isVisible = false;
+  private config: FloatingButtonConfig;
+  private currentContext: SelectionContext | null = null;
 
-  constructor() {
+  constructor(config: FloatingButtonConfig = {}) {
+    this.config = config;
     this.init();
   }
 
@@ -39,15 +52,19 @@ export class FloatingButton {
   }
 
   private handleClick(): void {
-    // eslint-disable-next-line no-console
-    console.log('Floating button clicked - AI integration coming in v0.4');
+    if (this.currentContext && this.config.onPolishClick) {
+      this.config.onPolishClick(this.currentContext);
+    }
   }
 
   /**
    * Show the button at the specified position
    */
-  public show(position: Position): void {
+  public show(position: Position, context: SelectionContext): void {
     if (!this.button || !this.container) return;
+
+    // Store context
+    this.currentContext = { ...context, buttonPosition: position };
 
     this.button.style.top = `${position.top}px`;
     this.button.style.left = `${position.left}px`;

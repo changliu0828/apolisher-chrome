@@ -67,5 +67,5 @@
 - [x] **v0.1:** Project Scaffold & Manifest V3 setup (ESLint, pre-commit hooks, basic manifest).
 - [x] **v0.2:** Options Page (API Key storage, prompt presets, chrome.storage.sync, version management).
 - [x] **v0.3:** Content Script (Selection detection & Floating button, Shadow DOM isolation, editable element detection).
-- [ ] **v0.4:** AI Integration (Fetching responses).
-- [ ] **v0.5:** Diff View UI & Text Replacement logic.
+- [x] **v0.4:** Diff View UI & Text Replacement logic (Mock Polisher, inline SVG icons, click-outside-to-close).
+- [ ] **v0.5:** AI Integration (OpenAI API, background service worker, message passing).
