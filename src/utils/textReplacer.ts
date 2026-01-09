@@ -5,6 +5,15 @@
 
 export function replaceText(element: HTMLElement, newText: string): boolean {
   try {
+    // eslint-disable-next-line no-console
+    console.log('Attempting text replacement:', {
+      element,
+      tagName: element.tagName,
+      isContentEditable: element.isContentEditable,
+      className: element.className,
+      id: element.id,
+    });
+
     const tagName = element.tagName.toLowerCase();
 
     // Handle input/textarea
@@ -36,20 +45,70 @@ export function replaceText(element: HTMLElement, newText: string): boolean {
         return false;
       }
 
-      const range = selection.getRangeAt(0);
-      range.deleteContents();
-      range.insertNode(document.createTextNode(newText));
+      // Try execCommand first (works better for Gmail, Google Docs, etc.)
+      try {
+        // Focus the element first
+        element.focus();
 
-      // Collapse to end
-      range.collapse(false);
-      selection.removeAllRanges();
-      selection.addRange(range);
+        // Delete the selected text
+        if (!selection.isCollapsed) {
+          document.execCommand('delete', false);
+        }
 
-      // Trigger input event
-      element.dispatchEvent(new Event('input', { bubbles: true }));
-      element.dispatchEvent(new Event('change', { bubbles: true }));
+        // Insert the new text using execCommand
+        const success = document.execCommand('insertText', false, newText);
 
-      return true;
+        // eslint-disable-next-line no-console
+        console.log('execCommand insertText result:', success);
+
+        if (success) {
+          // Trigger input events for React/Vue frameworks
+          // eslint-disable-next-line no-undef
+          element.dispatchEvent(new InputEvent('input', { bubbles: true, inputType: 'insertText', data: newText, cancelable: true }));
+          element.dispatchEvent(new Event('change', { bubbles: true }));
+
+          // Gmail-specific: trigger additional events
+          element.dispatchEvent(new Event('textInput', { bubbles: true }));
+          element.dispatchEvent(new KeyboardEvent('keyup', { bubbles: true }));
+
+          // eslint-disable-next-line no-console
+          console.log('Text replacement successful via execCommand');
+          return true;
+        }
+      } catch (execError) {
+        // eslint-disable-next-line no-console
+        console.warn('execCommand failed, trying fallback:', execError);
+      }
+
+      // Fallback: Try the range API method
+      try {
+        const range = selection.getRangeAt(0);
+        range.deleteContents();
+
+        // Create a text node and insert it
+        const textNode = document.createTextNode(newText);
+        range.insertNode(textNode);
+
+        // Collapse to end
+        range.setStartAfter(textNode);
+        range.collapse(true);
+        selection.removeAllRanges();
+        selection.addRange(range);
+
+        // Trigger input events
+        // eslint-disable-next-line no-undef
+        element.dispatchEvent(new InputEvent('input', { bubbles: true, inputType: 'insertText', data: newText, cancelable: true }));
+        element.dispatchEvent(new Event('change', { bubbles: true }));
+        element.dispatchEvent(new Event('textInput', { bubbles: true }));
+
+        // eslint-disable-next-line no-console
+        console.log('Text replacement successful via Range API');
+        return true;
+      } catch (rangeError) {
+        // eslint-disable-next-line no-console
+        console.error('Range API failed:', rangeError);
+        return false;
+      }
     }
 
     return false;

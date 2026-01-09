@@ -17,6 +17,11 @@ interface DiffModalData {
   onRegenerate: () => void;
 }
 
+interface ErrorOptions {
+  onRetry: () => void;
+  showSettings: boolean;
+}
+
 export class DiffModal {
   private container: HTMLDivElement | null = null;
   private modal: HTMLDivElement | null = null;
@@ -26,6 +31,7 @@ export class DiffModal {
   private onRegenerate?: () => void;
   private isVisible = false;
   private handleOutsideClick = this.onOutsideClick.bind(this);
+  private lastPosition: Position = { top: 100, left: 100 }; // Store last known position
 
   constructor() {
     this.init();
@@ -113,21 +119,55 @@ export class DiffModal {
   private calculatePosition(buttonPosition: Position): Position {
     if (!this.modal) return buttonPosition;
 
-    // Position to the right of the button
-    let left = buttonPosition.left + BUTTON_SIZE + 8;
-    const top = buttonPosition.top;
+    const modalWidth = 320; // max-width from CSS
+    const modalMaxHeight = window.innerHeight * 0.6; // 60vh from CSS
+    const estimatedModalHeight = 160; // Estimated typical height for compact diff modal
+    const padding = 16; // Viewport padding
+    const spacing = 8; // Space between button and modal
+
+    // Calculate horizontal position (prefer right of button)
+    let left = buttonPosition.left + BUTTON_SIZE + spacing;
 
     // Check if modal would overflow right edge
-    const modalWidth = 320; // max-width from CSS
-    if (left + modalWidth > window.innerWidth - 16) {
+    if (left + modalWidth > window.innerWidth - padding) {
       // Position to the left of button instead
-      left = buttonPosition.left - modalWidth - 8;
+      left = buttonPosition.left - modalWidth - spacing;
 
       // If still overflows, center on screen
-      if (left < 16) {
-        left = Math.max(16, (window.innerWidth - modalWidth) / 2);
+      if (left < padding) {
+        left = Math.max(padding, (window.innerWidth - modalWidth) / 2);
       }
     }
+
+    // Calculate vertical position (choose above or below based on available space)
+    const spaceBelow = window.innerHeight - (buttonPosition.top + BUTTON_SIZE);
+    const spaceAbove = buttonPosition.top;
+
+    let top: number;
+
+    // Use estimated height for better positioning, but respect max-height constraint
+    const preferredHeight = Math.min(estimatedModalHeight, modalMaxHeight);
+
+    if (spaceBelow >= preferredHeight + spacing + padding) {
+      // Enough space below - position below the button
+      top = buttonPosition.top + BUTTON_SIZE + spacing;
+    } else if (spaceAbove >= preferredHeight + spacing + padding) {
+      // Not enough space below but enough above - position above the button
+      // Align with button top, then go up by estimated height
+      top = buttonPosition.top - preferredHeight - spacing;
+    } else if (spaceBelow > spaceAbove) {
+      // More space below - position below with max available space
+      top = buttonPosition.top + BUTTON_SIZE + spacing;
+      // Modal will scroll internally due to max-height
+    } else {
+      // More space above - position above, aligned near the button
+      // Use available space but don't go too high
+      const maxTop = buttonPosition.top - preferredHeight - spacing;
+      top = Math.max(padding, maxTop);
+    }
+
+    // Ensure modal doesn't overflow viewport bounds
+    top = Math.max(padding, Math.min(top, window.innerHeight - estimatedModalHeight - padding));
 
     return { top, left };
   }
@@ -147,6 +187,80 @@ export class DiffModal {
     }
   }
 
+  public showLoading(position?: Position): void {
+    if (!this.modal || !this.container) return;
+
+    // Update last position if provided
+    if (position) {
+      this.lastPosition = this.calculatePosition(position);
+    }
+
+    // Show modal with loading state
+    this.modal.innerHTML = `
+      <div class="loading-state">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Polishing text...</p>
+      </div>
+    `;
+
+    // Position the modal
+    this.modal.style.top = `${this.lastPosition.top}px`;
+    this.modal.style.left = `${this.lastPosition.left}px`;
+
+    this.modal.style.display = 'block';
+    this.container.style.display = 'block';
+    this.isVisible = true;
+  }
+
+  public showError(message: string, options: ErrorOptions): void {
+    if (!this.modal || !this.container) return;
+
+    const settingsButton = options.showSettings
+      ? `<button class="btn btn-secondary settings-btn">Open Settings</button>`
+      : '';
+
+    // Show modal with error state
+    this.modal.innerHTML = `
+      <div class="error-state">
+        <svg class="error-icon" width="48" height="48" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+        </svg>
+        <p class="error-message">${message}</p>
+        <div class="error-actions">
+          <button class="btn btn-secondary close-btn">Close</button>
+          ${settingsButton}
+          <button class="btn btn-primary retry-btn">Retry</button>
+        </div>
+      </div>
+    `;
+
+    // Position the modal using last known position
+    this.modal.style.top = `${this.lastPosition.top}px`;
+    this.modal.style.left = `${this.lastPosition.left}px`;
+
+    // Attach event listeners for error buttons
+    const retryBtn = this.modal.querySelector('.retry-btn');
+    const closeBtn = this.modal.querySelector('.close-btn');
+    const settingsBtn = this.modal.querySelector('.settings-btn');
+
+    retryBtn?.addEventListener('click', () => {
+      options.onRetry();
+    });
+
+    closeBtn?.addEventListener('click', () => {
+      this.hide();
+    });
+
+    settingsBtn?.addEventListener('click', () => {
+      chrome.runtime.openOptionsPage();
+    });
+
+    this.modal.style.display = 'block';
+    this.container.style.display = 'block';
+    this.isVisible = true;
+  }
+
   public show(data: DiffModalData): void {
     if (!this.modal || !this.container) return;
 
@@ -156,12 +270,52 @@ export class DiffModal {
     this.onAccept = data.onAccept;
     this.onRegenerate = data.onRegenerate;
 
-    // Calculate position
-    const position = this.calculatePosition(data.position);
+    // Rebuild modal structure for diff view
+    this.modal.innerHTML = '';
+
+    const body = document.createElement('div');
+    body.className = 'diff-modal-body';
+    body.innerHTML = `
+      <div class="diff-section">
+        <div class="diff-content original-diff"></div>
+      </div>
+      <div class="diff-section">
+        <div class="diff-content polished-diff"></div>
+      </div>
+    `;
+
+    const footer = document.createElement('div');
+    footer.className = 'diff-modal-footer';
+    footer.innerHTML = `
+      <button class="btn btn-secondary regenerate-btn" aria-label="Regenerate" title="Regenerate">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+          <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+        </svg>
+      </button>
+      <button class="btn btn-primary accept-btn" aria-label="Accept" title="Accept">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+        </svg>
+      </button>
+    `;
+
+    this.modal.appendChild(body);
+    this.modal.appendChild(footer);
+
+    // Re-attach event listeners for diff view buttons
+    const acceptBtn = this.modal.querySelector('.accept-btn');
+    const regenerateBtn = this.modal.querySelector('.regenerate-btn');
+
+    acceptBtn?.addEventListener('click', () => this.handleAccept());
+    regenerateBtn?.addEventListener('click', () => this.handleRegenerate());
+
+    // Calculate position and store it
+    this.lastPosition = this.calculatePosition(data.position);
 
     // Position modal
-    this.modal.style.top = `${position.top}px`;
-    this.modal.style.left = `${position.left}px`;
+    this.modal.style.top = `${this.lastPosition.top}px`;
+    this.modal.style.left = `${this.lastPosition.left}px`;
 
     // Render diff
     this.renderDiff();

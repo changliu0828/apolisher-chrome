@@ -6,9 +6,9 @@ import {
   isSelectionInEditableElement,
 } from '@/utils/selection';
 import { calculateButtonPosition } from '@/utils/positioning';
-import { mockPolish } from '@/utils/mockPolisher';
 import { replaceText } from '@/utils/textReplacer';
 import { DEBOUNCE_DELAY } from '@/constants/ui';
+import { MESSAGE_TYPES, type PolishResponse, type PolishError } from '@/types/messages';
 
 // Global state
 let floatingButton: FloatingButton | null = null;
@@ -17,33 +17,41 @@ let currentSelectionContext: SelectionContext | null = null;
 let debounceTimer: number | null = null;
 
 /**
- * Handle polish button click - generate polished text and show diff modal
+ * Handle polish button click - send request to background worker
  */
 function handlePolishClick(context: SelectionContext): void {
   // Store context for regenerate/accept
   currentSelectionContext = context;
-
-  // Generate polished text using mock polisher
-  const polishedText = mockPolish(context.selectedText);
 
   // Hide button
   if (floatingButton) {
     floatingButton.hide();
   }
 
-  // Show modal
+  // Initialize modal if needed
   if (!diffModal) {
     diffModal = new DiffModal();
   }
 
-  diffModal.show({
-    originalText: context.selectedText,
-    polishedText: polishedText,
-    position: context.buttonPosition,
-    targetElement: context.element,
-    onAccept: handleAccept,
-    onRegenerate: handleRegenerate,
-  });
+  // Show loading state with position
+  diffModal.showLoading(context.buttonPosition);
+
+  // Send message to background worker
+  try {
+    chrome.runtime.sendMessage({
+      type: MESSAGE_TYPES.POLISH_REQUEST,
+      payload: {
+        text: context.selectedText,
+      },
+    });
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Failed to send message:', error);
+    diffModal.showError('Failed to communicate with extension. Please try again.', {
+      onRetry: () => handlePolishClick(context),
+      showSettings: false,
+    });
+  }
 }
 
 /**
@@ -82,18 +90,77 @@ function handleAccept(polishedText: string): void {
 }
 
 /**
- * Handle regenerate button - generate new polished version
+ * Handle regenerate button - send new request to background worker
  */
 function handleRegenerate(): void {
-  if (!currentSelectionContext) return;
+  if (!currentSelectionContext || !diffModal) return;
 
-  // Generate new polished version
-  const newPolishedText = mockPolish(currentSelectionContext.selectedText);
+  // Show loading state (position already stored in modal)
+  diffModal.showLoading();
 
-  // Update modal with new polished text
-  if (diffModal) {
-    diffModal.updatePolishedText(newPolishedText);
+  // Send new request to background worker
+  try {
+    chrome.runtime.sendMessage({
+      type: MESSAGE_TYPES.POLISH_REQUEST,
+      payload: {
+        text: currentSelectionContext.selectedText,
+      },
+    });
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Failed to send message:', error);
+    diffModal.showError('Failed to communicate with extension. Please try again.', {
+      onRetry: handleRegenerate,
+      showSettings: false,
+    });
   }
+}
+
+/**
+ * Handle polish response from background worker
+ */
+function handlePolishResponse(payload: PolishResponse['payload']): void {
+  if (!diffModal || !currentSelectionContext) return;
+
+  diffModal.show({
+    originalText: currentSelectionContext.selectedText,
+    polishedText: payload.polishedText,
+    position: currentSelectionContext.buttonPosition,
+    targetElement: currentSelectionContext.element,
+    onAccept: handleAccept,
+    onRegenerate: handleRegenerate,
+  });
+}
+
+/**
+ * Handle polish error from background worker
+ */
+function handlePolishError(payload: PolishError['payload']): void {
+  if (!diffModal) return;
+
+  let errorMessage = payload.error;
+  let showSettings = false;
+
+  // Customize error message based on error code
+  if (payload.code === 'NO_API_KEY') {
+    errorMessage = 'Please add your OpenAI API key in the extension settings.';
+    showSettings = true;
+  } else if (payload.code === 'NETWORK_ERROR') {
+    errorMessage = 'Network error. Please check your connection and try again.';
+  } else if (payload.code === 'INVALID_RESPONSE') {
+    errorMessage = 'Received invalid response from API. Please try again.';
+  } else if (payload.code === 'API_ERROR') {
+    errorMessage = `API Error: ${payload.error}`;
+  }
+
+  diffModal.showError(errorMessage, {
+    onRetry: () => {
+      if (currentSelectionContext) {
+        handlePolishClick(currentSelectionContext);
+      }
+    },
+    showSettings,
+  });
 }
 
 /**
@@ -198,6 +265,17 @@ function init(): void {
   // Register all event listeners
   eventListeners.forEach(({ event, handler, options }) => {
     document.addEventListener(event, handler as EventListener, options);
+  });
+
+  // Add message listener for background worker responses
+  chrome.runtime.onMessage.addListener((message) => {
+    if (message.type === MESSAGE_TYPES.POLISH_RESPONSE) {
+      handlePolishResponse(message.payload);
+    } else if (message.type === MESSAGE_TYPES.POLISH_ERROR) {
+      handlePolishError(message.payload);
+    }
+    // Return false - we're not sending a response back
+    return false;
   });
 
   // eslint-disable-next-line no-console

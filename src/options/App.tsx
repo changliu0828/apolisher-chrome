@@ -3,6 +3,7 @@ import { APP_VERSION } from '@/constants/version';
 import ApiKeyInput from './components/ApiKeyInput';
 import PromptPresets from './components/PromptPresets';
 import CustomPrompt from './components/CustomPrompt';
+import MaxTokensInput from './components/MaxTokensInput';
 
 export default function App() {
   const {
@@ -10,6 +11,7 @@ export default function App() {
     updateApiKey,
     updatePreset,
     updateCustomPrompt,
+    updateMaxCompletionTokens,
     isPersistent,
     error,
   } = useSettings();
@@ -62,6 +64,15 @@ export default function App() {
               />
             </div>
           )}
+
+          {/* Advanced Settings Section */}
+          <div>
+            <h2 className="text-lg font-medium text-gray-900 mb-4">Advanced Settings</h2>
+            <MaxTokensInput
+              value={settings.maxCompletionTokens}
+              onChange={updateMaxCompletionTokens}
+            />
+          </div>
 
           {/* Status Indicator */}
           {isPersistent && (
