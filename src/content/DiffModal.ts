@@ -119,55 +119,42 @@ export class DiffModal {
   private calculatePosition(buttonPosition: Position): Position {
     if (!this.modal) return buttonPosition;
 
-    const modalWidth = 320; // max-width from CSS
-    const modalMaxHeight = window.innerHeight * 0.6; // 60vh from CSS
-    const estimatedModalHeight = 160; // Estimated typical height for compact diff modal
-    const padding = 16; // Viewport padding
-    const spacing = 8; // Space between button and modal
+    const MODAL_WIDTH = 320;
+    const MODAL_HEIGHT_ESTIMATE = 320; // Estimate: 2 sections at 25vh each (~270px on 1080p) + footer
+    const PADDING = 16;
 
-    // Calculate horizontal position (prefer right of button)
-    let left = buttonPosition.left + BUTTON_SIZE + spacing;
+    // Calculate button center point (absolute coordinates)
+    const buttonCenterX = buttonPosition.left + BUTTON_SIZE / 2;
+    const buttonCenterY = buttonPosition.top + BUTTON_SIZE / 2;
 
-    // Check if modal would overflow right edge
-    if (left + modalWidth > window.innerWidth - padding) {
-      // Position to the left of button instead
-      left = buttonPosition.left - modalWidth - spacing;
+    // Viewport bounds (absolute coordinates)
+    const viewportTop = window.scrollY + PADDING;
+    const viewportBottom = window.scrollY + window.innerHeight - PADDING;
+    const viewportLeft = window.scrollX + PADDING;
+    const viewportRight = window.scrollX + window.innerWidth - PADDING;
 
-      // If still overflows, center on screen
-      if (left < padding) {
-        left = Math.max(padding, (window.innerWidth - modalWidth) / 2);
-      }
+    // Horizontal: Modal left edge at button horizontal center
+    let left = buttonCenterX;
+
+    // Vertical: Try to position modal top-left at button center
+    let top = buttonCenterY;
+
+    // Check if modal would extend past bottom of viewport
+    if (top + MODAL_HEIGHT_ESTIMATE > viewportBottom) {
+      // Instead, position modal bottom-left at button center
+      top = buttonCenterY - MODAL_HEIGHT_ESTIMATE;
     }
 
-    // Calculate vertical position (choose above or below based on available space)
-    const spaceBelow = window.innerHeight - (buttonPosition.top + BUTTON_SIZE);
-    const spaceAbove = buttonPosition.top;
-
-    let top: number;
-
-    // Use estimated height for better positioning, but respect max-height constraint
-    const preferredHeight = Math.min(estimatedModalHeight, modalMaxHeight);
-
-    if (spaceBelow >= preferredHeight + spacing + padding) {
-      // Enough space below - position below the button
-      top = buttonPosition.top + BUTTON_SIZE + spacing;
-    } else if (spaceAbove >= preferredHeight + spacing + padding) {
-      // Not enough space below but enough above - position above the button
-      // Align with button top, then go up by estimated height
-      top = buttonPosition.top - preferredHeight - spacing;
-    } else if (spaceBelow > spaceAbove) {
-      // More space below - position below with max available space
-      top = buttonPosition.top + BUTTON_SIZE + spacing;
-      // Modal will scroll internally due to max-height
-    } else {
-      // More space above - position above, aligned near the button
-      // Use available space but don't go too high
-      const maxTop = buttonPosition.top - preferredHeight - spacing;
-      top = Math.max(padding, maxTop);
+    // Clamp to viewport bounds
+    if (left + MODAL_WIDTH > viewportRight) {
+      left = viewportRight - MODAL_WIDTH;
     }
-
-    // Ensure modal doesn't overflow viewport bounds
-    top = Math.max(padding, Math.min(top, window.innerHeight - estimatedModalHeight - padding));
+    if (left < viewportLeft) {
+      left = viewportLeft;
+    }
+    if (top < viewportTop) {
+      top = viewportTop;
+    }
 
     return { top, left };
   }

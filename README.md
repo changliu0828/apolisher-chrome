@@ -1,9 +1,21 @@
-# apolisher-chrome
+<p align="center">
+  <img src="public/icons/icon-raw.png" alt="APolish Logo" width="400">
+</p>
 
-![Version](https://img.shields.io/badge/version-0.5.0-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
-![Chrome](https://img.shields.io/badge/chrome-extension-red)
-![TypeScript](https://img.shields.io/badge/typescript-5.x-blue)
+<h1 align="center">APolish</h1>
+
+<p align="center">
+  <strong>Polish your text with AI - Privacy-first Chrome Extension</strong>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/version-0.5.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
+  <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
+  <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
+</p>
+
+---
 
 A privacy-first Chrome extension that polishes text on any webpage using AI. Select text, click the polish button, and get AI-enhanced suggestions with visual diff comparison.
 

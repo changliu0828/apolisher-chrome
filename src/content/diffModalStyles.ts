@@ -1,5 +1,6 @@
 // Inline CSS for the diff modal (Shadow DOM)
 export const DIFF_MODAL_STYLES = `
+  /* Modal container - flexbox column layout for sticky footer */
   .diff-modal {
     position: fixed;
     background: white;
@@ -7,16 +8,25 @@ export const DIFF_MODAL_STYLES = `
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     width: 320px;
     max-width: 90vw;
-    max-height: 60vh;
-    overflow: auto;
     z-index: 2147483647;
     font-family: system-ui, -apple-system, sans-serif;
     font-size: 13px;
+    display: flex;
+    flex-direction: column;
   }
 
+  .diff-modal-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Each diff section (original/polished) - scrollable independently */
   .diff-section {
     padding: 3px 6px;
     border-bottom: 1px solid #f3f4f6;
+    max-height: 25vh;
+    display: flex;
+    flex-direction: column;
   }
 
   .diff-section:first-of-type {
@@ -28,6 +38,7 @@ export const DIFF_MODAL_STYLES = `
     padding-bottom: 3px;
   }
 
+  /* Scrollable content area within each section */
   .diff-content {
     background: #f9fafb;
     padding: 6px;
@@ -37,6 +48,9 @@ export const DIFF_MODAL_STYLES = `
     white-space: pre-wrap;
     font-size: 13px;
     color: #374151;
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0; /* Required for flexbox scrolling */
   }
 
   .diff-delete {
@@ -55,12 +69,14 @@ export const DIFF_MODAL_STYLES = `
     font-weight: 500;
   }
 
+  /* Footer with action buttons - always visible, never scrolls */
   .diff-modal-footer {
     display: flex;
     gap: 4px;
     padding: 6px;
     justify-content: flex-end;
     border-top: 1px solid #e5e7eb;
+    flex-shrink: 0;
   }
 
   .btn {
@@ -110,7 +126,7 @@ export const DIFF_MODAL_STYLES = `
     transform: scale(0.98);
   }
 
-  /* Loading state */
+  /* Loading state - compact fixed height */
   .loading-state {
     display: flex;
     flex-direction: column;
@@ -118,6 +134,8 @@ export const DIFF_MODAL_STYLES = `
     justify-content: center;
     padding: 30px 16px;
     text-align: center;
+    height: auto;
+    min-height: 120px;
   }
 
   .loading-spinner {
@@ -140,7 +158,7 @@ export const DIFF_MODAL_STYLES = `
     font-weight: 500;
   }
 
-  /* Error state */
+  /* Error state - compact fixed height */
   .error-state {
     display: flex;
     flex-direction: column;
@@ -148,6 +166,8 @@ export const DIFF_MODAL_STYLES = `
     justify-content: center;
     padding: 24px 16px;
     text-align: center;
+    height: auto;
+    min-height: 160px;
   }
 
   .error-icon {
