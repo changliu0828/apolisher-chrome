@@ -1,5 +1,6 @@
 import { useSettings } from '@/hooks/useSettings';
 import { APP_VERSION } from '@/constants/version';
+import { BRAND } from '@/constants/strings';
 import ApiKeyInput from './components/ApiKeyInput';
 import PromptPresets from './components/PromptPresets';
 import CustomPrompt from './components/CustomPrompt';
@@ -31,9 +32,9 @@ export default function App() {
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Apolisher Settings</h1>
+          <h1 className="text-3xl font-bold text-gray-900">{BRAND.NAME} Settings</h1>
           <p className="mt-2 text-sm text-gray-600">
-            Configure your AI text polishing preferences
+            {BRAND.SLOGAN}
           </p>
         </div>
 
@@ -96,8 +97,29 @@ export default function App() {
         </div>
 
         {/* Footer */}
-        <div className="mt-8 text-center text-sm text-gray-500">
-          <p>apolisher-chrome v{APP_VERSION} • Privacy-first AI text polishing</p>
+        <div className="mt-8 text-center text-sm text-gray-500 space-y-2">
+          <p>{BRAND.NAME} v{APP_VERSION} • {BRAND.SLOGAN}</p>
+          <div className="flex items-center justify-center gap-4">
+            <a
+              href="https://github.com/changliu0828/apolisher-chrome"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-900 hover:text-gray-700 hover:underline flex items-center gap-1"
+            >
+              <i className="fa-brands fa-github"></i>
+              GitHub
+            </a>
+            <span>•</span>
+            <a
+              href="https://github.com/sponsors/changliu0828"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-900 hover:text-gray-700 hover:underline flex items-center gap-1"
+            >
+              <i className="fa-regular fa-heart"></i>
+              Sponsor
+            </a>
+          </div>
         </div>
       </div>
     </div>

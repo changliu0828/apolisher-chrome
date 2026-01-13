@@ -2,6 +2,9 @@ import { createShadowRoot, injectStyles } from '@/utils/shadowDOM';
 import { renderOriginalDiff, renderPolishedDiff } from '@/utils/diffHighlighter';
 import { DIFF_MODAL_STYLES } from './diffModalStyles';
 import { BUTTON_SIZE } from '@/constants/buttonConfig';
+import { MODAL_WIDTH, MODAL_HEIGHT, MODAL_VIEWPORT_PADDING } from '@/constants/modalConfig';
+import { APP_VERSION } from '@/constants/version';
+import { BRAND, MODAL } from '@/constants/strings';
 
 interface Position {
   top: number;
@@ -64,17 +67,23 @@ export class DiffModal {
     const footer = document.createElement('div');
     footer.className = 'diff-modal-footer';
     footer.innerHTML = `
-      <button class="btn btn-secondary regenerate-btn" aria-label="Regenerate" title="Regenerate">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
-          <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
-          <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
-        </svg>
-      </button>
-      <button class="btn btn-primary accept-btn" aria-label="Accept" title="Accept">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
-          <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-        </svg>
-      </button>
+      <div class="footer-brand">
+        <div class="footer-brand-name">${BRAND.NAME} v${APP_VERSION}</div>
+        <div class="footer-brand-slogan">${BRAND.SLOGAN}</div>
+      </div>
+      <div class="footer-buttons">
+        <button class="btn btn-secondary regenerate-btn" aria-label="${MODAL.REGENERATE_LABEL}" title="${MODAL.REGENERATE_LABEL}">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+          </svg>
+        </button>
+        <button class="btn btn-primary accept-btn" aria-label="${MODAL.ACCEPT_LABEL}" title="${MODAL.ACCEPT_LABEL}">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+          </svg>
+        </button>
+      </div>
     `;
 
     this.modal.appendChild(body);
@@ -116,22 +125,21 @@ export class DiffModal {
     }
   }
 
-  private calculatePosition(buttonPosition: Position): Position {
+  private calculatePosition(buttonPosition: Position, modalHeight?: number): Position {
     if (!this.modal) return buttonPosition;
 
-    const MODAL_WIDTH = 320;
-    const MODAL_HEIGHT_ESTIMATE = 320; // Estimate: 2 sections at 25vh each (~270px on 1080p) + footer
-    const PADDING = 16;
+    // Use actual modal height if provided, otherwise use config height
+    const actualModalHeight = modalHeight || MODAL_HEIGHT;
 
     // Calculate button center point (absolute coordinates)
     const buttonCenterX = buttonPosition.left + BUTTON_SIZE / 2;
     const buttonCenterY = buttonPosition.top + BUTTON_SIZE / 2;
 
     // Viewport bounds (absolute coordinates)
-    const viewportTop = window.scrollY + PADDING;
-    const viewportBottom = window.scrollY + window.innerHeight - PADDING;
-    const viewportLeft = window.scrollX + PADDING;
-    const viewportRight = window.scrollX + window.innerWidth - PADDING;
+    const viewportTop = window.scrollY + MODAL_VIEWPORT_PADDING;
+    const viewportBottom = window.scrollY + window.innerHeight - MODAL_VIEWPORT_PADDING;
+    const viewportLeft = window.scrollX + MODAL_VIEWPORT_PADDING;
+    const viewportRight = window.scrollX + window.innerWidth - MODAL_VIEWPORT_PADDING;
 
     // Horizontal: Modal left edge at button horizontal center
     let left = buttonCenterX;
@@ -140,9 +148,9 @@ export class DiffModal {
     let top = buttonCenterY;
 
     // Check if modal would extend past bottom of viewport
-    if (top + MODAL_HEIGHT_ESTIMATE > viewportBottom) {
+    if (top + actualModalHeight > viewportBottom) {
       // Instead, position modal bottom-left at button center
-      top = buttonCenterY - MODAL_HEIGHT_ESTIMATE;
+      top = buttonCenterY - actualModalHeight;
     }
 
     // Clamp to viewport bounds
@@ -154,6 +162,10 @@ export class DiffModal {
     }
     if (top < viewportTop) {
       top = viewportTop;
+    }
+    // Final check: ensure modal bottom doesn't exceed viewport bottom
+    if (top + actualModalHeight > viewportBottom) {
+      top = viewportBottom - actualModalHeight;
     }
 
     return { top, left };
@@ -177,25 +189,33 @@ export class DiffModal {
   public showLoading(position?: Position): void {
     if (!this.modal || !this.container) return;
 
-    // Update last position if provided
-    if (position) {
-      this.lastPosition = this.calculatePosition(position);
-    }
-
     // Show modal with loading state
     this.modal.innerHTML = `
       <div class="loading-state">
         <div class="loading-spinner"></div>
-        <p class="loading-text">Polishing text...</p>
+        <p class="loading-text">${MODAL.LOADING_TEXT}</p>
       </div>
     `;
+
+    // Temporarily show to measure height
+    this.modal.style.display = 'block';
+    this.modal.style.visibility = 'hidden';
+    this.container.style.display = 'block';
+
+    // Get actual height
+    const actualHeight = this.modal.offsetHeight;
+
+    // Calculate position with actual height
+    if (position) {
+      this.lastPosition = this.calculatePosition(position, actualHeight);
+    }
 
     // Position the modal
     this.modal.style.top = `${this.lastPosition.top}px`;
     this.modal.style.left = `${this.lastPosition.left}px`;
 
-    this.modal.style.display = 'block';
-    this.container.style.display = 'block';
+    // Make visible
+    this.modal.style.visibility = 'visible';
     this.isVisible = true;
   }
 
@@ -203,7 +223,7 @@ export class DiffModal {
     if (!this.modal || !this.container) return;
 
     const settingsButton = options.showSettings
-      ? `<button class="btn btn-secondary settings-btn">Open Settings</button>`
+      ? `<button class="btn btn-secondary settings-btn">${MODAL.SETTINGS_LABEL}</button>`
       : '';
 
     // Show modal with error state
@@ -215,16 +235,12 @@ export class DiffModal {
         </svg>
         <p class="error-message">${message}</p>
         <div class="error-actions">
-          <button class="btn btn-secondary close-btn">Close</button>
+          <button class="btn btn-secondary close-btn">${MODAL.CLOSE_LABEL}</button>
           ${settingsButton}
-          <button class="btn btn-primary retry-btn">Retry</button>
+          <button class="btn btn-primary retry-btn">${MODAL.RETRY_LABEL}</button>
         </div>
       </div>
     `;
-
-    // Position the modal using last known position
-    this.modal.style.top = `${this.lastPosition.top}px`;
-    this.modal.style.left = `${this.lastPosition.left}px`;
 
     // Attach event listeners for error buttons
     const retryBtn = this.modal.querySelector('.retry-btn');
@@ -243,8 +259,21 @@ export class DiffModal {
       chrome.runtime.openOptionsPage();
     });
 
+    // Temporarily show to measure height
     this.modal.style.display = 'block';
+    this.modal.style.visibility = 'hidden';
     this.container.style.display = 'block';
+
+    // Get actual height and recalculate position
+    const actualHeight = this.modal.offsetHeight;
+    this.lastPosition = this.calculatePosition(this.lastPosition, actualHeight);
+
+    // Position the modal
+    this.modal.style.top = `${this.lastPosition.top}px`;
+    this.modal.style.left = `${this.lastPosition.left}px`;
+
+    // Make visible
+    this.modal.style.visibility = 'visible';
     this.isVisible = true;
   }
 
@@ -274,17 +303,23 @@ export class DiffModal {
     const footer = document.createElement('div');
     footer.className = 'diff-modal-footer';
     footer.innerHTML = `
-      <button class="btn btn-secondary regenerate-btn" aria-label="Regenerate" title="Regenerate">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
-          <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
-          <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
-        </svg>
-      </button>
-      <button class="btn btn-primary accept-btn" aria-label="Accept" title="Accept">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
-          <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-        </svg>
-      </button>
+      <div class="footer-brand">
+        <div class="footer-brand-name">${BRAND.NAME} v${APP_VERSION}</div>
+        <div class="footer-brand-slogan">${BRAND.SLOGAN}</div>
+      </div>
+      <div class="footer-buttons">
+        <button class="btn btn-secondary regenerate-btn" aria-label="${MODAL.REGENERATE_LABEL}" title="${MODAL.REGENERATE_LABEL}">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+          </svg>
+        </button>
+        <button class="btn btn-primary accept-btn" aria-label="${MODAL.ACCEPT_LABEL}" title="${MODAL.ACCEPT_LABEL}">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+          </svg>
+        </button>
+      </div>
     `;
 
     this.modal.appendChild(body);
@@ -297,19 +332,26 @@ export class DiffModal {
     acceptBtn?.addEventListener('click', () => this.handleAccept());
     regenerateBtn?.addEventListener('click', () => this.handleRegenerate());
 
-    // Calculate position and store it
-    this.lastPosition = this.calculatePosition(data.position);
+    // Render diff first
+    this.renderDiff();
+
+    // Temporarily show modal to measure its height
+    this.modal.style.display = 'block';
+    this.modal.style.visibility = 'hidden'; // Hidden but still rendered for measurement
+    this.container.style.display = 'block';
+
+    // Get actual modal height after content is rendered
+    const actualHeight = this.modal.offsetHeight;
+
+    // Calculate position with actual height
+    this.lastPosition = this.calculatePosition(data.position, actualHeight);
 
     // Position modal
     this.modal.style.top = `${this.lastPosition.top}px`;
     this.modal.style.left = `${this.lastPosition.left}px`;
 
-    // Render diff
-    this.renderDiff();
-
-    // Show modal
-    this.modal.style.display = 'block';
-    this.container.style.display = 'block';
+    // Make modal visible
+    this.modal.style.visibility = 'visible';
     this.isVisible = true;
 
     // Add click outside listener (with a small delay to prevent immediate close)

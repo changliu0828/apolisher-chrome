@@ -5,7 +5,7 @@
 <h1 align="center">APolish</h1>
 
 <p align="center">
-  <strong>Polish your text with AI - Privacy-first Chrome Extension</strong>
+  <strong>A polish for your text with AI - Privacy-first Chrome Extension</strong>
 </p>
 
 <p align="center">
