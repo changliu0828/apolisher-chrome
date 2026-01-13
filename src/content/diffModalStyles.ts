@@ -1,3 +1,5 @@
+import { MODAL_CONFIG } from '@/constants/modalConfig';
+
 // Inline CSS for the diff modal (Shadow DOM)
 export const DIFF_MODAL_STYLES = `
   /* Modal container - flexbox column layout for sticky footer */
@@ -6,8 +8,8 @@ export const DIFF_MODAL_STYLES = `
     background: white;
     border-radius: 4px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    width: 320px;
-    max-width: 90vw;
+    width: ${MODAL_CONFIG.WIDTH}px;
+    max-width: ${MODAL_CONFIG.MAX_WIDTH_VW}vw;
     z-index: 2147483647;
     font-family: system-ui, -apple-system, sans-serif;
     font-size: 13px;
@@ -74,9 +76,35 @@ export const DIFF_MODAL_STYLES = `
     display: flex;
     gap: 4px;
     padding: 6px;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
     border-top: 1px solid #e5e7eb;
     flex-shrink: 0;
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 10px;
+    color: #9ca3af;
+    line-height: 1.2;
+    padding-left: 4px;
+  }
+
+  .footer-brand-name {
+    font-weight: 600;
+    color: #6b7280;
+  }
+
+  .footer-brand-slogan {
+    font-size: 9px;
+    color: #9ca3af;
+  }
+
+  .footer-buttons {
+    display: flex;
+    gap: 4px;
   }
 
   .btn {
