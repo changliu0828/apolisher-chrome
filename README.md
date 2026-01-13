@@ -133,4 +133,4 @@ Thank you to all our sponsors! 🙏
 
 ## License
 
-IT
+MIT
