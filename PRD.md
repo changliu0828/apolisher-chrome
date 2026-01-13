@@ -8,7 +8,7 @@
 ---
 
 ## 1. Executive Summary
-**apolisher-chrome** is a privacy-first browser extension that allows users to refine text on any webpage using their own AI API key. It focuses on transparency, allowing users to compare the original text against the AI-polished version before applying changes.
+**apolisher-chrome** is a privacy-first browser extension that allows users to refine text on any webpage using their own AI API key. It focuses on transparency, allowing users to compare the original text against the AI-polished version before applying changes. Currently supports OpenAI API, with Claude API support coming in v0.6.
 
 ---
 
@@ -29,7 +29,7 @@
 
 ### 3.1 Settings (Options Page)
 *The user configures these global preferences once:*
-* **AI Provider:** OpenAI (User inputs API Key).
+* **AI Provider:** OpenAI (User inputs API Key). Future: Claude API support (v0.6).
 * **Prompt Presets (Style):** Each preset is stored in `src/prompts/` directory
     * *Standard:* "Fix grammar and flow."
     * *Professional:* "Make it formal and concise."
@@ -61,7 +61,7 @@
 * **Styles:** Tailwind CSS.
 * **State/Storage:** `chrome.storage.sync` (Encrypted/Private).
 * **Diff Library:** `diff` or `jsdiff`.
-* **API:** Direct client-side calls to OpenAI API (No backend server).
+* **API:** Direct client-side calls to AI providers (OpenAI API currently, Claude API in v0.6). No backend server.
 
 ---
 
@@ -71,3 +71,4 @@
 - [x] **v0.3:** Content Script (Selection detection & Floating button, Shadow DOM isolation, editable element detection).
 - [x] **v0.4:** Diff View UI & Text Replacement logic (Mock Polisher, inline SVG icons, click-outside-to-close).
 - [x] **v0.5:** AI Integration (OpenAI API, background service worker, message passing, max tokens setting, modular prompt system).
+- [ ] **v0.6:** Multi-provider AI Support (Claude API + OpenAI, provider selection in settings, unified API interface).
