@@ -15,6 +15,12 @@
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
 </p>
 
+<p align="center">
+  <strong>English</strong> |
+  <a href="README.zh-CN.md">简体中文</a> |
+  <a href="README.ja.md">日本語</a>
+</p>
+
 ---
 
 A privacy-first Chrome extension that polishes text on any webpage using AI. Select text, click the polish button, and get AI-enhanced suggestions with visual diff comparison.
@@ -25,7 +31,6 @@ A privacy-first Chrome extension that polishes text on any webpage using AI. Sel
 - **Text Polishing**: Select any text and polish it with AI
 - **Multiple Presets**: Standard, Professional, Native Speaker, Simplified, or Custom prompts
 - **Visual Diff**: See changes highlighted with insertions (green) and deletions (red)
-- **Smart Positioning**: Modal automatically positions above or below based on available space
 - **Privacy First**: Your API key stays local, no data collection or telemetry
 - **Universal Compatibility**: Works on any webpage including Gmail, Google Docs, and more
 
@@ -59,7 +64,7 @@ npm run build
 
 1. **Setup**: Choose your AI provider (OpenAI, Claude, or Gemini) and add your API key in the extension settings
 2. **Select**: Highlight text on any webpage
-3. **Polish**: Click the ✨ button that appears
+3. **Polish**: Click the <img src="public/icons/icon32.png" width="16" height="16" alt="APolish icon" style="vertical-align: middle;"> button that appears
 4. **Review**: View the diff comparison in the modal
 5. **Accept**: Click the checkmark to apply changes
 
