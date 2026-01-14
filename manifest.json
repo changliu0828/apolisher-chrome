@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "apolisher-chrome",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "A polish for your text with AI",
   "permissions": [
     "storage",
@@ -9,7 +9,8 @@
   ],
   "host_permissions": [
     "https://api.openai.com/*",
-    "https://api.anthropic.com/*"
+    "https://api.anthropic.com/*",
+    "https://generativelanguage.googleapis.com/*"
   ],
   "background": {
     "service_worker": "src/background/index.ts"
