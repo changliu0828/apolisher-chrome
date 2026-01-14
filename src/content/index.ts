@@ -125,6 +125,8 @@ function handlePolishResponse(payload: PolishResponse['payload']): void {
   diffModal.show({
     originalText: currentSelectionContext.selectedText,
     polishedText: payload.polishedText,
+    provider: payload.provider,
+    model: payload.model,
     position: currentSelectionContext.buttonPosition,
     targetElement: currentSelectionContext.element,
     onAccept: handleAccept,
@@ -143,7 +145,11 @@ function handlePolishError(payload: PolishError['payload']): void {
 
   // Customize error message based on error code
   if (payload.code === 'NO_API_KEY') {
-    errorMessage = 'Please add your OpenAI API key in the extension settings.';
+    // Use the error message from background worker (already provider-aware)
+    // Format: "Please add your [Provider] API key..." or "invalid x-api-key"
+    if (errorMessage.includes('invalid') || errorMessage.includes('authentication')) {
+      errorMessage = 'Invalid API key.';
+    }
     showSettings = true;
   } else if (payload.code === 'NETWORK_ERROR') {
     errorMessage = 'Network error. Please check your connection and try again.';

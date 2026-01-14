@@ -1,8 +1,9 @@
 import {
-  OPENAI_CONFIG,
-  type OpenAIRequest,
-  type OpenAIResponse,
-  type OpenAIError,
+  CLAUDE_CONFIG,
+  CLAUDE_API_VERSION,
+  type ClaudeRequest,
+  type ClaudeResponse,
+  type ClaudeError,
   type AIPolishResult,
 } from '@/types/api';
 
@@ -10,8 +11,8 @@ const SYSTEM_PROMPT =
   'You are a professional text polishing assistant. Polish the user\'s text according to their instructions. CRITICAL RULES: 1) DO NOT change the format or structure - if input is a casual sentence, output a casual sentence; if input is a paragraph, output a paragraph; DO NOT add greetings, signatures, or restructure into emails/letters. 2) Keep the output length similar to the input. 3) Use the same language as the input text. Return ONLY the polished text, no explanations or metadata.';
 
 /**
- * Polish text using OpenAI API
- * @param apiKey OpenAI API key
+ * Polish text using Claude API
+ * @param apiKey Claude API key
  * @param text Text to polish
  * @param promptInstruction Instructions for polishing (from preset or custom)
  * @param maxTokens Maximum completion tokens
@@ -39,9 +40,9 @@ export async function polishText(
   }
 
   // Validate text length
-  if (text.length > OPENAI_CONFIG.maxTextLength) {
+  if (text.length > CLAUDE_CONFIG.maxTextLength) {
     const error = new Error(
-      `Text too long. Maximum ${OPENAI_CONFIG.maxTextLength} characters allowed.`
+      `Text too long. Maximum ${CLAUDE_CONFIG.maxTextLength} characters allowed.`
     );
     error.name = 'INVALID_INPUT';
     throw error;
@@ -49,57 +50,65 @@ export async function polishText(
 
   // Clamp maxTokens to valid range
   const clampedMaxTokens = Math.max(
-    OPENAI_CONFIG.minMaxTokens,
-    Math.min(OPENAI_CONFIG.maxMaxTokens, maxTokens)
+    CLAUDE_CONFIG.minMaxTokens,
+    Math.min(CLAUDE_CONFIG.maxMaxTokens, maxTokens)
   );
 
-  // Construct request body
-  const requestBody: OpenAIRequest = {
-    model: OPENAI_CONFIG.model,
+  // Construct request body (Claude format)
+  const requestBody: ClaudeRequest = {
+    model: CLAUDE_CONFIG.model,
+    max_tokens: clampedMaxTokens,
+    system: SYSTEM_PROMPT,
     messages: [
-      {
-        role: 'system',
-        content: SYSTEM_PROMPT,
-      },
       {
         role: 'user',
         content: `${promptInstruction}\n\nText to polish:\n${text}`,
       },
     ],
-    temperature: OPENAI_CONFIG.temperature,
-    max_completion_tokens: clampedMaxTokens,
+    temperature: CLAUDE_CONFIG.temperature,
   };
 
   // Make API call
   try {
     // eslint-disable-next-line no-undef
-    const response = await fetch(OPENAI_CONFIG.apiUrl, {
+    const response = await fetch(CLAUDE_CONFIG.apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${apiKey}`,
+        'anthropic-version': CLAUDE_API_VERSION,
+        'anthropic-dangerous-direct-browser-access': 'true',
+        'x-api-key': apiKey,
       },
       body: JSON.stringify(requestBody),
     });
 
     // Handle non-OK responses
     if (!response.ok) {
-      let errorData: OpenAIError | undefined;
+      let errorData: ClaudeError | undefined;
       try {
-        errorData = (await response.json()) as OpenAIError;
+        errorData = (await response.json()) as ClaudeError;
       } catch {
         // Failed to parse error response
       }
 
       const errorMessage = errorData?.error?.message || response.statusText || 'Unknown API error';
       const error = new Error(errorMessage);
-      error.name = 'API_ERROR';
+
+      // Map Claude error types to our error codes
+      if (errorData?.error?.type === 'authentication_error') {
+        error.name = 'NO_API_KEY';
+      } else if (errorData?.error?.type === 'rate_limit_error') {
+        error.name = 'API_ERROR';
+      } else {
+        error.name = 'API_ERROR';
+      }
+
       throw error;
     }
 
     // Parse response
-    const data = (await response.json()) as OpenAIResponse;
-    const polishedText = data.choices?.[0]?.message?.content?.trim();
+    const data = (await response.json()) as ClaudeResponse;
+    const polishedText = data.content?.[0]?.text?.trim();
 
     // Validate response structure
     if (!polishedText) {
@@ -112,9 +121,9 @@ export async function polishText(
       polishedText,
       usage: data.usage
         ? {
-            inputTokens: data.usage.prompt_tokens,
-            outputTokens: data.usage.completion_tokens,
-            totalTokens: data.usage.total_tokens,
+            inputTokens: data.usage.input_tokens,
+            outputTokens: data.usage.output_tokens,
+            totalTokens: data.usage.input_tokens + data.usage.output_tokens,
           }
         : undefined,
     };
