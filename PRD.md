@@ -8,7 +8,7 @@
 ---
 
 ## 1. Executive Summary
-**apolisher-chrome** is a privacy-first browser extension that allows users to refine text on any webpage using their own AI API key. It focuses on transparency, allowing users to compare the original text against the AI-polished version before applying changes. Currently supports OpenAI API, with Claude API support coming in v0.6.
+**apolisher-chrome** is a privacy-first browser extension that allows users to refine text on any webpage using their own AI API key. It focuses on transparency, allowing users to compare the original text against the AI-polished version before applying changes. Currently supports OpenAI API (v0.5), with multi-provider support planned for Claude (v0.6), Gemini (v0.7), and internationalization (v0.8).
 
 ---
 
@@ -29,7 +29,8 @@
 
 ### 3.1 Settings (Options Page)
 *The user configures these global preferences once:*
-* **AI Provider:** OpenAI (User inputs API Key). Future: Claude API support (v0.6).
+* **AI Provider Selection:** Choose between OpenAI, Claude (v0.6), or Gemini (v0.7)
+* **API Key:** User inputs API Key for selected provider
 * **Prompt Presets (Style):** Each preset is stored in `src/prompts/` directory
     * *Standard:* "Fix grammar and flow."
     * *Professional:* "Make it formal and concise."
@@ -38,6 +39,7 @@
 * **Custom Prompt:** Ability to add specific instructions (e.g., "Use US English").
 * **Advanced Settings:**
     * *Max Completion Tokens:* Control response length and API costs (100-4000 tokens, default: 2000).
+* **Language Preference (v0.8):** Select UI language for internationalization
 
 ### 3.2 The Interaction (Content Script)
 * **Trigger Logic:** Listens for text selection (`mouseup`). If selection > 0 characters, show the floating button.
@@ -61,7 +63,8 @@
 * **Styles:** Tailwind CSS.
 * **State/Storage:** `chrome.storage.sync` (Encrypted/Private).
 * **Diff Library:** `diff` or `jsdiff`.
-* **API:** Direct client-side calls to AI providers (OpenAI API currently, Claude API in v0.6). No backend server.
+* **API:** Direct client-side calls to AI providers (OpenAI, Claude, Gemini) via background service worker. No backend server.
+* **i18n:** react-i18next or chrome.i18n (v0.8)
 
 ---
 
@@ -70,5 +73,7 @@
 - [x] **v0.2:** Options Page (API Key storage, prompt presets, chrome.storage.sync, version management).
 - [x] **v0.3:** Content Script (Selection detection & Floating button, Shadow DOM isolation, editable element detection).
 - [x] **v0.4:** Diff View UI & Text Replacement logic (Mock Polisher, inline SVG icons, click-outside-to-close).
-- [x] **v0.5:** AI Integration (OpenAI API, background service worker, message passing, max tokens setting, modular prompt system).
-- [ ] **v0.6:** Multi-provider AI Support (Claude API + OpenAI, provider selection in settings, unified API interface).
+- [x] **v0.5:** AI Integration - OpenAI (Background service worker, API integration, max tokens setting, modular prompt system).
+- [ ] **v0.6:** Multi-Provider Support - Claude API (Provider selection UI, Claude API adapter, unified API interface).
+- [ ] **v0.7:** Multi-Provider Support - Gemini API (Gemini API adapter, provider-specific settings, model selection).
+- [ ] **v0.8:** Internationalization (i18n support, multi-language UI, locale-specific prompts).
