@@ -1,6 +1,7 @@
 import { useSettings } from '@/hooks/useSettings';
 import { APP_VERSION } from '@/constants/version';
 import { BRAND } from '@/constants/strings';
+import ProviderSelector from './components/ProviderSelector';
 import ApiKeyInput from './components/ApiKeyInput';
 import PromptPresets from './components/PromptPresets';
 import CustomPrompt from './components/CustomPrompt';
@@ -9,6 +10,7 @@ import MaxTokensInput from './components/MaxTokensInput';
 export default function App() {
   const {
     settings,
+    updateProvider,
     updateApiKey,
     updatePreset,
     updateCustomPrompt,
@@ -27,6 +29,9 @@ export default function App() {
     );
   }
 
+  // Get provider display name
+  const providerName = settings.selectedProvider === 'openai' ? 'OpenAI' : 'Claude';
+
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
@@ -40,10 +45,22 @@ export default function App() {
 
         {/* Settings Card */}
         <div className="bg-white shadow rounded-lg p-6 space-y-6">
+          {/* Provider Selection Section */}
+          <div>
+            <ProviderSelector
+              value={settings.selectedProvider}
+              onChange={updateProvider}
+            />
+          </div>
+
           {/* API Key Section */}
           <div>
-            <h2 className="text-lg font-medium text-gray-900 mb-4">OpenAI API Key</h2>
-            <ApiKeyInput value={settings.apiKey} onChange={updateApiKey} />
+            <h2 className="text-lg font-medium text-gray-900 mb-4">{providerName} API Key</h2>
+            <ApiKeyInput
+              value={settings.apiKeys[settings.selectedProvider]}
+              onChange={updateApiKey}
+              provider={settings.selectedProvider}
+            />
           </div>
 
           {/* Prompt Presets Section */}

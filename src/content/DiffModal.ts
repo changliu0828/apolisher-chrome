@@ -5,6 +5,7 @@ import { BUTTON_SIZE } from '@/constants/buttonConfig';
 import { MODAL_WIDTH, MODAL_HEIGHT, MODAL_VIEWPORT_PADDING } from '@/constants/modalConfig';
 import { APP_VERSION } from '@/constants/version';
 import { BRAND, MODAL } from '@/constants/strings';
+import { MESSAGE_TYPES } from '@/types/messages';
 
 interface Position {
   top: number;
@@ -16,6 +17,8 @@ interface DiffModalData {
   polishedText: string;
   position: Position;
   targetElement: HTMLElement;
+  provider: string;
+  model: string;
   onAccept: (text: string) => void;
   onRegenerate: () => void;
 }
@@ -30,6 +33,8 @@ export class DiffModal {
   private modal: HTMLDivElement | null = null;
   private originalText: string = '';
   private polishedText: string = '';
+  private provider: string = '';
+  private model: string = '';
   private onAccept?: (text: string) => void;
   private onRegenerate?: () => void;
   private isVisible = false;
@@ -69,7 +74,7 @@ export class DiffModal {
     footer.innerHTML = `
       <div class="footer-brand">
         <div class="footer-brand-name">${BRAND.NAME} v${APP_VERSION}</div>
-        <div class="footer-brand-slogan">${BRAND.SLOGAN}</div>
+        <div class="footer-brand-slogan">${this.provider && this.model ? `Powered by ${this.provider} ${this.model}` : BRAND.SLOGAN}</div>
       </div>
       <div class="footer-buttons">
         <button class="btn btn-secondary regenerate-btn" aria-label="${MODAL.REGENERATE_LABEL}" title="${MODAL.REGENERATE_LABEL}">
@@ -256,7 +261,7 @@ export class DiffModal {
     });
 
     settingsBtn?.addEventListener('click', () => {
-      chrome.runtime.openOptionsPage();
+      chrome.runtime.sendMessage({ type: MESSAGE_TYPES.OPEN_OPTIONS });
     });
 
     // Temporarily show to measure height
@@ -283,6 +288,8 @@ export class DiffModal {
     // Store data
     this.originalText = data.originalText;
     this.polishedText = data.polishedText;
+    this.provider = data.provider;
+    this.model = data.model;
     this.onAccept = data.onAccept;
     this.onRegenerate = data.onRegenerate;
 
@@ -305,7 +312,7 @@ export class DiffModal {
     footer.innerHTML = `
       <div class="footer-brand">
         <div class="footer-brand-name">${BRAND.NAME} v${APP_VERSION}</div>
-        <div class="footer-brand-slogan">${BRAND.SLOGAN}</div>
+        <div class="footer-brand-slogan">${this.provider && this.model ? `Powered by ${this.provider} ${this.model}` : BRAND.SLOGAN}</div>
       </div>
       <div class="footer-buttons">
         <button class="btn btn-secondary regenerate-btn" aria-label="${MODAL.REGENERATE_LABEL}" title="${MODAL.REGENERATE_LABEL}">

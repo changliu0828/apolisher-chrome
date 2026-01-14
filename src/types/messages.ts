@@ -3,6 +3,7 @@ export const MESSAGE_TYPES = {
   POLISH_REQUEST: 'POLISH_TEXT_REQUEST',
   POLISH_RESPONSE: 'POLISH_TEXT_RESPONSE',
   POLISH_ERROR: 'POLISH_TEXT_ERROR',
+  OPEN_OPTIONS: 'OPEN_OPTIONS_PAGE',
 } as const;
 
 export interface PolishRequest {
@@ -16,6 +17,8 @@ export interface PolishResponse {
   type: typeof MESSAGE_TYPES.POLISH_RESPONSE;
   payload: {
     polishedText: string;
+    provider: string;
+    model: string;
     usage?: {
       prompt_tokens: number;
       completion_tokens: number;
@@ -34,4 +37,8 @@ export interface PolishError {
   };
 }
 
-export type Message = PolishRequest | PolishResponse | PolishError;
+export interface OpenOptionsMessage {
+  type: typeof MESSAGE_TYPES.OPEN_OPTIONS;
+}
+
+export type Message = PolishRequest | PolishResponse | PolishError | OpenOptionsMessage;

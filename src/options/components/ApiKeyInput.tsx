@@ -3,10 +3,17 @@ import { useState } from 'react';
 interface ApiKeyInputProps {
   value: string;
   onChange: (_value: string) => void;
+  provider: 'openai' | 'claude';
 }
 
-export default function ApiKeyInput({ value, onChange }: ApiKeyInputProps) {
+export default function ApiKeyInput({ value, onChange, provider }: ApiKeyInputProps) {
   const [showKey, setShowKey] = useState(false);
+
+  // Provider-specific links
+  const getApiKeyLink =
+    provider === 'openai'
+      ? 'https://platform.openai.com/api-keys'
+      : 'https://console.anthropic.com/settings/keys';
 
   return (
     <div className="space-y-2">
@@ -15,7 +22,7 @@ export default function ApiKeyInput({ value, onChange }: ApiKeyInputProps) {
           type={showKey ? 'text' : 'password'}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          placeholder="sk-..."
+          placeholder={provider === 'openai' ? 'sk-...' : 'sk-ant-...'}
           className="w-full px-4 py-2 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
         />
         <button
@@ -62,7 +69,15 @@ export default function ApiKeyInput({ value, onChange }: ApiKeyInputProps) {
         </button>
       </div>
       <p className="text-xs text-gray-500">
-        Your API key is stored locally and never shared
+        Your API key is stored locally and never shared.{' '}
+        <a
+          href={getApiKeyLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary-600 hover:text-primary-700 underline"
+        >
+          Get your API key
+        </a>
       </p>
     </div>
   );
