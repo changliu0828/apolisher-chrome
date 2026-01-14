@@ -8,15 +8,15 @@
 ---
 
 ## 1. Executive Summary
-**apolisher-chrome** is a privacy-first browser extension that allows users to refine text on any webpage using their own AI API key. It focuses on transparency, allowing users to compare the original text against the AI-polished version before applying changes. Currently supports OpenAI API (v0.5), with multi-provider support planned for Claude (v0.6), Gemini (v0.7), and internationalization (v0.8).
+**apolisher-chrome** is a privacy-first browser extension that allows users to refine text on any webpage using their own AI API key. It focuses on transparency, allowing users to compare the original text against the AI-polished version before applying changes. Supports OpenAI and Claude APIs (v0.6), with Gemini support (v0.7) and internationalization (v0.8) planned.
 
 ---
 
 ## 2. User Flow
-1.  **Setup:** User installs `apolisher-chrome`, opens settings, and inputs their OpenAI API Key.
+1.  **Setup:** User installs `apolisher-chrome`, opens settings, selects AI provider (OpenAI or Claude), and inputs their API key.
 2.  **Selection:** User highlights text on a webpage (e.g., email, form, Google Doc).
 3.  **Trigger:** A small floating action button appears near the selection.
-4.  **Action:** User clicks the button; the extension sends the text to the AI provider.
+4.  **Action:** User clicks the button; the extension sends the text to the selected AI provider.
 5.  **Review:** A modal opens displaying a comparison of **Original** vs. **Polished** text (Visual Diff).
 6.  **Commit:**
     * **Accept:** Instantly replaces the text on the page.
@@ -74,6 +74,6 @@
 - [x] **v0.3:** Content Script (Selection detection & Floating button, Shadow DOM isolation, editable element detection).
 - [x] **v0.4:** Diff View UI & Text Replacement logic (Mock Polisher, inline SVG icons, click-outside-to-close).
 - [x] **v0.5:** AI Integration - OpenAI (Background service worker, API integration, max tokens setting, modular prompt system).
-- [ ] **v0.6:** Multi-Provider Support - Claude API (Provider selection UI, Claude API adapter, unified API interface).
+- [x] **v0.6:** Multi-Provider Support - Claude API (Provider selection UI, Claude API adapter, unified API interface).
 - [ ] **v0.7:** Multi-Provider Support - Gemini API (Gemini API adapter, provider-specific settings, model selection).
 - [ ] **v0.8:** Internationalization (i18n support, multi-language UI, locale-specific prompts).
