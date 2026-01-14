@@ -30,7 +30,19 @@ export default function App() {
   }
 
   // Get provider display name
-  const providerName = settings.selectedProvider === 'openai' ? 'OpenAI' : 'Claude';
+  const getProviderName = () => {
+    switch (settings.selectedProvider) {
+      case 'openai':
+        return 'OpenAI';
+      case 'claude':
+        return 'Claude';
+      case 'gemini':
+        return 'Gemini';
+      default:
+        return settings.selectedProvider;
+    }
+  };
+  const providerName = getProviderName();
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">

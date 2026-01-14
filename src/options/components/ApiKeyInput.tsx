@@ -3,17 +3,38 @@ import { useState } from 'react';
 interface ApiKeyInputProps {
   value: string;
   onChange: (_value: string) => void;
-  provider: 'openai' | 'claude';
+  provider: 'openai' | 'claude' | 'gemini';
 }
 
 export default function ApiKeyInput({ value, onChange, provider }: ApiKeyInputProps) {
   const [showKey, setShowKey] = useState(false);
 
   // Provider-specific links
-  const getApiKeyLink =
-    provider === 'openai'
-      ? 'https://platform.openai.com/api-keys'
-      : 'https://console.anthropic.com/settings/keys';
+  const getApiKeyLink = () => {
+    switch (provider) {
+      case 'openai':
+        return 'https://platform.openai.com/api-keys';
+      case 'claude':
+        return 'https://console.anthropic.com/settings/keys';
+      case 'gemini':
+        return 'https://aistudio.google.com/app/apikey';
+      default:
+        return '';
+    }
+  };
+
+  const getPlaceholder = () => {
+    switch (provider) {
+      case 'openai':
+        return 'sk-...';
+      case 'claude':
+        return 'sk-ant-...';
+      case 'gemini':
+        return 'AIza...';
+      default:
+        return '';
+    }
+  };
 
   return (
     <div className="space-y-2">
@@ -22,7 +43,7 @@ export default function ApiKeyInput({ value, onChange, provider }: ApiKeyInputPr
           type={showKey ? 'text' : 'password'}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          placeholder={provider === 'openai' ? 'sk-...' : 'sk-ant-...'}
+          placeholder={getPlaceholder()}
           className="w-full px-4 py-2 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
         />
         <button
@@ -71,7 +92,7 @@ export default function ApiKeyInput({ value, onChange, provider }: ApiKeyInputPr
       <p className="text-xs text-gray-500">
         Your API key is stored locally and never shared.{' '}
         <a
-          href={getApiKeyLink}
+          href={getApiKeyLink()}
           target="_blank"
           rel="noopener noreferrer"
           className="text-primary-600 hover:text-primary-700 underline"

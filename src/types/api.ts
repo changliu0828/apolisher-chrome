@@ -114,3 +114,71 @@ export interface ClaudeError {
   };
   request_id?: string;
 }
+
+// Gemini configuration
+export const GEMINI_CONFIG: ProviderConfig = {
+  apiUrl: 'https://generativelanguage.googleapis.com/v1beta/models',
+  model: 'gemini-2.5-flash',
+  maxTextLength: 10000,
+  temperature: 0.7,
+  defaultMaxTokens: 2000,
+  minMaxTokens: 100,
+  maxMaxTokens: 8192,
+};
+
+export interface GeminiContentPart {
+  text: string;
+}
+
+export interface GeminiContent {
+  role: 'user' | 'model';
+  parts: GeminiContentPart[];
+}
+
+export interface GeminiSystemInstruction {
+  parts: GeminiContentPart[];
+}
+
+export interface GeminiGenerationConfig {
+  temperature?: number;
+  maxOutputTokens?: number;
+  topP?: number;
+  topK?: number;
+}
+
+export interface GeminiRequest {
+  contents: GeminiContent[];
+  systemInstruction?: GeminiSystemInstruction;
+  generationConfig?: GeminiGenerationConfig;
+}
+
+export interface GeminiCandidate {
+  content: {
+    parts: GeminiContentPart[];
+    role: string;
+  };
+  finishReason: string;
+  safetyRatings?: Array<{
+    category: string;
+    probability: string;
+  }>;
+}
+
+export interface GeminiUsageMetadata {
+  promptTokenCount: number;
+  candidatesTokenCount: number;
+  totalTokenCount: number;
+}
+
+export interface GeminiResponse {
+  candidates: GeminiCandidate[];
+  usageMetadata?: GeminiUsageMetadata;
+}
+
+export interface GeminiError {
+  error: {
+    code: number;
+    message: string;
+    status: string;
+  };
+}

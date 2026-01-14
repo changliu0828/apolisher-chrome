@@ -1,10 +1,11 @@
 import { PROMPT_PRESETS } from '@/prompts';
 
-export type AIProvider = 'openai' | 'claude';
+export type AIProvider = 'openai' | 'claude' | 'gemini';
 
 export interface ProviderApiKeys {
   openai: string;
   claude: string;
+  gemini: string;
 }
 
 export interface Settings {
@@ -23,6 +24,7 @@ export const DEFAULT_SETTINGS: Settings = {
   apiKeys: {
     openai: '',
     claude: '',
+    gemini: '',
   },
   selectedPreset: 'standard',
   customPrompt: '',

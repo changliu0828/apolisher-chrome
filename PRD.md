@@ -8,12 +8,12 @@
 ---
 
 ## 1. Executive Summary
-**apolisher-chrome** is a privacy-first browser extension that allows users to refine text on any webpage using their own AI API key. It focuses on transparency, allowing users to compare the original text against the AI-polished version before applying changes. Supports OpenAI and Claude APIs (v0.6), with Gemini support (v0.7) and internationalization (v0.8) planned.
+**apolisher-chrome** is a privacy-first browser extension that allows users to refine text on any webpage using their own AI API key. It focuses on transparency, allowing users to compare the original text against the AI-polished version before applying changes. Supports OpenAI, Claude, and Gemini APIs (v0.7), with internationalization (v0.8) planned.
 
 ---
 
 ## 2. User Flow
-1.  **Setup:** User installs `apolisher-chrome`, opens settings, selects AI provider (OpenAI or Claude), and inputs their API key.
+1.  **Setup:** User installs `apolisher-chrome`, opens settings, selects AI provider (OpenAI, Claude, or Gemini), and inputs their API key.
 2.  **Selection:** User highlights text on a webpage (e.g., email, form, Google Doc).
 3.  **Trigger:** A small floating action button appears near the selection.
 4.  **Action:** User clicks the button; the extension sends the text to the selected AI provider.
@@ -29,7 +29,7 @@
 
 ### 3.1 Settings (Options Page)
 *The user configures these global preferences once:*
-* **AI Provider Selection:** Choose between OpenAI, Claude (v0.6), or Gemini (v0.7)
+* **AI Provider Selection:** Choose between OpenAI (GPT-4o Mini), Claude (3.5 Haiku), or Gemini (2.5 Flash)
 * **API Key:** User inputs API Key for selected provider
 * **Prompt Presets (Style):** Each preset is stored in `src/prompts/` directory
     * *Standard:* "Fix grammar and flow."
@@ -38,7 +38,7 @@
     * *Simplified:* "Make it easy to understand."
 * **Custom Prompt:** Ability to add specific instructions (e.g., "Use US English").
 * **Advanced Settings:**
-    * *Max Completion Tokens:* Control response length and API costs (100-4000 tokens, default: 2000).
+    * *Max Completion Tokens:* Control response length and API costs (100-8192 tokens, default: 2000).
 * **Language Preference (v0.8):** Select UI language for internationalization
 
 ### 3.2 The Interaction (Content Script)
@@ -75,5 +75,5 @@
 - [x] **v0.4:** Diff View UI & Text Replacement logic (Mock Polisher, inline SVG icons, click-outside-to-close).
 - [x] **v0.5:** AI Integration - OpenAI (Background service worker, API integration, max tokens setting, modular prompt system).
 - [x] **v0.6:** Multi-Provider Support - Claude API (Provider selection UI, Claude API adapter, unified API interface).
-- [ ] **v0.7:** Multi-Provider Support - Gemini API (Gemini API adapter, provider-specific settings, model selection).
+- [x] **v0.7:** Multi-Provider Support - Gemini API (Gemini API adapter, unified provider interface, Gemini 2.5 Flash model).
 - [ ] **v0.8:** Internationalization (i18n support, multi-language UI, locale-specific prompts).

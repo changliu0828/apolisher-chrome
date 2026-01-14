@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.6.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.7.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
@@ -21,7 +21,7 @@ A privacy-first Chrome extension that polishes text on any webpage using AI. Sel
 
 ## Features
 
-- **Multi-Provider AI Support**: Choose between OpenAI or Claude using your own API key
+- **Multi-Provider AI Support**: Choose between OpenAI, Claude, or Gemini using your own API key
 - **Text Polishing**: Select any text and polish it with AI
 - **Multiple Presets**: Standard, Professional, Native Speaker, Simplified, or Custom prompts
 - **Visual Diff**: See changes highlighted with insertions (green) and deletions (red)
@@ -57,7 +57,7 @@ npm run build
 
 ## Usage
 
-1. **Setup**: Choose your AI provider (OpenAI or Claude) and add your API key in the extension settings
+1. **Setup**: Choose your AI provider (OpenAI, Claude, or Gemini) and add your API key in the extension settings
 2. **Select**: Highlight text on any webpage
 3. **Polish**: Click the ✨ button that appears
 4. **Review**: View the diff comparison in the modal
@@ -67,10 +67,10 @@ npm run build
 
 Access settings by clicking the extension icon or right-clicking and selecting "Options":
 
-- **AI Provider**: Choose between OpenAI (GPT-4o Mini) or Claude (3.5 Haiku)
+- **AI Provider**: Choose between OpenAI (GPT-4o Mini), Claude (3.5 Haiku), or Gemini (2.5 Flash)
 - **API Key**: Your provider-specific API key (stored securely in Chrome sync storage)
 - **Prompt Presets**: Choose from Standard, Professional, Native, Simplified, or Custom
-- **Max Tokens**: Control response length (100-4000 tokens, default: 2000)
+- **Max Tokens**: Control response length (100-8192 tokens, default: 2000)
 
 ## Tech Stack
 
@@ -78,7 +78,7 @@ Access settings by clicking the extension icon or right-clicking and selecting "
 - **Vite** - Build system with @crxjs/vite-plugin
 - **Tailwind CSS** - Styling
 - **Chrome Extension Manifest V3** - Extension architecture
-- **Multi-Provider AI**: OpenAI (GPT-4o Mini) or Claude (3.5 Haiku)
+- **Multi-Provider AI**: OpenAI (GPT-4o Mini), Claude (3.5 Haiku), or Gemini (2.5 Flash)
 - **Shadow DOM** - Style isolation for content script
 
 ## Development
@@ -108,7 +108,7 @@ src/
 ├── content/         # Content script and UI components
 ├── options/         # Settings page
 ├── prompts/         # Prompt presets
-├── services/        # Multi-provider AI services (OpenAI, Claude)
+├── services/        # Multi-provider AI services (OpenAI, Claude, Gemini)
 ├── types/           # TypeScript types
 └── utils/           # Utilities
 ```
