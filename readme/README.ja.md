@@ -1,24 +1,31 @@
 <p align="center">
-  <img src="public/icons/icon-raw.png" alt="APolish Logo" width="400">
+  <img src="../public/icons/icon-raw.png" alt="APolish Logo" width="400">
 </p>
 
 <h1 align="center">APolish</h1>
 
 <p align="center">
-  <strong>AI テキスト校正ツール - プライバシー重視の Chrome 拡張機能</strong>
+  <strong>AI であなたのテキストを磨く</strong>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.7.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.8.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
 </p>
 
 <p align="center">
-  <a href="README.md">English</a> |
+  <a href="../README.md">English</a> |
   <a href="README.zh-CN.md">简体中文</a> |
-  <strong>日本語</strong>
+  <a href="README.zh-TW.md">繁體中文</a> |
+  <strong>日本語</strong> |
+  <a href="README.es.md">Español</a> |
+  <a href="README.pt.md">Português</a> |
+  <a href="README.fr.md">Français</a> |
+  <a href="README.de.md">Deutsch</a> |
+  <a href="README.ru.md">Русский</a> |
+  <a href="README.hi.md">हिन्दी</a>
 </p>
 
 ---
@@ -64,7 +71,7 @@ npm run build
 
 1. **セットアップ**：拡張機能の設定で AI プロバイダー（OpenAI、Claude、または Gemini）を選択し、API キーを追加
 2. **選択**：任意のウェブページでテキストをハイライト
-3. **校正**：表示される <img src="public/icons/icon32.png" width="16" height="16" alt="APolish アイコン" style="vertical-align: middle;"> ボタンをクリック
+3. **校正**：表示される <img src="../public/icons/icon32.png" width="16" height="16" alt="APolish アイコン" style="vertical-align: middle;"> ボタンをクリック
 4. **レビュー**：モーダルで差分比較を表示
 5. **承認**：チェックマークをクリックして変更を適用
 
@@ -75,7 +82,7 @@ npm run build
 - **AI プロバイダー**：OpenAI (GPT-4o Mini)、Claude (3.5 Haiku)、または Gemini (2.5 Flash) から選択
 - **API キー**：プロバイダー固有の API キー（Chrome 同期ストレージに安全に保存）
 - **プロンプトプリセット**：標準、プロフェッショナル、ネイティブ、簡潔、またはカスタムから選択
-- **最大トークン数**：応答の長さを制御（100-8192 トークン、デフォルト：2000）
+- **最大Token数**：応答の長さを制御（100-4000 Token、デフォルト：2000）
 
 ## 技術スタック
 

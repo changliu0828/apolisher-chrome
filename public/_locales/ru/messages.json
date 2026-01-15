@@ -1,0 +1,200 @@
+{
+  "brand_name": {
+    "message": "Apolisher"
+  },
+  "brand_slogan": {
+    "message": "Отполируйте свой текст с помощью ИИ"
+  },
+  "modal_loading_text": {
+    "message": "Полировка текста..."
+  },
+  "modal_accept_label": {
+    "message": "Принять"
+  },
+  "modal_regenerate_label": {
+    "message": "Создать заново"
+  },
+  "modal_close_label": {
+    "message": "Закрыть"
+  },
+  "modal_retry_label": {
+    "message": "Повторить"
+  },
+  "modal_settings_label": {
+    "message": "Открыть настройки"
+  },
+  "modal_powered_by": {
+    "message": "Работает на $PROVIDER$ ($MODEL$)",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "OpenAI"
+      },
+      "model": {
+        "content": "$2",
+        "example": "GPT-4o Mini"
+      }
+    }
+  },
+  "error_no_api_key": {
+    "message": "Пожалуйста, добавьте ваш API-ключ $PROVIDER$ в настройках расширения.",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "OpenAI"
+      }
+    }
+  },
+  "error_network": {
+    "message": "Ошибка сети. Пожалуйста, проверьте подключение и попробуйте снова."
+  },
+  "error_api": {
+    "message": "Не удалось отполировать текст. Пожалуйста, попробуйте снова."
+  },
+  "options_title": {
+    "message": "Настройки $BRAND$",
+    "placeholders": {
+      "brand": {
+        "content": "$1",
+        "example": "Apolisher"
+      }
+    }
+  },
+  "options_saved": {
+    "message": "Настройки сохранены автоматически"
+  },
+  "options_error_loading": {
+    "message": "Ошибка загрузки настроек: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1",
+        "example": "Не удалось загрузить"
+      }
+    }
+  },
+  "provider_label": {
+    "message": "Поставщик ИИ"
+  },
+  "provider_description": {
+    "message": "Выберите предпочитаемого поставщика ИИ для полировки текста"
+  },
+  "provider_openai": {
+    "message": "OpenAI (GPT-4o Mini)"
+  },
+  "provider_claude": {
+    "message": "Claude (3.5 Haiku)"
+  },
+  "provider_gemini": {
+    "message": "Gemini (2.5 Flash)"
+  },
+  "api_key_section_title": {
+    "message": "API-ключ $PROVIDER$",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "OpenAI"
+      }
+    }
+  },
+  "api_key_hide_label": {
+    "message": "Скрыть API-ключ"
+  },
+  "api_key_show_label": {
+    "message": "Показать API-ключ"
+  },
+  "api_key_privacy_notice": {
+    "message": "Ваш API-ключ хранится локально и никогда не передается третьим лицам."
+  },
+  "api_key_get_link_text": {
+    "message": "Получить API-ключ"
+  },
+  "prompt_style_title": {
+    "message": "Стиль промпта"
+  },
+  "preset_standard_label": {
+    "message": "Стандартный"
+  },
+  "preset_standard_description": {
+    "message": "Улучшить ясность, грамматику и читаемость"
+  },
+  "preset_professional_label": {
+    "message": "Профессиональный"
+  },
+  "preset_professional_description": {
+    "message": "Повысить формальность и профессиональный тон"
+  },
+  "preset_native_label": {
+    "message": "Носитель языка"
+  },
+  "preset_native_description": {
+    "message": "Сделать более естественным и плавным"
+  },
+  "preset_simplified_label": {
+    "message": "Упрощенный"
+  },
+  "preset_simplified_description": {
+    "message": "Упростить язык и снизить сложность"
+  },
+  "preset_custom_label": {
+    "message": "Пользовательский"
+  },
+  "preset_custom_description": {
+    "message": "Используйте свои собственные инструкции промпта"
+  },
+  "custom_prompt_title": {
+    "message": "Пользовательский промпт"
+  },
+  "custom_prompt_placeholder": {
+    "message": "Введите свои пользовательские инструкции промпта..."
+  },
+  "custom_prompt_hint": {
+    "message": "Опишите, как вы хотите отполировать свой текст"
+  },
+  "custom_prompt_character_count": {
+    "message": "$COUNT$ символов",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "123"
+      }
+    }
+  },
+  "advanced_settings_title": {
+    "message": "Расширенные настройки"
+  },
+  "max_tokens_label": {
+    "message": "Максимум Token завершения"
+  },
+  "max_tokens_description": {
+    "message": "Максимальное количество Token для ответов ИИ. Меньшие значения быстрее и дешевле (обычно: 100-500 для небольших правок, 1000-2000 для переписывания, 3000-4000 для обширных изменений). Диапазон: 100-4000."
+  },
+  "footer_github": {
+    "message": "GitHub"
+  },
+  "footer_sponsor": {
+    "message": "Спонсировать"
+  },
+  "footer_version": {
+    "message": "$BRAND$ v$VERSION$ • $SLOGAN$",
+    "placeholders": {
+      "brand": {
+        "content": "$1",
+        "example": "Apolisher"
+      },
+      "version": {
+        "content": "$2",
+        "example": "0.8.0"
+      },
+      "slogan": {
+        "content": "$3",
+        "example": "Отполируйте свой текст с помощью ИИ"
+      }
+    }
+  },
+  "floating_button_aria_label": {
+    "message": "Отполировать выбранный текст с помощью ИИ"
+  },
+  "floating_button_icon_alt": {
+    "message": "Значок полировки"
+  }
+}

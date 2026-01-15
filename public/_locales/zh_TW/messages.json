@@ -1,0 +1,200 @@
+{
+  "brand_name": {
+    "message": "Apolisher"
+  },
+  "brand_slogan": {
+    "message": "用 AI 為你的文字潤飾"
+  },
+  "modal_loading_text": {
+    "message": "正在潤飾文字..."
+  },
+  "modal_accept_label": {
+    "message": "接受"
+  },
+  "modal_regenerate_label": {
+    "message": "重新產生"
+  },
+  "modal_close_label": {
+    "message": "關閉"
+  },
+  "modal_retry_label": {
+    "message": "重試"
+  },
+  "modal_settings_label": {
+    "message": "開啟設定"
+  },
+  "modal_powered_by": {
+    "message": "由 $PROVIDER$ ($MODEL$) 提供支援",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "OpenAI"
+      },
+      "model": {
+        "content": "$2",
+        "example": "GPT-4o Mini"
+      }
+    }
+  },
+  "error_no_api_key": {
+    "message": "請在擴充功能設定中新增您的 $PROVIDER$ API 金鑰。",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "OpenAI"
+      }
+    }
+  },
+  "error_network": {
+    "message": "網路錯誤。請檢查您的連線後重試。"
+  },
+  "error_api": {
+    "message": "文字潤飾失敗。請重試。"
+  },
+  "options_title": {
+    "message": "$BRAND$ 設定",
+    "placeholders": {
+      "brand": {
+        "content": "$1",
+        "example": "Apolisher"
+      }
+    }
+  },
+  "options_saved": {
+    "message": "設定已自動儲存"
+  },
+  "options_error_loading": {
+    "message": "載入設定時發生錯誤：$ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1",
+        "example": "載入失敗"
+      }
+    }
+  },
+  "provider_label": {
+    "message": "AI 提供者"
+  },
+  "provider_description": {
+    "message": "選擇您偏好的 AI 提供者進行文字潤飾"
+  },
+  "provider_openai": {
+    "message": "OpenAI (GPT-4o Mini)"
+  },
+  "provider_claude": {
+    "message": "Claude (3.5 Haiku)"
+  },
+  "provider_gemini": {
+    "message": "Gemini (2.5 Flash)"
+  },
+  "api_key_section_title": {
+    "message": "$PROVIDER$ API 金鑰",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "OpenAI"
+      }
+    }
+  },
+  "api_key_hide_label": {
+    "message": "隱藏 API 金鑰"
+  },
+  "api_key_show_label": {
+    "message": "顯示 API 金鑰"
+  },
+  "api_key_privacy_notice": {
+    "message": "您的 API 金鑰僅儲存在本機，不會被分享。"
+  },
+  "api_key_get_link_text": {
+    "message": "取得您的 API 金鑰"
+  },
+  "prompt_style_title": {
+    "message": "提示詞風格"
+  },
+  "preset_standard_label": {
+    "message": "標準"
+  },
+  "preset_standard_description": {
+    "message": "改善清晰度、文法和可讀性"
+  },
+  "preset_professional_label": {
+    "message": "專業"
+  },
+  "preset_professional_description": {
+    "message": "增強正式性和專業語氣"
+  },
+  "preset_native_label": {
+    "message": "母語"
+  },
+  "preset_native_description": {
+    "message": "使其聽起來更自然流暢"
+  },
+  "preset_simplified_label": {
+    "message": "簡化"
+  },
+  "preset_simplified_description": {
+    "message": "簡化語言並降低複雜度"
+  },
+  "preset_custom_label": {
+    "message": "自訂"
+  },
+  "preset_custom_description": {
+    "message": "使用您自己的提示詞說明"
+  },
+  "custom_prompt_title": {
+    "message": "自訂提示詞"
+  },
+  "custom_prompt_placeholder": {
+    "message": "輸入您的自訂提示詞說明..."
+  },
+  "custom_prompt_hint": {
+    "message": "描述您希望如何潤飾文字"
+  },
+  "custom_prompt_character_count": {
+    "message": "$COUNT$ 個字元",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "123"
+      }
+    }
+  },
+  "advanced_settings_title": {
+    "message": "進階設定"
+  },
+  "max_tokens_label": {
+    "message": "最大產生 Token 數"
+  },
+  "max_tokens_description": {
+    "message": "AI 回應的最大 Token 數。較低的值速度更快且更便宜（典型值：小幅修改 100-500，重寫 1000-2000，大幅修改 3000-4000）。範圍：100-4000。"
+  },
+  "footer_github": {
+    "message": "GitHub"
+  },
+  "footer_sponsor": {
+    "message": "贊助"
+  },
+  "footer_version": {
+    "message": "$BRAND$ v$VERSION$ • $SLOGAN$",
+    "placeholders": {
+      "brand": {
+        "content": "$1",
+        "example": "Apolisher"
+      },
+      "version": {
+        "content": "$2",
+        "example": "0.8.0"
+      },
+      "slogan": {
+        "content": "$3",
+        "example": "AI 文字潤飾工具"
+      }
+    }
+  },
+  "floating_button_aria_label": {
+    "message": "使用 AI 潤飾選取的文字"
+  },
+  "floating_button_icon_alt": {
+    "message": "潤飾圖示"
+  }
+}

@@ -1,0 +1,200 @@
+{
+  "brand_name": {
+    "message": "Apolisher"
+  },
+  "brand_slogan": {
+    "message": "Pule tu texto con IA"
+  },
+  "modal_loading_text": {
+    "message": "Puliendo texto..."
+  },
+  "modal_accept_label": {
+    "message": "Aceptar"
+  },
+  "modal_regenerate_label": {
+    "message": "Regenerar"
+  },
+  "modal_close_label": {
+    "message": "Cerrar"
+  },
+  "modal_retry_label": {
+    "message": "Reintentar"
+  },
+  "modal_settings_label": {
+    "message": "Abrir configuración"
+  },
+  "modal_powered_by": {
+    "message": "Impulsado por $PROVIDER$ ($MODEL$)",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "OpenAI"
+      },
+      "model": {
+        "content": "$2",
+        "example": "GPT-4o Mini"
+      }
+    }
+  },
+  "error_no_api_key": {
+    "message": "Por favor, agrega tu clave API de $PROVIDER$ en la configuración de la extensión.",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "OpenAI"
+      }
+    }
+  },
+  "error_network": {
+    "message": "Error de red. Por favor, verifica tu conexión e intenta de nuevo."
+  },
+  "error_api": {
+    "message": "Error al pulir el texto. Por favor, intenta de nuevo."
+  },
+  "options_title": {
+    "message": "Configuración de $BRAND$",
+    "placeholders": {
+      "brand": {
+        "content": "$1",
+        "example": "Apolisher"
+      }
+    }
+  },
+  "options_saved": {
+    "message": "Configuración guardada automáticamente"
+  },
+  "options_error_loading": {
+    "message": "Error al cargar la configuración: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1",
+        "example": "Error al cargar"
+      }
+    }
+  },
+  "provider_label": {
+    "message": "Proveedor de IA"
+  },
+  "provider_description": {
+    "message": "Elige tu proveedor de IA preferido para pulir texto"
+  },
+  "provider_openai": {
+    "message": "OpenAI (GPT-4o Mini)"
+  },
+  "provider_claude": {
+    "message": "Claude (3.5 Haiku)"
+  },
+  "provider_gemini": {
+    "message": "Gemini (2.5 Flash)"
+  },
+  "api_key_section_title": {
+    "message": "Clave API de $PROVIDER$",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "OpenAI"
+      }
+    }
+  },
+  "api_key_hide_label": {
+    "message": "Ocultar clave API"
+  },
+  "api_key_show_label": {
+    "message": "Mostrar clave API"
+  },
+  "api_key_privacy_notice": {
+    "message": "Tu clave API se almacena localmente y nunca se comparte."
+  },
+  "api_key_get_link_text": {
+    "message": "Obtener tu clave API"
+  },
+  "prompt_style_title": {
+    "message": "Estilo de prompt"
+  },
+  "preset_standard_label": {
+    "message": "Estándar"
+  },
+  "preset_standard_description": {
+    "message": "Mejora la claridad, gramática y legibilidad"
+  },
+  "preset_professional_label": {
+    "message": "Profesional"
+  },
+  "preset_professional_description": {
+    "message": "Mejora la formalidad y el tono profesional"
+  },
+  "preset_native_label": {
+    "message": "Nativo"
+  },
+  "preset_native_description": {
+    "message": "Hazlo sonar más natural y fluido"
+  },
+  "preset_simplified_label": {
+    "message": "Simplificado"
+  },
+  "preset_simplified_description": {
+    "message": "Simplifica el lenguaje y reduce la complejidad"
+  },
+  "preset_custom_label": {
+    "message": "Personalizado"
+  },
+  "preset_custom_description": {
+    "message": "Usa tus propias instrucciones de prompt"
+  },
+  "custom_prompt_title": {
+    "message": "Prompt personalizado"
+  },
+  "custom_prompt_placeholder": {
+    "message": "Ingresa tus instrucciones de prompt personalizadas..."
+  },
+  "custom_prompt_hint": {
+    "message": "Describe cómo quieres que se pula tu texto"
+  },
+  "custom_prompt_character_count": {
+    "message": "$COUNT$ caracteres",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "123"
+      }
+    }
+  },
+  "advanced_settings_title": {
+    "message": "Configuración avanzada"
+  },
+  "max_tokens_label": {
+    "message": "Máximo de Token de finalización"
+  },
+  "max_tokens_description": {
+    "message": "Token máximos para respuestas de IA. Valores más bajos son más rápidos y económicos (típico: 100-500 para ediciones pequeñas, 1000-2000 para reescrituras, 3000-4000 para cambios extensos). Rango: 100-4000."
+  },
+  "footer_github": {
+    "message": "GitHub"
+  },
+  "footer_sponsor": {
+    "message": "Patrocinar"
+  },
+  "footer_version": {
+    "message": "$BRAND$ v$VERSION$ • $SLOGAN$",
+    "placeholders": {
+      "brand": {
+        "content": "$1",
+        "example": "Apolisher"
+      },
+      "version": {
+        "content": "$2",
+        "example": "0.8.0"
+      },
+      "slogan": {
+        "content": "$3",
+        "example": "Pule tu texto con IA"
+      }
+    }
+  },
+  "floating_button_aria_label": {
+    "message": "Pulir texto seleccionado con IA"
+  },
+  "floating_button_icon_alt": {
+    "message": "Ícono de pulir"
+  }
+}

@@ -1,24 +1,31 @@
 <p align="center">
-  <img src="public/icons/icon-raw.png" alt="APolish Logo" width="400">
+  <img src="../public/icons/icon-raw.png" alt="APolish Logo" width="400">
 </p>
 
 <h1 align="center">APolish</h1>
 
 <p align="center">
-  <strong>AI 文本润色工具 - 隐私优先的 Chrome 扩展</strong>
+  <strong>用 AI 为你的文字润色</strong>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.7.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.8.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
 </p>
 
 <p align="center">
-  <a href="README.md">English</a> |
+  <a href="../README.md">English</a> |
   <strong>简体中文</strong> |
-  <a href="README.ja.md">日本語</a>
+  <a href="README.zh-TW.md">繁體中文</a> |
+  <a href="README.ja.md">日本語</a> |
+  <a href="README.es.md">Español</a> |
+  <a href="README.pt.md">Português</a> |
+  <a href="README.fr.md">Français</a> |
+  <a href="README.de.md">Deutsch</a> |
+  <a href="README.ru.md">Русский</a> |
+  <a href="README.hi.md">हिन्दी</a>
 </p>
 
 ---
@@ -64,7 +71,7 @@ npm run build
 
 1. **设置**：在扩展设置中选择您的 AI 提供商（OpenAI、Claude 或 Gemini）并添加您的 API 密钥
 2. **选择**：在任何网页上高亮显示文本
-3. **润色**：点击出现的 <img src="public/icons/icon32.png" width="16" height="16" alt="APolish 图标" style="vertical-align: middle;"> 按钮
+3. **润色**：点击出现的 <img src="../public/icons/icon32.png" width="16" height="16" alt="APolish 图标" style="vertical-align: middle;"> 按钮
 4. **审查**：在模态框中查看对比结果
 5. **接受**：点击对勾应用更改
 
@@ -75,7 +82,7 @@ npm run build
 - **AI 提供商**：在 OpenAI (GPT-4o Mini)、Claude (3.5 Haiku) 或 Gemini (2.5 Flash) 之间选择
 - **API 密钥**：您的提供商特定的 API 密钥（安全存储在 Chrome 同步存储中）
 - **提示词预设**：从标准、专业、母语、简化或自定义中选择
-- **最大令牌数**：控制响应长度（100-8192 令牌，默认：2000）
+- **最大Token数**：控制响应长度（100-4000 Token，默认：2000）
 
 ## 技术栈
 

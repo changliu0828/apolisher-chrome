@@ -8,7 +8,7 @@
 ---
 
 ## 1. Executive Summary
-**apolisher-chrome** is a privacy-first browser extension that allows users to refine text on any webpage using their own AI API key. It focuses on transparency, allowing users to compare the original text against the AI-polished version before applying changes. Supports OpenAI, Claude, and Gemini APIs (v0.7), with internationalization (v0.8) planned.
+**apolisher-chrome** is a privacy-first browser extension that allows users to refine text on any webpage using their own AI API key. It focuses on transparency, allowing users to compare the original text against the AI-polished version before applying changes. Supports OpenAI, Claude, and Gemini APIs (v0.7), with internationalization support for 4 locales (v0.8).
 
 ---
 
@@ -39,7 +39,7 @@
 * **Custom Prompt:** Ability to add specific instructions (e.g., "Use US English").
 * **Advanced Settings:**
     * *Max Completion Tokens:* Control response length and API costs (100-8192 tokens, default: 2000).
-* **Language Preference (v0.8):** Select UI language for internationalization
+* **Language Support:** Automatic locale detection with support for English, Simplified Chinese, Traditional Chinese, and Japanese
 
 ### 3.2 The Interaction (Content Script)
 * **Trigger Logic:** Listens for text selection (`mouseup`). If selection > 0 characters, show the floating button.
@@ -64,7 +64,7 @@
 * **State/Storage:** `chrome.storage.sync` (Encrypted/Private).
 * **Diff Library:** `diff` or `jsdiff`.
 * **API:** Direct client-side calls to AI providers (OpenAI, Claude, Gemini) via background service worker. No backend server.
-* **i18n:** react-i18next or chrome.i18n (v0.8)
+* **i18n:** Chrome native `chrome.i18n` API with type-safe MessageKey enum (4 locales: en, zh_CN, zh_TW, ja)
 
 ---
 
@@ -76,4 +76,4 @@
 - [x] **v0.5:** AI Integration - OpenAI (Background service worker, API integration, max tokens setting, modular prompt system).
 - [x] **v0.6:** Multi-Provider Support - Claude API (Provider selection UI, Claude API adapter, unified API interface).
 - [x] **v0.7:** Multi-Provider Support - Gemini API (Gemini API adapter, unified provider interface, Gemini 2.5 Flash model).
-- [ ] **v0.8:** Internationalization (i18n support, multi-language UI, locale-specific prompts).
+- [x] **v0.8:** Internationalization (i18n support with Chrome native API, 4 locales: en/zh_CN/zh_TW/ja, type-safe MessageKey enum).

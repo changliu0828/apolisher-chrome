@@ -1,9 +1,11 @@
-// Background service worker for v0.7
+// Background service worker for v0.8
 // Handles API calls to AI providers (OpenAI, Claude, Gemini)
 import { MESSAGE_TYPES, type PolishRequest, type ErrorCode } from '@/types/messages';
 import { PROMPT_PRESETS, type Settings } from '@/types/settings';
 import { OPENAI_CONFIG, CLAUDE_CONFIG, GEMINI_CONFIG, type ProviderConfig } from '@/types/api';
 import { polishTextWithProvider, getProviderDisplayName } from '@/services/providerFactory';
+import { getMessage } from '@/i18n';
+import { MessageKey } from '@/i18n/types';
 
 // eslint-disable-next-line no-console
 console.log('apolisher-chrome background service worker loaded');
@@ -57,7 +59,7 @@ async function handlePolishRequest(
       await chrome.tabs.sendMessage(tabId, {
         type: MESSAGE_TYPES.POLISH_ERROR,
         payload: {
-          error: `Please add your ${providerName} API key in the extension settings.`,
+          error: getMessage(MessageKey.ERROR_NO_API_KEY, [providerName]),
           code: 'NO_API_KEY' as ErrorCode,
         },
       });

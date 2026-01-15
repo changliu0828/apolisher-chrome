@@ -5,11 +5,11 @@
 <h1 align="center">APolish</h1>
 
 <p align="center">
-  <strong>A polish for your text with AI - Privacy-first Chrome Extension</strong>
+  <strong>A polish for your text with AI</strong>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.7.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.8.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
@@ -17,8 +17,15 @@
 
 <p align="center">
   <strong>English</strong> |
-  <a href="README.zh-CN.md">简体中文</a> |
-  <a href="README.ja.md">日本語</a>
+  <a href="readme/README.zh-CN.md">简体中文</a> |
+  <a href="readme/README.zh-TW.md">繁體中文</a> |
+  <a href="readme/README.ja.md">日本語</a> |
+  <a href="readme/README.es.md">Español</a> |
+  <a href="readme/README.pt.md">Português</a> |
+  <a href="readme/README.fr.md">Français</a> |
+  <a href="readme/README.de.md">Deutsch</a> |
+  <a href="readme/README.ru.md">Русский</a> |
+  <a href="readme/README.hi.md">हिन्दी</a>
 </p>
 
 ---
@@ -75,7 +82,7 @@ Access settings by clicking the extension icon or right-clicking and selecting "
 - **AI Provider**: Choose between OpenAI (GPT-4o Mini), Claude (3.5 Haiku), or Gemini (2.5 Flash)
 - **API Key**: Your provider-specific API key (stored securely in Chrome sync storage)
 - **Prompt Presets**: Choose from Standard, Professional, Native, Simplified, or Custom
-- **Max Tokens**: Control response length (100-8192 tokens, default: 2000)
+- **Max Tokens**: Control response length (100-4000 tokens, default: 2000)
 
 ## Tech Stack
 

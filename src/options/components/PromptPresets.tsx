@@ -1,23 +1,26 @@
-import { PROMPT_PRESETS, type Settings } from '@/types/settings';
+import { type Settings } from '@/types/settings';
+import { useTranslation } from '@/i18n/useTranslation';
+import { MessageKey } from '@/i18n/types';
 
 interface PromptPresetsProps {
   selectedPreset: Settings['selectedPreset'];
   onChange: (preset: Settings['selectedPreset']) => void;
 }
 
-const presetOptions: Array<{
-  id: Settings['selectedPreset'];
-  label: string;
-  description: string;
-}> = [
-  { id: 'standard', label: 'Standard', description: PROMPT_PRESETS.standard },
-  { id: 'professional', label: 'Professional', description: PROMPT_PRESETS.professional },
-  { id: 'native', label: 'Native Speaker', description: PROMPT_PRESETS.native },
-  { id: 'simplified', label: 'Simplified', description: PROMPT_PRESETS.simplified },
-  { id: 'custom', label: 'Custom', description: 'Use your own prompt instructions' },
-];
-
 export default function PromptPresets({ selectedPreset, onChange }: PromptPresetsProps) {
+  const { t } = useTranslation();
+
+  const presetOptions: Array<{
+    id: Settings['selectedPreset'];
+    labelKey: MessageKey;
+    descriptionKey: MessageKey;
+  }> = [
+    { id: 'standard', labelKey: MessageKey.PRESET_STANDARD_LABEL, descriptionKey: MessageKey.PRESET_STANDARD_DESCRIPTION },
+    { id: 'professional', labelKey: MessageKey.PRESET_PROFESSIONAL_LABEL, descriptionKey: MessageKey.PRESET_PROFESSIONAL_DESCRIPTION },
+    { id: 'native', labelKey: MessageKey.PRESET_NATIVE_LABEL, descriptionKey: MessageKey.PRESET_NATIVE_DESCRIPTION },
+    { id: 'simplified', labelKey: MessageKey.PRESET_SIMPLIFIED_LABEL, descriptionKey: MessageKey.PRESET_SIMPLIFIED_DESCRIPTION },
+    { id: 'custom', labelKey: MessageKey.PRESET_CUSTOM_LABEL, descriptionKey: MessageKey.PRESET_CUSTOM_DESCRIPTION },
+  ];
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
       {presetOptions.map((preset) => (
@@ -36,8 +39,8 @@ export default function PromptPresets({ selectedPreset, onChange }: PromptPreset
         >
           <div className="flex items-start justify-between">
             <div className="flex-1">
-              <h3 className="font-medium text-gray-900">{preset.label}</h3>
-              <p className="mt-1 text-sm text-gray-600">{preset.description}</p>
+              <h3 className="font-medium text-gray-900">{t(preset.labelKey)}</h3>
+              <p className="mt-1 text-sm text-gray-600">{t(preset.descriptionKey)}</p>
             </div>
             {selectedPreset === preset.id && (
               <svg

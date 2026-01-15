@@ -1,0 +1,200 @@
+{
+  "brand_name": {
+    "message": "Apolisher"
+  },
+  "brand_slogan": {
+    "message": "A polish for your text with AI"
+  },
+  "modal_loading_text": {
+    "message": "Polishing text..."
+  },
+  "modal_accept_label": {
+    "message": "Accept"
+  },
+  "modal_regenerate_label": {
+    "message": "Regenerate"
+  },
+  "modal_close_label": {
+    "message": "Close"
+  },
+  "modal_retry_label": {
+    "message": "Retry"
+  },
+  "modal_settings_label": {
+    "message": "Open Settings"
+  },
+  "modal_powered_by": {
+    "message": "Powered by $PROVIDER$ ($MODEL$)",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "OpenAI"
+      },
+      "model": {
+        "content": "$2",
+        "example": "GPT-4o Mini"
+      }
+    }
+  },
+  "error_no_api_key": {
+    "message": "Please add your $PROVIDER$ API key in the extension settings.",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "OpenAI"
+      }
+    }
+  },
+  "error_network": {
+    "message": "Network error. Please check your connection and try again."
+  },
+  "error_api": {
+    "message": "Failed to polish text. Please try again."
+  },
+  "options_title": {
+    "message": "$BRAND$ Settings",
+    "placeholders": {
+      "brand": {
+        "content": "$1",
+        "example": "Apolisher"
+      }
+    }
+  },
+  "options_saved": {
+    "message": "Settings saved automatically"
+  },
+  "options_error_loading": {
+    "message": "Error loading settings: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1",
+        "example": "Failed to load"
+      }
+    }
+  },
+  "provider_label": {
+    "message": "AI Provider"
+  },
+  "provider_description": {
+    "message": "Choose your preferred AI provider for text polishing"
+  },
+  "provider_openai": {
+    "message": "OpenAI (GPT-4o Mini)"
+  },
+  "provider_claude": {
+    "message": "Claude (3.5 Haiku)"
+  },
+  "provider_gemini": {
+    "message": "Gemini (2.5 Flash)"
+  },
+  "api_key_section_title": {
+    "message": "$PROVIDER$ API Key",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "OpenAI"
+      }
+    }
+  },
+  "api_key_hide_label": {
+    "message": "Hide API key"
+  },
+  "api_key_show_label": {
+    "message": "Show API key"
+  },
+  "api_key_privacy_notice": {
+    "message": "Your API key is stored locally and never shared."
+  },
+  "api_key_get_link_text": {
+    "message": "Get your API key"
+  },
+  "prompt_style_title": {
+    "message": "Prompt Style"
+  },
+  "preset_standard_label": {
+    "message": "Standard"
+  },
+  "preset_standard_description": {
+    "message": "Improve clarity, grammar, and readability"
+  },
+  "preset_professional_label": {
+    "message": "Professional"
+  },
+  "preset_professional_description": {
+    "message": "Enhance formality and professional tone"
+  },
+  "preset_native_label": {
+    "message": "Native Speaker"
+  },
+  "preset_native_description": {
+    "message": "Make it sound more natural and fluent"
+  },
+  "preset_simplified_label": {
+    "message": "Simplified"
+  },
+  "preset_simplified_description": {
+    "message": "Simplify language and reduce complexity"
+  },
+  "preset_custom_label": {
+    "message": "Custom"
+  },
+  "preset_custom_description": {
+    "message": "Use your own prompt instructions"
+  },
+  "custom_prompt_title": {
+    "message": "Custom Prompt"
+  },
+  "custom_prompt_placeholder": {
+    "message": "Enter your custom prompt instructions..."
+  },
+  "custom_prompt_hint": {
+    "message": "Describe how you want your text to be polished"
+  },
+  "custom_prompt_character_count": {
+    "message": "$COUNT$ characters",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "123"
+      }
+    }
+  },
+  "advanced_settings_title": {
+    "message": "Advanced Settings"
+  },
+  "max_tokens_label": {
+    "message": "Max Completion Tokens"
+  },
+  "max_tokens_description": {
+    "message": "Maximum tokens for AI responses. Lower values are faster and cheaper (typical: 100-500 for small edits, 1000-2000 for rewrites, 3000-4000 for extensive changes). Range: 100-4000."
+  },
+  "footer_github": {
+    "message": "GitHub"
+  },
+  "footer_sponsor": {
+    "message": "Sponsor"
+  },
+  "footer_version": {
+    "message": "$BRAND$ v$VERSION$ • $SLOGAN$",
+    "placeholders": {
+      "brand": {
+        "content": "$1",
+        "example": "Apolisher"
+      },
+      "version": {
+        "content": "$2",
+        "example": "0.8.0"
+      },
+      "slogan": {
+        "content": "$3",
+        "example": "A polish for your text with AI"
+      }
+    }
+  },
+  "floating_button_aria_label": {
+    "message": "Polish selected text with AI"
+  },
+  "floating_button_icon_alt": {
+    "message": "Polish icon"
+  }
+}

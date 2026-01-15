@@ -1,6 +1,7 @@
 import { useSettings } from '@/hooks/useSettings';
 import { APP_VERSION } from '@/constants/version';
-import { BRAND } from '@/constants/strings';
+import { useTranslation } from '@/i18n/useTranslation';
+import { MessageKey } from '@/i18n/types';
 import ProviderSelector from './components/ProviderSelector';
 import ApiKeyInput from './components/ApiKeyInput';
 import PromptPresets from './components/PromptPresets';
@@ -8,6 +9,7 @@ import CustomPrompt from './components/CustomPrompt';
 import MaxTokensInput from './components/MaxTokensInput';
 
 export default function App() {
+  const { t } = useTranslation();
   const {
     settings,
     updateProvider,
@@ -23,7 +25,7 @@ export default function App() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="bg-red-50 border border-red-200 rounded-lg p-4 max-w-md">
-          <p className="text-red-800">Error loading settings: {String(error)}</p>
+          <p className="text-red-800">{t(MessageKey.OPTIONS_ERROR_LOADING, [String(error)])}</p>
         </div>
       </div>
     );
@@ -49,9 +51,9 @@ export default function App() {
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">{BRAND.NAME} Settings</h1>
+          <h1 className="text-3xl font-bold text-gray-900">{t(MessageKey.OPTIONS_TITLE, [t(MessageKey.BRAND_NAME)])}</h1>
           <p className="mt-2 text-sm text-gray-600">
-            {BRAND.SLOGAN}
+            {t(MessageKey.BRAND_SLOGAN)}
           </p>
         </div>
 
@@ -67,7 +69,7 @@ export default function App() {
 
           {/* API Key Section */}
           <div>
-            <h2 className="text-lg font-medium text-gray-900 mb-4">{providerName} API Key</h2>
+            <h2 className="text-lg font-medium text-gray-900 mb-4">{t(MessageKey.API_KEY_SECTION_TITLE, [providerName])}</h2>
             <ApiKeyInput
               value={settings.apiKeys[settings.selectedProvider]}
               onChange={updateApiKey}
@@ -77,7 +79,7 @@ export default function App() {
 
           {/* Prompt Presets Section */}
           <div>
-            <h2 className="text-lg font-medium text-gray-900 mb-4">Prompt Style</h2>
+            <h2 className="text-lg font-medium text-gray-900 mb-4">{t(MessageKey.PROMPT_STYLE_TITLE)}</h2>
             <PromptPresets
               selectedPreset={settings.selectedPreset}
               onChange={updatePreset}
@@ -87,7 +89,7 @@ export default function App() {
           {/* Custom Prompt Section (conditional) */}
           {settings.selectedPreset === 'custom' && (
             <div>
-              <h2 className="text-lg font-medium text-gray-900 mb-4">Custom Prompt</h2>
+              <h2 className="text-lg font-medium text-gray-900 mb-4">{t(MessageKey.CUSTOM_PROMPT_TITLE)}</h2>
               <CustomPrompt
                 value={settings.customPrompt}
                 onChange={updateCustomPrompt}
@@ -97,7 +99,7 @@ export default function App() {
 
           {/* Advanced Settings Section */}
           <div>
-            <h2 className="text-lg font-medium text-gray-900 mb-4">Advanced Settings</h2>
+            <h2 className="text-lg font-medium text-gray-900 mb-4">{t(MessageKey.ADVANCED_SETTINGS_TITLE)}</h2>
             <MaxTokensInput
               value={settings.maxCompletionTokens}
               onChange={updateMaxCompletionTokens}
@@ -119,7 +121,7 @@ export default function App() {
                     clipRule="evenodd"
                   />
                 </svg>
-                Settings saved automatically
+                {t(MessageKey.OPTIONS_SAVED)}
               </div>
             </div>
           )}
@@ -127,7 +129,7 @@ export default function App() {
 
         {/* Footer */}
         <div className="mt-8 text-center text-sm text-gray-500 space-y-2">
-          <p>{BRAND.NAME} v{APP_VERSION} • {BRAND.SLOGAN}</p>
+          <p>{t(MessageKey.FOOTER_VERSION, [t(MessageKey.BRAND_NAME), APP_VERSION, t(MessageKey.BRAND_SLOGAN)])}</p>
           <div className="flex items-center justify-center gap-4">
             <a
               href="https://github.com/changliu0828/apolisher-chrome"
@@ -136,7 +138,7 @@ export default function App() {
               className="text-gray-900 hover:text-gray-700 hover:underline flex items-center gap-1"
             >
               <i className="fa-brands fa-github"></i>
-              GitHub
+              {t(MessageKey.FOOTER_GITHUB)}
             </a>
             <span>•</span>
             <a
@@ -146,7 +148,7 @@ export default function App() {
               className="text-gray-900 hover:text-gray-700 hover:underline flex items-center gap-1"
             >
               <i className="fa-regular fa-heart"></i>
-              Sponsor
+              {t(MessageKey.FOOTER_SPONSOR)}
             </a>
           </div>
         </div>

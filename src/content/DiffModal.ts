@@ -4,7 +4,8 @@ import { DIFF_MODAL_STYLES } from './diffModalStyles';
 import { BUTTON_SIZE } from '@/constants/buttonConfig';
 import { MODAL_WIDTH, MODAL_HEIGHT, MODAL_VIEWPORT_PADDING } from '@/constants/modalConfig';
 import { APP_VERSION } from '@/constants/version';
-import { BRAND, MODAL } from '@/constants/strings';
+import { getMessage } from '@/i18n';
+import { MessageKey } from '@/i18n/types';
 import { MESSAGE_TYPES } from '@/types/messages';
 
 interface Position {
@@ -73,17 +74,17 @@ export class DiffModal {
     footer.className = 'diff-modal-footer';
     footer.innerHTML = `
       <div class="footer-brand">
-        <div class="footer-brand-name">${BRAND.NAME} v${APP_VERSION}</div>
-        <div class="footer-brand-slogan">${this.provider && this.model ? `Powered by ${this.provider} ${this.model}` : BRAND.SLOGAN}</div>
+        <div class="footer-brand-name">${getMessage(MessageKey.BRAND_NAME)} v${APP_VERSION}</div>
+        <div class="footer-brand-slogan">${this.provider && this.model ? getMessage(MessageKey.MODAL_POWERED_BY, [this.provider, this.model]) : getMessage(MessageKey.BRAND_SLOGAN)}</div>
       </div>
       <div class="footer-buttons">
-        <button class="btn btn-secondary regenerate-btn" aria-label="${MODAL.REGENERATE_LABEL}" title="${MODAL.REGENERATE_LABEL}">
+        <button class="btn btn-secondary regenerate-btn" aria-label="${getMessage(MessageKey.MODAL_REGENERATE_LABEL)}" title="${getMessage(MessageKey.MODAL_REGENERATE_LABEL)}">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
             <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
             <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
           </svg>
         </button>
-        <button class="btn btn-primary accept-btn" aria-label="${MODAL.ACCEPT_LABEL}" title="${MODAL.ACCEPT_LABEL}">
+        <button class="btn btn-primary accept-btn" aria-label="${getMessage(MessageKey.MODAL_ACCEPT_LABEL)}" title="${getMessage(MessageKey.MODAL_ACCEPT_LABEL)}">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
             <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
           </svg>
@@ -198,7 +199,7 @@ export class DiffModal {
     this.modal.innerHTML = `
       <div class="loading-state">
         <div class="loading-spinner"></div>
-        <p class="loading-text">${MODAL.LOADING_TEXT}</p>
+        <p class="loading-text">${getMessage(MessageKey.MODAL_LOADING_TEXT)}</p>
       </div>
     `;
 
@@ -228,7 +229,7 @@ export class DiffModal {
     if (!this.modal || !this.container) return;
 
     const settingsButton = options.showSettings
-      ? `<button class="btn btn-secondary settings-btn">${MODAL.SETTINGS_LABEL}</button>`
+      ? `<button class="btn btn-secondary settings-btn">${getMessage(MessageKey.MODAL_SETTINGS_LABEL)}</button>`
       : '';
 
     // Show modal with error state
@@ -240,9 +241,9 @@ export class DiffModal {
         </svg>
         <p class="error-message">${message}</p>
         <div class="error-actions">
-          <button class="btn btn-secondary close-btn">${MODAL.CLOSE_LABEL}</button>
+          <button class="btn btn-secondary close-btn">${getMessage(MessageKey.MODAL_CLOSE_LABEL)}</button>
           ${settingsButton}
-          <button class="btn btn-primary retry-btn">${MODAL.RETRY_LABEL}</button>
+          <button class="btn btn-primary retry-btn">${getMessage(MessageKey.MODAL_RETRY_LABEL)}</button>
         </div>
       </div>
     `;
@@ -311,17 +312,17 @@ export class DiffModal {
     footer.className = 'diff-modal-footer';
     footer.innerHTML = `
       <div class="footer-brand">
-        <div class="footer-brand-name">${BRAND.NAME} v${APP_VERSION}</div>
-        <div class="footer-brand-slogan">${this.provider && this.model ? `Powered by ${this.provider} ${this.model}` : BRAND.SLOGAN}</div>
+        <div class="footer-brand-name">${getMessage(MessageKey.BRAND_NAME)} v${APP_VERSION}</div>
+        <div class="footer-brand-slogan">${this.provider && this.model ? getMessage(MessageKey.MODAL_POWERED_BY, [this.provider, this.model]) : getMessage(MessageKey.BRAND_SLOGAN)}</div>
       </div>
       <div class="footer-buttons">
-        <button class="btn btn-secondary regenerate-btn" aria-label="${MODAL.REGENERATE_LABEL}" title="${MODAL.REGENERATE_LABEL}">
+        <button class="btn btn-secondary regenerate-btn" aria-label="${getMessage(MessageKey.MODAL_REGENERATE_LABEL)}" title="${getMessage(MessageKey.MODAL_REGENERATE_LABEL)}">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
             <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
             <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
           </svg>
         </button>
-        <button class="btn btn-primary accept-btn" aria-label="${MODAL.ACCEPT_LABEL}" title="${MODAL.ACCEPT_LABEL}">
+        <button class="btn btn-primary accept-btn" aria-label="${getMessage(MessageKey.MODAL_ACCEPT_LABEL)}" title="${getMessage(MessageKey.MODAL_ACCEPT_LABEL)}">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
             <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
           </svg>
