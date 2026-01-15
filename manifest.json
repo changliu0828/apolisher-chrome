@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "apolisher-chrome",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "A polish for your text with AI",
   "permissions": [
     "storage",
