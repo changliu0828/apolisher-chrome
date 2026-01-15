@@ -1,4 +1,6 @@
 import React from 'react';
+import { useTranslation } from '@/i18n/useTranslation';
+import { MessageKey } from '@/i18n/types';
 
 interface MaxTokensInputProps {
   value: number;
@@ -6,6 +8,7 @@ interface MaxTokensInputProps {
 }
 
 export default function MaxTokensInput({ value, onChange }: MaxTokensInputProps) {
+  const { t } = useTranslation();
   const MIN_TOKENS = 100;
   const MAX_TOKENS = 4000;
 
@@ -25,7 +28,7 @@ export default function MaxTokensInput({ value, onChange }: MaxTokensInputProps)
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <label htmlFor="max-tokens-input" className="text-sm font-medium text-gray-700">
-          Max Completion Tokens
+          {t(MessageKey.MAX_TOKENS_LABEL)}
         </label>
         <input
           id="max-tokens-input"
@@ -55,8 +58,7 @@ export default function MaxTokensInput({ value, onChange }: MaxTokensInputProps)
       </div>
 
       <p className="text-xs text-gray-500">
-        Maximum tokens for AI responses. Lower values are faster and cheaper (typical: 100-500 for
-        small edits, 1000-2000 for rewrites, 3000-4000 for extensive changes).
+        {t(MessageKey.MAX_TOKENS_DESCRIPTION)}
       </p>
     </div>
   );

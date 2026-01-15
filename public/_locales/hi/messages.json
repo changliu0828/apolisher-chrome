@@ -1,0 +1,200 @@
+{
+  "brand_name": {
+    "message": "Apolisher"
+  },
+  "brand_slogan": {
+    "message": "AI के साथ अपने टेक्स्ट को पॉलिश करें"
+  },
+  "modal_loading_text": {
+    "message": "टेक्स्ट पॉलिश किया जा रहा है..."
+  },
+  "modal_accept_label": {
+    "message": "स्वीकार करें"
+  },
+  "modal_regenerate_label": {
+    "message": "पुनः उत्पन्न करें"
+  },
+  "modal_close_label": {
+    "message": "बंद करें"
+  },
+  "modal_retry_label": {
+    "message": "पुनः प्रयास करें"
+  },
+  "modal_settings_label": {
+    "message": "सेटिंग्स खोलें"
+  },
+  "modal_powered_by": {
+    "message": "$PROVIDER$ ($MODEL$) द्वारा संचालित",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "OpenAI"
+      },
+      "model": {
+        "content": "$2",
+        "example": "GPT-4o Mini"
+      }
+    }
+  },
+  "error_no_api_key": {
+    "message": "कृपया एक्सटेंशन सेटिंग्स में अपनी $PROVIDER$ API की जोड़ें।",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "OpenAI"
+      }
+    }
+  },
+  "error_network": {
+    "message": "नेटवर्क त्रुटि। कृपया अपना कनेक्शन जांचें और पुनः प्रयास करें।"
+  },
+  "error_api": {
+    "message": "टेक्स्ट पॉलिश करने में विफल। कृपया पुनः प्रयास करें।"
+  },
+  "options_title": {
+    "message": "$BRAND$ सेटिंग्स",
+    "placeholders": {
+      "brand": {
+        "content": "$1",
+        "example": "Apolisher"
+      }
+    }
+  },
+  "options_saved": {
+    "message": "सेटिंग्स स्वचालित रूप से सहेजी गईं"
+  },
+  "options_error_loading": {
+    "message": "सेटिंग्स लोड करने में त्रुटि: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1",
+        "example": "लोड विफल"
+      }
+    }
+  },
+  "provider_label": {
+    "message": "AI प्रदाता"
+  },
+  "provider_description": {
+    "message": "टेक्स्ट पॉलिश करने के लिए अपना पसंदीदा AI प्रदाता चुनें"
+  },
+  "provider_openai": {
+    "message": "OpenAI (GPT-4o Mini)"
+  },
+  "provider_claude": {
+    "message": "Claude (3.5 Haiku)"
+  },
+  "provider_gemini": {
+    "message": "Gemini (2.5 Flash)"
+  },
+  "api_key_section_title": {
+    "message": "$PROVIDER$ API की",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "OpenAI"
+      }
+    }
+  },
+  "api_key_hide_label": {
+    "message": "API की छिपाएं"
+  },
+  "api_key_show_label": {
+    "message": "API की दिखाएं"
+  },
+  "api_key_privacy_notice": {
+    "message": "आपकी API की स्थानीय रूप से संग्रहीत है और कभी साझा नहीं की जाती।"
+  },
+  "api_key_get_link_text": {
+    "message": "अपनी API की प्राप्त करें"
+  },
+  "prompt_style_title": {
+    "message": "प्रॉम्प्ट शैली"
+  },
+  "preset_standard_label": {
+    "message": "मानक"
+  },
+  "preset_standard_description": {
+    "message": "स्पष्टता, व्याकरण और पठनीयता में सुधार करें"
+  },
+  "preset_professional_label": {
+    "message": "पेशेवर"
+  },
+  "preset_professional_description": {
+    "message": "औपचारिकता और पेशेवर लहजे को बढ़ाएं"
+  },
+  "preset_native_label": {
+    "message": "देशी वक्ता"
+  },
+  "preset_native_description": {
+    "message": "इसे अधिक प्राकृतिक और प्रवाहमय बनाएं"
+  },
+  "preset_simplified_label": {
+    "message": "सरलीकृत"
+  },
+  "preset_simplified_description": {
+    "message": "भाषा को सरल बनाएं और जटिलता को कम करें"
+  },
+  "preset_custom_label": {
+    "message": "कस्टम"
+  },
+  "preset_custom_description": {
+    "message": "अपने स्वयं के प्रॉम्प्ट निर्देशों का उपयोग करें"
+  },
+  "custom_prompt_title": {
+    "message": "कस्टम प्रॉम्प्ट"
+  },
+  "custom_prompt_placeholder": {
+    "message": "अपने कस्टम प्रॉम्प्ट निर्देश दर्ज करें..."
+  },
+  "custom_prompt_hint": {
+    "message": "वर्णन करें कि आप अपने टेक्स्ट को कैसे पॉलिश करना चाहते हैं"
+  },
+  "custom_prompt_character_count": {
+    "message": "$COUNT$ वर्ण",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "123"
+      }
+    }
+  },
+  "advanced_settings_title": {
+    "message": "उन्नत सेटिंग्स"
+  },
+  "max_tokens_label": {
+    "message": "अधिकतम पूर्णता Token"
+  },
+  "max_tokens_description": {
+    "message": "AI प्रतिक्रियाओं के लिए अधिकतम Token। कम मान तेज़ और सस्ते होते हैं (सामान्य: छोटे संपादन 100-500, पुनर्लेखन 1000-2000, व्यापक परिवर्तन 3000-4000)। सीमा: 100-4000।"
+  },
+  "footer_github": {
+    "message": "GitHub"
+  },
+  "footer_sponsor": {
+    "message": "प्रायोजक"
+  },
+  "footer_version": {
+    "message": "$BRAND$ v$VERSION$ • $SLOGAN$",
+    "placeholders": {
+      "brand": {
+        "content": "$1",
+        "example": "Apolisher"
+      },
+      "version": {
+        "content": "$2",
+        "example": "0.8.0"
+      },
+      "slogan": {
+        "content": "$3",
+        "example": "AI के साथ अपने टेक्स्ट को पॉलिश करें"
+      }
+    }
+  },
+  "floating_button_aria_label": {
+    "message": "चयनित टेक्स्ट को AI के साथ पॉलिश करें"
+  },
+  "floating_button_icon_alt": {
+    "message": "पॉलिश आइकन"
+  }
+}

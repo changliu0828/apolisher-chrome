@@ -1,0 +1,200 @@
+{
+  "brand_name": {
+    "message": "Apolisher"
+  },
+  "brand_slogan": {
+    "message": "用 AI 为你的文字润色"
+  },
+  "modal_loading_text": {
+    "message": "正在润色文本..."
+  },
+  "modal_accept_label": {
+    "message": "接受"
+  },
+  "modal_regenerate_label": {
+    "message": "重新生成"
+  },
+  "modal_close_label": {
+    "message": "关闭"
+  },
+  "modal_retry_label": {
+    "message": "重试"
+  },
+  "modal_settings_label": {
+    "message": "打开设置"
+  },
+  "modal_powered_by": {
+    "message": "由 $PROVIDER$ ($MODEL$) 提供支持",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "OpenAI"
+      },
+      "model": {
+        "content": "$2",
+        "example": "GPT-4o Mini"
+      }
+    }
+  },
+  "error_no_api_key": {
+    "message": "请在扩展设置中添加您的 $PROVIDER$ API 密钥。",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "OpenAI"
+      }
+    }
+  },
+  "error_network": {
+    "message": "网络错误。请检查您的连接后重试。"
+  },
+  "error_api": {
+    "message": "文本润色失败。请重试。"
+  },
+  "options_title": {
+    "message": "$BRAND$ 设置",
+    "placeholders": {
+      "brand": {
+        "content": "$1",
+        "example": "Apolisher"
+      }
+    }
+  },
+  "options_saved": {
+    "message": "设置已自动保存"
+  },
+  "options_error_loading": {
+    "message": "加载设置时出错：$ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1",
+        "example": "加载失败"
+      }
+    }
+  },
+  "provider_label": {
+    "message": "AI 提供商"
+  },
+  "provider_description": {
+    "message": "选择您偏好的 AI 提供商进行文本润色"
+  },
+  "provider_openai": {
+    "message": "OpenAI (GPT-4o Mini)"
+  },
+  "provider_claude": {
+    "message": "Claude (3.5 Haiku)"
+  },
+  "provider_gemini": {
+    "message": "Gemini (2.5 Flash)"
+  },
+  "api_key_section_title": {
+    "message": "$PROVIDER$ API 密钥",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "OpenAI"
+      }
+    }
+  },
+  "api_key_hide_label": {
+    "message": "隐藏 API 密钥"
+  },
+  "api_key_show_label": {
+    "message": "显示 API 密钥"
+  },
+  "api_key_privacy_notice": {
+    "message": "您的 API 密钥仅保存在本地，不会被分享。"
+  },
+  "api_key_get_link_text": {
+    "message": "获取您的 API 密钥"
+  },
+  "prompt_style_title": {
+    "message": "提示词风格"
+  },
+  "preset_standard_label": {
+    "message": "标准"
+  },
+  "preset_standard_description": {
+    "message": "改善清晰度、语法和可读性"
+  },
+  "preset_professional_label": {
+    "message": "专业"
+  },
+  "preset_professional_description": {
+    "message": "增强正式性和专业语气"
+  },
+  "preset_native_label": {
+    "message": "母语"
+  },
+  "preset_native_description": {
+    "message": "使其听起来更自然流畅"
+  },
+  "preset_simplified_label": {
+    "message": "简化"
+  },
+  "preset_simplified_description": {
+    "message": "简化语言并降低复杂度"
+  },
+  "preset_custom_label": {
+    "message": "自定义"
+  },
+  "preset_custom_description": {
+    "message": "使用您自己的提示词说明"
+  },
+  "custom_prompt_title": {
+    "message": "自定义提示词"
+  },
+  "custom_prompt_placeholder": {
+    "message": "输入您的自定义提示词说明..."
+  },
+  "custom_prompt_hint": {
+    "message": "描述您希望如何润色文本"
+  },
+  "custom_prompt_character_count": {
+    "message": "$COUNT$ 个字符",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "123"
+      }
+    }
+  },
+  "advanced_settings_title": {
+    "message": "高级设置"
+  },
+  "max_tokens_label": {
+    "message": "最大生成 Token 数"
+  },
+  "max_tokens_description": {
+    "message": "AI 响应的最大 Token 数。较低的值速度更快且更便宜（典型值：小幅修改 100-500，重写 1000-2000，大幅修改 3000-4000）。范围：100-4000。"
+  },
+  "footer_github": {
+    "message": "GitHub"
+  },
+  "footer_sponsor": {
+    "message": "赞助"
+  },
+  "footer_version": {
+    "message": "$BRAND$ v$VERSION$ • $SLOGAN$",
+    "placeholders": {
+      "brand": {
+        "content": "$1",
+        "example": "Apolisher"
+      },
+      "version": {
+        "content": "$2",
+        "example": "0.8.0"
+      },
+      "slogan": {
+        "content": "$3",
+        "example": "AI 文本润色工具"
+      }
+    }
+  },
+  "floating_button_aria_label": {
+    "message": "使用 AI 润色选中的文本"
+  },
+  "floating_button_icon_alt": {
+    "message": "润色图标"
+  }
+}

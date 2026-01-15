@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useTranslation } from '@/i18n/useTranslation';
+import { MessageKey } from '@/i18n/types';
 
 interface ApiKeyInputProps {
   value: string;
@@ -7,6 +9,7 @@ interface ApiKeyInputProps {
 }
 
 export default function ApiKeyInput({ value, onChange, provider }: ApiKeyInputProps) {
+  const { t } = useTranslation();
   const [showKey, setShowKey] = useState(false);
 
   // Provider-specific links
@@ -50,7 +53,7 @@ export default function ApiKeyInput({ value, onChange, provider }: ApiKeyInputPr
           type="button"
           onClick={() => setShowKey(!showKey)}
           className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-gray-500 hover:text-gray-700 focus:outline-none"
-          aria-label={showKey ? 'Hide API key' : 'Show API key'}
+          aria-label={showKey ? t(MessageKey.API_KEY_HIDE_LABEL) : t(MessageKey.API_KEY_SHOW_LABEL)}
         >
           {showKey ? (
             <svg
@@ -90,14 +93,14 @@ export default function ApiKeyInput({ value, onChange, provider }: ApiKeyInputPr
         </button>
       </div>
       <p className="text-xs text-gray-500">
-        Your API key is stored locally and never shared.{' '}
+        {t(MessageKey.API_KEY_PRIVACY_NOTICE)}{' '}
         <a
           href={getApiKeyLink()}
           target="_blank"
           rel="noopener noreferrer"
           className="text-primary-600 hover:text-primary-700 underline"
         >
-          Get your API key
+          {t(MessageKey.API_KEY_GET_LINK_TEXT)}
         </a>
       </p>
     </div>

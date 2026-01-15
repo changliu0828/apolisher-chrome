@@ -1,6 +1,8 @@
 import { createShadowRoot, injectStyles } from '@/utils/shadowDOM';
 import { BUTTON_STYLES } from './styles';
 import type { Position } from '@/utils/positioning';
+import { getMessage } from '@/i18n';
+import { MessageKey } from '@/i18n/types';
 
 export interface SelectionContext {
   selectedText: string;
@@ -34,12 +36,12 @@ export class FloatingButton {
     // Create button element
     this.button = document.createElement('button');
     this.button.className = 'floating-button';
-    this.button.setAttribute('aria-label', 'Polish text with AI');
+    this.button.setAttribute('aria-label', getMessage(MessageKey.FLOATING_BUTTON_ARIA_LABEL));
 
     // Create icon element
     const icon = document.createElement('img');
     icon.src = chrome.runtime.getURL('icons/icon32.png');
-    icon.alt = 'Polish';
+    icon.alt = getMessage(MessageKey.FLOATING_BUTTON_ICON_ALT);
     this.button.appendChild(icon);
 
     // Add click handler
