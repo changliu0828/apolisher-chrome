@@ -1,4 +1,6 @@
-export const APP_VERSION = '0.8.0';
+import packageJson from '../../package.json';
+
+export const APP_VERSION = packageJson.version;
 
 export const ROADMAP = {
   'v0.1': 'Project Scaffold & Manifest V3 setup',
