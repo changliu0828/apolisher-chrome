@@ -5,8 +5,7 @@
   "description": "__MSG_brand_slogan__",
   "default_locale": "en",
   "permissions": [
-    "storage",
-    "activeTab"
+    "storage"
   ],
   "host_permissions": [
     "https://api.openai.com/*",
