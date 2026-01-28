@@ -135,6 +135,12 @@
   "preset_simplified_description": {
     "message": "简化语言并降低复杂度"
   },
+  "preset_emotional_intelligence_label": {
+    "message": "情商润色"
+  },
+  "preset_emotional_intelligence_description": {
+    "message": "表达真实想法的同时让对方感到被理解和尊重"
+  },
   "preset_custom_label": {
     "message": "自定义"
   },

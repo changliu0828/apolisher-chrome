@@ -36,7 +36,7 @@ export enum MessageKey {
   API_KEY_PRIVACY_NOTICE = 'api_key_privacy_notice',
   API_KEY_GET_LINK_TEXT = 'api_key_get_link_text',
 
-  // Prompt Presets (11 keys)
+  // Prompt Presets (13 keys)
   PROMPT_STYLE_TITLE = 'prompt_style_title',
   PRESET_STANDARD_LABEL = 'preset_standard_label',
   PRESET_STANDARD_DESCRIPTION = 'preset_standard_description',
@@ -46,6 +46,8 @@ export enum MessageKey {
   PRESET_NATIVE_DESCRIPTION = 'preset_native_description',
   PRESET_SIMPLIFIED_LABEL = 'preset_simplified_label',
   PRESET_SIMPLIFIED_DESCRIPTION = 'preset_simplified_description',
+  PRESET_EMOTIONAL_INTELLIGENCE_LABEL = 'preset_emotional_intelligence_label',
+  PRESET_EMOTIONAL_INTELLIGENCE_DESCRIPTION = 'preset_emotional_intelligence_description',
   PRESET_CUSTOM_LABEL = 'preset_custom_label',
   PRESET_CUSTOM_DESCRIPTION = 'preset_custom_description',
 

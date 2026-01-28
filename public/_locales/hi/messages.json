@@ -135,6 +135,12 @@
   "preset_simplified_description": {
     "message": "भाषा को सरल बनाएं और जटिलता को कम करें"
   },
+  "preset_emotional_intelligence_label": {
+    "message": "भावनात्मक बुद्धिमत्ता"
+  },
+  "preset_emotional_intelligence_description": {
+    "message": "अपना दृष्टिकोण व्यक्त करते हुए दूसरों को समझा और सम्मानित महसूस कराएं"
+  },
   "preset_custom_label": {
     "message": "कस्टम"
   },

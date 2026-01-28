@@ -135,6 +135,12 @@
   "preset_simplified_description": {
     "message": "Упростить язык и снизить сложность"
   },
+  "preset_emotional_intelligence_label": {
+    "message": "Эмоциональный интеллект"
+  },
+  "preset_emotional_intelligence_description": {
+    "message": "Выразите свою точку зрения, при этом заставив других почувствовать себя понятыми и уважаемыми"
+  },
   "preset_custom_label": {
     "message": "Пользовательский"
   },
