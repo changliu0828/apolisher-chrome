@@ -11,7 +11,7 @@ export interface ProviderApiKeys {
 export interface Settings {
   selectedProvider: AIProvider;
   apiKeys: ProviderApiKeys;
-  selectedPreset: 'standard' | 'professional' | 'native' | 'simplified' | 'custom';
+  selectedPreset: 'standard' | 'professional' | 'native' | 'simplified' | 'emotionalIntelligence' | 'custom';
   customPrompt: string;
   maxCompletionTokens: number;
 }

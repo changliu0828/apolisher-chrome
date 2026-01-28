@@ -135,6 +135,12 @@
   "preset_simplified_description": {
     "message": "Simplificar linguagem e reduzir complexidade"
   },
+  "preset_emotional_intelligence_label": {
+    "message": "Inteligência Emocional"
+  },
+  "preset_emotional_intelligence_description": {
+    "message": "Expresse seu ponto de vista fazendo os outros se sentirem compreendidos e respeitados"
+  },
   "preset_custom_label": {
     "message": "Personalizado"
   },

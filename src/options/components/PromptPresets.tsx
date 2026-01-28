@@ -19,6 +19,7 @@ export default function PromptPresets({ selectedPreset, onChange }: PromptPreset
     { id: 'professional', labelKey: MessageKey.PRESET_PROFESSIONAL_LABEL, descriptionKey: MessageKey.PRESET_PROFESSIONAL_DESCRIPTION },
     { id: 'native', labelKey: MessageKey.PRESET_NATIVE_LABEL, descriptionKey: MessageKey.PRESET_NATIVE_DESCRIPTION },
     { id: 'simplified', labelKey: MessageKey.PRESET_SIMPLIFIED_LABEL, descriptionKey: MessageKey.PRESET_SIMPLIFIED_DESCRIPTION },
+    { id: 'emotionalIntelligence', labelKey: MessageKey.PRESET_EMOTIONAL_INTELLIGENCE_LABEL, descriptionKey: MessageKey.PRESET_EMOTIONAL_INTELLIGENCE_DESCRIPTION },
     { id: 'custom', labelKey: MessageKey.PRESET_CUSTOM_LABEL, descriptionKey: MessageKey.PRESET_CUSTOM_DESCRIPTION },
   ];
   return (
