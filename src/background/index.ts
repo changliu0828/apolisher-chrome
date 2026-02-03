@@ -13,7 +13,7 @@ console.log('apolisher-chrome background service worker loaded');
 /**
  * Build prompt instruction from settings
  */
-function buildPromptInstruction(settings: Settings): string {
+export function buildPromptInstruction(settings: Settings): string {
   if (settings.selectedPreset === 'custom') {
     return settings.customPrompt || PROMPT_PRESETS.standard;
   }
@@ -24,7 +24,7 @@ function buildPromptInstruction(settings: Settings): string {
 /**
  * Determine error code from error object
  */
-function determineErrorCode(error: Error): ErrorCode {
+export function determineErrorCode(error: Error): ErrorCode {
   if (error.name === 'NO_API_KEY') return 'NO_API_KEY';
   if (error.name === 'NETWORK_ERROR') return 'NETWORK_ERROR';
   if (error.name === 'INVALID_RESPONSE') return 'INVALID_RESPONSE';

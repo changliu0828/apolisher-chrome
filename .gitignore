@@ -22,5 +22,8 @@ build/
 # Logs
 *.log
 
+# Test coverage
+coverage/
+
 # Claude plans
 .claude/
