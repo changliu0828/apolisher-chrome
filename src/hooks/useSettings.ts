@@ -26,5 +26,7 @@ export function useSettings() {
       setSettings({ ...settings, customPrompt }),
     updateMaxCompletionTokens: (maxCompletionTokens: number) =>
       setSettings({ ...settings, maxCompletionTokens }),
+    updateIsEnabled: (isEnabled: boolean) =>
+      setSettings({ ...settings, isEnabled }),
   };
 }

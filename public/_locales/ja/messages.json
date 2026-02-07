@@ -202,5 +202,26 @@
   },
   "floating_button_icon_alt": {
     "message": "校正アイコン"
+  },
+  "popup_title": {
+    "message": "Apolisher"
+  },
+  "popup_enable_label": {
+    "message": "拡張機能を有効にする"
+  },
+  "popup_enable_description": {
+    "message": "テキスト校正を有効または無効にする"
+  },
+  "popup_open_options_button": {
+    "message": "設定を開く"
+  },
+  "popup_status": {
+    "message": "拡張機能は$STATUS$です",
+    "placeholders": {
+      "status": {
+        "content": "$1",
+        "example": "有効"
+      }
+    }
   }
 }

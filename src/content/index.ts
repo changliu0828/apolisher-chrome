@@ -179,7 +179,25 @@ function handleSelection(): void {
   }
 
   // Debounce to avoid rapid show/hide
-  debounceTimer = window.setTimeout(() => {
+  debounceTimer = window.setTimeout(async () => {
+    // Check if extension is enabled
+    try {
+      const result = await chrome.storage.sync.get('settings');
+      const settings = result.settings;
+
+      if (settings && settings.isEnabled === false) {
+        // Extension is disabled, hide button if visible
+        if (floatingButton) {
+          floatingButton.hide();
+        }
+        return;
+      }
+    } catch (error) {
+      // If we can't read settings, assume enabled (fail open)
+      // eslint-disable-next-line no-console
+      console.error('Failed to read settings:', error);
+    }
+
     const selectedText = getSelectedText();
     const selectionRect = getSelectionRect();
 

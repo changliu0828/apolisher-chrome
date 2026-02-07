@@ -202,5 +202,26 @@
   },
   "floating_button_icon_alt": {
     "message": "पॉलिश आइकन"
+  },
+  "popup_title": {
+    "message": "Apolisher"
+  },
+  "popup_enable_label": {
+    "message": "एक्सटेंशन सक्षम करें"
+  },
+  "popup_enable_description": {
+    "message": "टेक्स्ट पॉलिशिंग को सक्षम या अक्षम करने के लिए टॉगल करें"
+  },
+  "popup_open_options_button": {
+    "message": "सेटिंग्स खोलें"
+  },
+  "popup_status": {
+    "message": "एक्सटेंशन $STATUS$ है",
+    "placeholders": {
+      "status": {
+        "content": "$1",
+        "example": "सक्षम"
+      }
+    }
   }
 }

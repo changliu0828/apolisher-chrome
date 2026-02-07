@@ -202,5 +202,26 @@
   },
   "floating_button_icon_alt": {
     "message": "Значок полировки"
+  },
+  "popup_title": {
+    "message": "Apolisher"
+  },
+  "popup_enable_label": {
+    "message": "Включить расширение"
+  },
+  "popup_enable_description": {
+    "message": "Переключить, чтобы включить или отключить полировку текста"
+  },
+  "popup_open_options_button": {
+    "message": "Открыть настройки"
+  },
+  "popup_status": {
+    "message": "Расширение $STATUS$",
+    "placeholders": {
+      "status": {
+        "content": "$1",
+        "example": "включено"
+      }
+    }
   }
 }

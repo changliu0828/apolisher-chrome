@@ -70,6 +70,13 @@ export enum MessageKey {
   // Floating Button (2 keys)
   FLOATING_BUTTON_ARIA_LABEL = 'floating_button_aria_label',
   FLOATING_BUTTON_ICON_ALT = 'floating_button_icon_alt',
+
+  // Popup (5 keys)
+  POPUP_TITLE = 'popup_title',
+  POPUP_ENABLE_LABEL = 'popup_enable_label',
+  POPUP_ENABLE_DESCRIPTION = 'popup_enable_description',
+  POPUP_OPEN_OPTIONS_BUTTON = 'popup_open_options_button',
+  POPUP_STATUS = 'popup_status',
 }
 
 export type MessageKeyString = `${MessageKey}`;
