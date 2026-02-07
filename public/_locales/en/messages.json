@@ -202,5 +202,26 @@
   },
   "floating_button_icon_alt": {
     "message": "Polish icon"
+  },
+  "popup_title": {
+    "message": "Apolisher"
+  },
+  "popup_enable_label": {
+    "message": "Enable Extension"
+  },
+  "popup_enable_description": {
+    "message": "Toggle to enable or disable text polishing"
+  },
+  "popup_open_options_button": {
+    "message": "Open Settings"
+  },
+  "popup_status": {
+    "message": "Extension is $STATUS$",
+    "placeholders": {
+      "status": {
+        "content": "$1",
+        "example": "enabled"
+      }
+    }
   }
 }

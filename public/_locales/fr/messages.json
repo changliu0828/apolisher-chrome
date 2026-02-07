@@ -202,5 +202,26 @@
   },
   "floating_button_icon_alt": {
     "message": "Icône de polissage"
+  },
+  "popup_title": {
+    "message": "Apolisher"
+  },
+  "popup_enable_label": {
+    "message": "Activer l'extension"
+  },
+  "popup_enable_description": {
+    "message": "Basculer pour activer ou désactiver le polissage de texte"
+  },
+  "popup_open_options_button": {
+    "message": "Ouvrir les paramètres"
+  },
+  "popup_status": {
+    "message": "L'extension est $STATUS$",
+    "placeholders": {
+      "status": {
+        "content": "$1",
+        "example": "activée"
+      }
+    }
   }
 }

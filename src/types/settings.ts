@@ -14,6 +14,7 @@ export interface Settings {
   selectedPreset: 'standard' | 'professional' | 'native' | 'simplified' | 'emotionalIntelligence' | 'custom';
   customPrompt: string;
   maxCompletionTokens: number;
+  isEnabled: boolean;
 }
 
 // Re-export PROMPT_PRESETS for backward compatibility
@@ -29,4 +30,5 @@ export const DEFAULT_SETTINGS: Settings = {
   selectedPreset: 'standard',
   customPrompt: '',
   maxCompletionTokens: 2000,
+  isEnabled: true,
 };

@@ -202,5 +202,26 @@
   },
   "floating_button_icon_alt": {
     "message": "Polier-Symbol"
+  },
+  "popup_title": {
+    "message": "Apolisher"
+  },
+  "popup_enable_label": {
+    "message": "Erweiterung aktivieren"
+  },
+  "popup_enable_description": {
+    "message": "Umschalten, um Textpolierung zu aktivieren oder deaktivieren"
+  },
+  "popup_open_options_button": {
+    "message": "Einstellungen öffnen"
+  },
+  "popup_status": {
+    "message": "Erweiterung ist $STATUS$",
+    "placeholders": {
+      "status": {
+        "content": "$1",
+        "example": "aktiviert"
+      }
+    }
   }
 }

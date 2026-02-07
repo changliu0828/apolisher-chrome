@@ -202,5 +202,26 @@
   },
   "floating_button_icon_alt": {
     "message": "Ícone de polir"
+  },
+  "popup_title": {
+    "message": "Apolisher"
+  },
+  "popup_enable_label": {
+    "message": "Ativar extensão"
+  },
+  "popup_enable_description": {
+    "message": "Alternar para ativar ou desativar o polimento de texto"
+  },
+  "popup_open_options_button": {
+    "message": "Abrir configurações"
+  },
+  "popup_status": {
+    "message": "A extensão está $STATUS$",
+    "placeholders": {
+      "status": {
+        "content": "$1",
+        "example": "ativada"
+      }
+    }
   }
 }

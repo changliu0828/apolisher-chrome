@@ -202,5 +202,26 @@
   },
   "floating_button_icon_alt": {
     "message": "潤飾圖示"
+  },
+  "popup_title": {
+    "message": "Apolisher"
+  },
+  "popup_enable_label": {
+    "message": "啟用擴充功能"
+  },
+  "popup_enable_description": {
+    "message": "切換以啟用或停用文字潤飾"
+  },
+  "popup_open_options_button": {
+    "message": "開啟設定"
+  },
+  "popup_status": {
+    "message": "擴充功能已$STATUS$",
+    "placeholders": {
+      "status": {
+        "content": "$1",
+        "example": "啟用"
+      }
+    }
   }
 }
