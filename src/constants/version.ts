@@ -11,4 +11,5 @@ export const ROADMAP = {
   'v0.6': 'Multi-provider AI Support (Claude API)',
   'v0.7': 'Multi-provider AI Support (Gemini API)',
   'v0.8': 'Internationalization (i18n)',
+  'v0.9': 'Emotional Intelligence Style',
 } as const;
