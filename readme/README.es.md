@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.8.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.9.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
@@ -36,7 +36,8 @@ Una extensión de Chrome que prioriza la privacidad y pule texto en cualquier p�
 
 - **Soporte Multi-Proveedor de IA**: Elige entre OpenAI, Claude o Gemini usando tu propia clave API
 - **Pulido de Texto**: Selecciona cualquier texto y púlelo con IA
-- **Múltiples Presets**: Prompts estándar, profesional, nativo, simplificado o personalizado
+- **Múltiples Presets**: Prompts estándar, profesional, nativo, simplificado, inteligencia emocional o personalizado
+- **Interruptor Rápido**: Activa o desactiva la extensión desde el popup de la barra de herramientas
 - **Diferencias Visuales**: Ve los cambios resaltados con inserciones (verde) y eliminaciones (rojo)
 - **Privacidad Primero**: Tu clave API se queda local, sin recolección de datos ni telemetría
 - **Compatibilidad Universal**: Funciona en cualquier página web, incluyendo Gmail, Google Docs y más
@@ -81,7 +82,7 @@ Accede a la configuración haciendo clic en el ícono de la extensión o haciend
 
 - **Proveedor de IA**: Elige entre OpenAI (GPT-4o Mini), Claude (3.5 Haiku) o Gemini (2.5 Flash)
 - **Clave API**: Tu clave API específica del proveedor (almacenada de forma segura en el almacenamiento de sincronización de Chrome)
-- **Presets de Prompt**: Elige entre estándar, profesional, nativo, simplificado o personalizado
+- **Presets de Prompt**: Elige entre estándar, profesional, nativo, simplificado, Inteligencia Emocional o personalizado
 - **Máximo de Token**: Controla la longitud de respuesta (100-4000 Token, predeterminado: 2000)
 
 ## Stack Tecnológico
@@ -92,6 +93,8 @@ Accede a la configuración haciendo clic en el ícono de la extensión o haciend
 - **Chrome Extension Manifest V3** - Arquitectura de extensión
 - **IA Multi-Proveedor**: OpenAI (GPT-4o Mini), Claude (3.5 Haiku) o Gemini (2.5 Flash)
 - **Shadow DOM** - Aislamiento de estilos para script de contenido
+- **chrome.i18n** - Internacionalización nativa (10 idiomas)
+- **Vitest** + **happy-dom** - Pruebas unitarias (187 pruebas)
 
 ## Desarrollo
 
@@ -110,6 +113,12 @@ npm run lint
 
 # Verificación de tipos
 npm run type-check
+
+# Ejecutar pruebas
+npm run test:run
+
+# Compilar y empaquetar para Chrome Web Store
+npm run package
 ```
 
 ## Estructura del Proyecto
@@ -118,9 +127,13 @@ npm run type-check
 src/
 ├── background/      # Service worker para llamadas API
 ├── content/         # Script de contenido y componentes UI
+├── hooks/           # Hook de configuración compartido
+├── i18n/            # Utilidades de Chrome i18n y claves de mensajes tipadas
 ├── options/         # Página de configuración
+├── popup/           # Popup de la barra de herramientas (activar/desactivar)
 ├── prompts/         # Presets de prompts
 ├── services/        # Servicios de IA multi-proveedor (OpenAI, Claude, Gemini)
+├── test/            # Configuración, mocks y fixtures de Vitest
 ├── types/           # Tipos TypeScript
 └── utils/           # Utilidades
 ```

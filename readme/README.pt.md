@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.8.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.9.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
@@ -36,7 +36,8 @@ Uma extensão do Chrome que prioriza a privacidade e pule texto em qualquer pág
 
 - **Suporte Multi-Provedor de IA**: Escolha entre OpenAI, Claude ou Gemini usando sua própria chave API
 - **Polimento de Texto**: Selecione qualquer texto e pula-o com IA
-- **Múltiplos Presets**: Prompts padrão, profissional, nativo, simplificado ou personalizado
+- **Múltiplos Presets**: Prompts padrão, profissional, nativo, simplificado, inteligência emocional ou personalizado
+- **Alternância Rápida**: Ative ou desative a extensão pelo popup da barra de ferramentas
 - **Diferenças Visuais**: Veja as alterações destacadas com inserções (verde) e exclusões (vermelho)
 - **Privacidade Primeiro**: Sua chave API fica local, sem coleta de dados ou telemetria
 - **Compatibilidade Universal**: Funciona em qualquer página web, incluindo Gmail, Google Docs e mais
@@ -81,7 +82,7 @@ Acesse as configurações clicando no ícone da extensão ou clicando com o bot�
 
 - **Provedor de IA**: Escolha entre OpenAI (GPT-4o Mini), Claude (3.5 Haiku) ou Gemini (2.5 Flash)
 - **Chave API**: Sua chave API específica do provedor (armazenada com segurança no armazenamento de sincronização do Chrome)
-- **Presets de Prompt**: Escolha entre padrão, profissional, nativo, simplificado ou personalizado
+- **Presets de Prompt**: Escolha entre padrão, profissional, nativo, simplificado, Inteligência Emocional ou personalizado
 - **Máximo de Token**: Controle o comprimento da resposta (100-4000 Token, padrão: 2000)
 
 ## Stack Tecnológico
@@ -92,6 +93,8 @@ Acesse as configurações clicando no ícone da extensão ou clicando com o bot�
 - **Chrome Extension Manifest V3** - Arquitetura de extensão
 - **IA Multi-Provedor**: OpenAI (GPT-4o Mini), Claude (3.5 Haiku) ou Gemini (2.5 Flash)
 - **Shadow DOM** - Isolamento de estilos para script de conteúdo
+- **chrome.i18n** - Internacionalização nativa (10 idiomas)
+- **Vitest** + **happy-dom** - Testes unitários (187 testes)
 
 ## Desenvolvimento
 
@@ -110,6 +113,12 @@ npm run lint
 
 # Verificação de tipos
 npm run type-check
+
+# Executar testes
+npm run test:run
+
+# Compilar e empacotar para a Chrome Web Store
+npm run package
 ```
 
 ## Estrutura do Projeto
@@ -118,9 +127,13 @@ npm run type-check
 src/
 ├── background/      # Service worker para chamadas API
 ├── content/         # Script de conteúdo e componentes UI
+├── hooks/           # Hook de configurações compartilhado
+├── i18n/            # Utilitários do Chrome i18n e chaves de mensagem tipadas
 ├── options/         # Página de configuração
+├── popup/           # Popup da barra de ferramentas (ativar/desativar)
 ├── prompts/         # Presets de prompts
 ├── services/        # Serviços de IA multi-provedor (OpenAI, Claude, Gemini)
+├── test/            # Configuração, mocks e fixtures do Vitest
 ├── types/           # Tipos TypeScript
 └── utils/           # Utilitários
 ```

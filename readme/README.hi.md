@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.8.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.9.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
@@ -36,7 +36,8 @@
 
 - **मल्टी-प्रोवाइडर AI समर्थन**: अपनी खुद की API key का उपयोग करके OpenAI, Claude या Gemini के बीच चुनें
 - **टेक्स्ट पॉलिशिंग**: किसी भी टेक्स्ट को चुनें और इसे AI के साथ पॉलिश करें
-- **एकाधिक प्रीसेट**: मानक, पेशेवर, देशी, सरलीकृत या कस्टम prompts
+- **एकाधिक प्रीसेट**: मानक, पेशेवर, देशी, सरलीकृत, भावनात्मक बुद्धिमत्ता या कस्टम prompts
+- **त्वरित टॉगल**: टूलबार popup से एक्सटेंशन को सक्षम या अक्षम करें
 - **विज़ुअल अंतर**: सम्मिलन (हरा) और विलोपन (लाल) के साथ हाइलाइट किए गए परिवर्तन देखें
 - **गोपनीयता पहले**: आपकी API key स्थानीय रहती है, कोई डेटा संग्रह या टेलीमेट्री नहीं
 - **सार्वभौमिक संगतता**: Gmail, Google Docs और अधिक सहित किसी भी वेब पेज पर काम करता है
@@ -81,7 +82,7 @@ npm run build
 
 - **AI प्रोवाइडर**: OpenAI (GPT-4o Mini), Claude (3.5 Haiku) या Gemini (2.5 Flash) के बीच चुनें
 - **API Key**: आपकी प्रोवाइडर-विशिष्ट API key (Chrome sync storage में सुरक्षित रूप से संग्रहीत)
-- **Prompt प्रीसेट**: मानक, पेशेवर, देशी, सरलीकृत या कस्टम के बीच चुनें
+- **Prompt प्रीसेट**: मानक, पेशेवर, देशी, सरलीकृत, भावनात्मक बुद्धिमत्ता या कस्टम के बीच चुनें
 - **अधिकतम Token**: प्रतिक्रिया की लंबाई नियंत्रित करें (100-4000 Token, डिफ़ॉल्ट: 2000)
 
 ## तकनीकी स्टैक
@@ -92,6 +93,8 @@ npm run build
 - **Chrome Extension Manifest V3** - एक्सटेंशन आर्किटेक्चर
 - **मल्टी-प्रोवाइडर AI**: OpenAI (GPT-4o Mini), Claude (3.5 Haiku) या Gemini (2.5 Flash)
 - **Shadow DOM** - Content script के लिए स्टाइल आइसोलेशन
+- **chrome.i18n** - नेटिव अंतरराष्ट्रीयकरण (10 भाषाएं)
+- **Vitest** + **happy-dom** - यूनिट टेस्ट (187 टेस्ट)
 
 ## डेवलपमेंट
 
@@ -110,6 +113,12 @@ npm run lint
 
 # टाइप चेकिंग
 npm run type-check
+
+# टेस्ट चलाएं
+npm run test:run
+
+# Chrome Web Store के लिए बिल्ड और पैकेज करें
+npm run package
 ```
 
 ## प्रोजेक्ट संरचना
@@ -118,9 +127,13 @@ npm run type-check
 src/
 ├── background/      # API कॉल्स के लिए Service worker
 ├── content/         # Content script और UI कंपोनेंट्स
+├── hooks/           # साझा सेटिंग्स hook
+├── i18n/            # Chrome i18n उपयोगिताएं और टाइप्ड message keys
 ├── options/         # सेटिंग्स पेज
+├── popup/           # टूलबार popup (सक्षम/अक्षम टॉगल)
 ├── prompts/         # Prompt प्रीसेट
 ├── services/        # मल्टी-प्रोवाइडर AI सेवाएं (OpenAI, Claude, Gemini)
+├── test/            # Vitest सेटअप, mocks और fixtures
 ├── types/           # TypeScript types
 └── utils/           # उपयोगिताएं
 ```

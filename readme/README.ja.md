@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.8.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.9.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
@@ -36,7 +36,8 @@
 
 - **マルチプロバイダー AI サポート**：独自の API キーを使用して、OpenAI、Claude、または Gemini から選択
 - **テキスト校正**：任意のテキストを選択して AI で校正
-- **複数のプリセット**：標準、プロフェッショナル、ネイティブスピーカー、簡潔、またはカスタムプロンプト
+- **複数のプリセット**：標準、プロフェッショナル、ネイティブスピーカー、簡潔、気遣いのある発言、またはカスタムプロンプト
+- **クイック切り替え**：ツールバーのポップアップから拡張機能を有効/無効にできます
 - **視覚的差分**：挿入（緑色）と削除（赤色）で強調表示された変更を確認
 - **プライバシー優先**：API キーはローカルに保存され、データ収集やテレメトリはありません
 - **普遍的な互換性**：Gmail、Google Docs などを含む、あらゆるウェブページで動作
@@ -81,7 +82,7 @@ npm run build
 
 - **AI プロバイダー**：OpenAI (GPT-4o Mini)、Claude (3.5 Haiku)、または Gemini (2.5 Flash) から選択
 - **API キー**：プロバイダー固有の API キー（Chrome 同期ストレージに安全に保存）
-- **プロンプトプリセット**：標準、プロフェッショナル、ネイティブ、簡潔、またはカスタムから選択
+- **プロンプトプリセット**：標準、プロフェッショナル、ネイティブ、簡潔、気遣いのある発言、またはカスタムから選択
 - **最大Token数**：応答の長さを制御（100-4000 Token、デフォルト：2000）
 
 ## 技術スタック
@@ -92,6 +93,8 @@ npm run build
 - **Chrome Extension Manifest V3** - 拡張機能アーキテクチャ
 - **マルチプロバイダー AI**：OpenAI (GPT-4o Mini)、Claude (3.5 Haiku)、または Gemini (2.5 Flash)
 - **Shadow DOM** - コンテンツスクリプトのスタイル分離
+- **chrome.i18n** - ネイティブの国際化（10 言語）
+- **Vitest** + **happy-dom** - ユニットテスト（187 テスト）
 
 ## 開発
 
@@ -110,6 +113,12 @@ npm run lint
 
 # 型チェック
 npm run type-check
+
+# テストを実行
+npm run test:run
+
+# ビルドして Chrome ウェブストア用にパッケージ化
+npm run package
 ```
 
 ## プロジェクト構造
@@ -118,9 +127,13 @@ npm run type-check
 src/
 ├── background/      # API 呼び出し用のサービスワーカー
 ├── content/         # コンテンツスクリプトと UI コンポーネント
+├── hooks/           # 共有設定フック
+├── i18n/            # Chrome i18n ユーティリティと型付きメッセージキー
 ├── options/         # 設定ページ
+├── popup/           # ツールバーポップアップ（有効/無効の切り替え）
 ├── prompts/         # プロンプトプリセット
 ├── services/        # マルチプロバイダー AI サービス（OpenAI、Claude、Gemini）
+├── test/            # Vitest のセットアップ、モック、フィクスチャ
 ├── types/           # TypeScript 型
 └── utils/           # ユーティリティ
 ```

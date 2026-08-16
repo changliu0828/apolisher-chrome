@@ -8,7 +8,7 @@
 ---
 
 ## 1. Executive Summary
-**apolisher-chrome** is a privacy-first browser extension that allows users to refine text on any webpage using their own AI API key. It focuses on transparency, allowing users to compare the original text against the AI-polished version before applying changes. Supports OpenAI, Claude, and Gemini APIs (v0.7), with internationalization support for 4 locales (v0.8).
+**apolisher-chrome** is a privacy-first browser extension that allows users to refine text on any webpage using their own AI API key. It focuses on transparency, allowing users to compare the original text against the AI-polished version before applying changes. Supports OpenAI, Claude, and Gemini APIs (v0.7), with internationalization support for 10 locales (v0.8).
 
 ---
 
@@ -64,7 +64,8 @@
 * **State/Storage:** `chrome.storage.sync` (Encrypted/Private).
 * **Diff Library:** `diff` or `jsdiff`.
 * **API:** Direct client-side calls to AI providers (OpenAI, Claude, Gemini) via background service worker. No backend server.
-* **i18n:** Chrome native `chrome.i18n` API with type-safe MessageKey enum (4 locales: en, zh_CN, zh_TW, ja)
+* **i18n:** Chrome native `chrome.i18n` API with type-safe MessageKey enum (10 locales: en, zh_CN, zh_TW, ja, es, pt, fr, de, ru, hi)
+* **Testing:** Vitest + happy-dom + @testing-library/react (shared setup, mocks, and fixtures in `src/test/`)
 
 ---
 
@@ -76,4 +77,5 @@
 - [x] **v0.5:** AI Integration - OpenAI (Background service worker, API integration, max tokens setting, modular prompt system).
 - [x] **v0.6:** Multi-Provider Support - Claude API (Provider selection UI, Claude API adapter, unified API interface).
 - [x] **v0.7:** Multi-Provider Support - Gemini API (Gemini API adapter, unified provider interface, Gemini 2.5 Flash model).
-- [x] **v0.8:** Internationalization (i18n support with Chrome native API, 4 locales: en/zh_CN/zh_TW/ja, type-safe MessageKey enum).
+- [x] **v0.8:** Internationalization (i18n support with Chrome native API, type-safe MessageKey enum; now 10 locales).
+- [x] **v0.9:** Emotional Intelligence style preset, popup menu with enable/disable toggle, Vitest test suite, IME input support, PRIVACY.md, packaging command.
