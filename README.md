@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.8.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.9.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
@@ -36,7 +36,8 @@ A privacy-first Chrome extension that polishes text on any webpage using AI. Sel
 
 - **Multi-Provider AI Support**: Choose between OpenAI, Claude, or Gemini using your own API key
 - **Text Polishing**: Select any text and polish it with AI
-- **Multiple Presets**: Standard, Professional, Native Speaker, Simplified, or Custom prompts
+- **Multiple Presets**: Standard, Professional, Native Speaker, Simplified, Emotional Intelligence, or Custom prompts
+- **Quick Toggle**: Enable or disable the extension from the toolbar popup
 - **Visual Diff**: See changes highlighted with insertions (green) and deletions (red)
 - **Privacy First**: Your API key stays local, no data collection or telemetry
 - **Universal Compatibility**: Works on any webpage including Gmail, Google Docs, and more
@@ -81,7 +82,7 @@ Access settings by clicking the extension icon or right-clicking and selecting "
 
 - **AI Provider**: Choose between OpenAI (GPT-4o Mini), Claude (3.5 Haiku), or Gemini (2.5 Flash)
 - **API Key**: Your provider-specific API key (stored securely in Chrome sync storage)
-- **Prompt Presets**: Choose from Standard, Professional, Native, Simplified, or Custom
+- **Prompt Presets**: Choose from Standard, Professional, Native, Simplified, Emotional Intelligence, or Custom
 - **Max Tokens**: Control response length (100-4000 tokens, default: 2000)
 
 ## Tech Stack
@@ -92,6 +93,8 @@ Access settings by clicking the extension icon or right-clicking and selecting "
 - **Chrome Extension Manifest V3** - Extension architecture
 - **Multi-Provider AI**: OpenAI (GPT-4o Mini), Claude (3.5 Haiku), or Gemini (2.5 Flash)
 - **Shadow DOM** - Style isolation for content script
+- **chrome.i18n** - Native internationalization (10 locales)
+- **Vitest** + **happy-dom** - Unit tests (187 tests)
 
 ## Development
 
@@ -110,6 +113,12 @@ npm run lint
 
 # Type check
 npm run type-check
+
+# Run tests
+npm run test:run
+
+# Build and package for the Chrome Web Store
+npm run package
 ```
 
 ## Project Structure
@@ -118,9 +127,13 @@ npm run type-check
 src/
 ├── background/      # Service worker for API calls
 ├── content/         # Content script and UI components
+├── hooks/           # Shared settings hook
+├── i18n/            # Chrome i18n helpers and typed message keys
 ├── options/         # Settings page
+├── popup/           # Toolbar popup (enable/disable toggle)
 ├── prompts/         # Prompt presets
 ├── services/        # Multi-provider AI services (OpenAI, Claude, Gemini)
+├── test/            # Vitest setup, mocks, and fixtures
 ├── types/           # TypeScript types
 └── utils/           # Utilities
 ```

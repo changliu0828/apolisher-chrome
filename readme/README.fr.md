@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.8.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.9.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
@@ -36,7 +36,8 @@ Une extension Chrome axée sur la confidentialité qui polit le texte sur n'impo
 
 - **Support Multi-Fournisseur IA**: Choisissez entre OpenAI, Claude ou Gemini en utilisant votre propre clé API
 - **Polissage de Texte**: Sélectionnez n'importe quel texte et polissez-le avec l'IA
-- **Préréglages Multiples**: Prompts standard, professionnel, natif, simplifié ou personnalisé
+- **Préréglages Multiples**: Prompts standard, professionnel, natif, simplifié, intelligence émotionnelle ou personnalisé
+- **Activation Rapide**: Activez ou désactivez l'extension depuis le popup de la barre d'outils
 - **Différences Visuelles**: Visualisez les modifications mises en évidence avec insertions (vert) et suppressions (rouge)
 - **Confidentialité d'Abord**: Votre clé API reste locale, aucune collecte de données ni télémétrie
 - **Compatibilité Universelle**: Fonctionne sur n'importe quelle page web, y compris Gmail, Google Docs et plus
@@ -81,7 +82,7 @@ Accédez aux paramètres en cliquant sur l'icône de l'extension ou en faisant u
 
 - **Fournisseur IA**: Choisissez entre OpenAI (GPT-4o Mini), Claude (3.5 Haiku) ou Gemini (2.5 Flash)
 - **Clé API**: Votre clé API spécifique au fournisseur (stockée en toute sécurité dans le stockage de synchronisation Chrome)
-- **Préréglages de Prompt**: Choisissez entre standard, professionnel, natif, simplifié ou personnalisé
+- **Préréglages de Prompt**: Choisissez entre standard, professionnel, natif, simplifié, Intelligence Émotionnelle ou personnalisé
 - **Maximum Token**: Contrôlez la longueur de la réponse (100-4000 Token, par défaut: 2000)
 
 ## Stack Technologique
@@ -92,6 +93,8 @@ Accédez aux paramètres en cliquant sur l'icône de l'extension ou en faisant u
 - **Chrome Extension Manifest V3** - Architecture de l'extension
 - **IA Multi-Fournisseur**: OpenAI (GPT-4o Mini), Claude (3.5 Haiku) ou Gemini (2.5 Flash)
 - **Shadow DOM** - Isolation des styles pour le script de contenu
+- **chrome.i18n** - Internationalisation native (10 langues)
+- **Vitest** + **happy-dom** - Tests unitaires (187 tests)
 
 ## Développement
 
@@ -110,6 +113,12 @@ npm run lint
 
 # Vérification des types
 npm run type-check
+
+# Lancer les tests
+npm run test:run
+
+# Compiler et empaqueter pour le Chrome Web Store
+npm run package
 ```
 
 ## Structure du Projet
@@ -118,9 +127,13 @@ npm run type-check
 src/
 ├── background/      # Service worker pour les appels API
 ├── content/         # Script de contenu et composants UI
+├── hooks/           # Hook de paramètres partagé
+├── i18n/            # Utilitaires Chrome i18n et clés de messages typées
 ├── options/         # Page de configuration
+├── popup/           # Popup de la barre d'outils (activer/désactiver)
 ├── prompts/         # Préréglages de prompts
 ├── services/        # Services IA multi-fournisseur (OpenAI, Claude, Gemini)
+├── test/            # Configuration, mocks et fixtures Vitest
 ├── types/           # Types TypeScript
 └── utils/           # Utilitaires
 ```

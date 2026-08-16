@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.8.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.9.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
@@ -36,7 +36,8 @@
 
 - **多提供商 AI 支持**：使用您自己的 API 密钥，在 OpenAI、Claude 或 Gemini 之间选择
 - **文本润色**：选择任何文本并使用 AI 进行润色
-- **多种预设**：标准、专业、母语、简化或自定义提示词
+- **多种预设**：标准、专业、母语、简化、情商润色或自定义提示词
+- **快速开关**：从工具栏弹窗启用或停用扩展
 - **可视化对比**：查看突出显示的更改，插入（绿色）和删除（红色）
 - **隐私优先**：您的 API 密钥保存在本地，不收集数据或遥测
 - **通用兼容性**：适用于任何网页，包括 Gmail、Google Docs 等
@@ -81,7 +82,7 @@ npm run build
 
 - **AI 提供商**：在 OpenAI (GPT-4o Mini)、Claude (3.5 Haiku) 或 Gemini (2.5 Flash) 之间选择
 - **API 密钥**：您的提供商特定的 API 密钥（安全存储在 Chrome 同步存储中）
-- **提示词预设**：从标准、专业、母语、简化或自定义中选择
+- **提示词预设**：从标准、专业、母语、简化、情商润色或自定义中选择
 - **最大Token数**：控制响应长度（100-4000 Token，默认：2000）
 
 ## 技术栈
@@ -92,6 +93,8 @@ npm run build
 - **Chrome Extension Manifest V3** - 扩展架构
 - **多提供商 AI**：OpenAI (GPT-4o Mini)、Claude (3.5 Haiku) 或 Gemini (2.5 Flash)
 - **Shadow DOM** - 内容脚本的样式隔离
+- **chrome.i18n** - 原生国际化（10 种语言）
+- **Vitest** + **happy-dom** - 单元测试（187 个测试）
 
 ## 开发
 
@@ -110,6 +113,12 @@ npm run lint
 
 # 类型检查
 npm run type-check
+
+# 运行测试
+npm run test:run
+
+# 构建并打包以提交 Chrome 应用商店
+npm run package
 ```
 
 ## 项目结构
@@ -118,9 +127,13 @@ npm run type-check
 src/
 ├── background/      # API 调用的服务工作器
 ├── content/         # 内容脚本和 UI 组件
+├── hooks/           # 共享设置 hook
+├── i18n/            # Chrome i18n 工具与类型化消息键
 ├── options/         # 设置页面
+├── popup/           # 工具栏弹窗（启用/停用开关）
 ├── prompts/         # 提示词预设
 ├── services/        # 多提供商 AI 服务（OpenAI、Claude、Gemini）
+├── test/            # Vitest 配置、mock 与 fixture
 ├── types/           # TypeScript 类型
 └── utils/           # 工具函数
 ```

@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.8.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.9.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
@@ -36,7 +36,8 @@ Eine datenschutzorientierte Chrome Extension, die Text auf jeder Webseite mit KI
 
 - **Multi-Anbieter KI-Unterstützung**: Wählen Sie zwischen OpenAI, Claude oder Gemini mit Ihrem eigenen API-Schlüssel
 - **Text-Polierung**: Wählen Sie beliebigen Text aus und polieren Sie ihn mit KI
-- **Mehrere Voreinstellungen**: Standard-, professionelle, native, vereinfachte oder benutzerdefinierte Prompts
+- **Mehrere Voreinstellungen**: Standard-, professionelle, native, vereinfachte, emotionale Intelligenz- oder benutzerdefinierte Prompts
+- **Schnellschalter**: Erweiterung über das Symbolleisten-Popup aktivieren oder deaktivieren
 - **Visuelle Unterschiede**: Sehen Sie hervorgehobene Änderungen mit Einfügungen (grün) und Löschungen (rot)
 - **Datenschutz zuerst**: Ihr API-Schlüssel bleibt lokal, keine Datenerfassung oder Telemetrie
 - **Universelle Kompatibilität**: Funktioniert auf jeder Webseite, einschließlich Gmail, Google Docs und mehr
@@ -81,7 +82,7 @@ Greifen Sie auf die Einstellungen zu, indem Sie auf das Extension-Symbol klicken
 
 - **KI-Anbieter**: Wählen Sie zwischen OpenAI (GPT-4o Mini), Claude (3.5 Haiku) oder Gemini (2.5 Flash)
 - **API-Schlüssel**: Ihr anbieterspezifischer API-Schlüssel (sicher im Chrome-Synchronisierungsspeicher gespeichert)
-- **Prompt-Voreinstellungen**: Wählen Sie zwischen Standard, professionell, nativ, vereinfacht oder benutzerdefiniert
+- **Prompt-Voreinstellungen**: Wählen Sie zwischen Standard, professionell, nativ, vereinfacht, Emotionale Intelligenz oder benutzerdefiniert
 - **Maximum Token**: Kontrollieren Sie die Antwortlänge (100-4000 Token, Standard: 2000)
 
 ## Technologie-Stack
@@ -92,6 +93,8 @@ Greifen Sie auf die Einstellungen zu, indem Sie auf das Extension-Symbol klicken
 - **Chrome Extension Manifest V3** - Extension-Architektur
 - **Multi-Anbieter KI**: OpenAI (GPT-4o Mini), Claude (3.5 Haiku) oder Gemini (2.5 Flash)
 - **Shadow DOM** - Stil-Isolation für Content-Script
+- **chrome.i18n** - Native Internationalisierung (10 Sprachen)
+- **Vitest** + **happy-dom** - Unit-Tests (187 Tests)
 
 ## Entwicklung
 
@@ -110,6 +113,12 @@ npm run lint
 
 # Typprüfung
 npm run type-check
+
+# Tests ausführen
+npm run test:run
+
+# Build und Paket für den Chrome Web Store erstellen
+npm run package
 ```
 
 ## Projektstruktur
@@ -118,9 +127,13 @@ npm run type-check
 src/
 ├── background/      # Service Worker für API-Aufrufe
 ├── content/         # Content-Script und UI-Komponenten
+├── hooks/           # Gemeinsamer Einstellungs-Hook
+├── i18n/            # Chrome-i18n-Hilfsprogramme und typisierte Message-Keys
 ├── options/         # Einstellungsseite
+├── popup/           # Symbolleisten-Popup (Aktivieren/Deaktivieren)
 ├── prompts/         # Prompt-Voreinstellungen
 ├── services/        # Multi-Anbieter KI-Dienste (OpenAI, Claude, Gemini)
+├── test/            # Vitest-Setup, Mocks und Fixtures
 ├── types/           # TypeScript-Typen
 └── utils/           # Hilfsprogramme
 ```
