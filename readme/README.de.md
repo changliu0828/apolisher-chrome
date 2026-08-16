@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.9.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
@@ -37,6 +37,7 @@ Eine datenschutzorientierte Chrome Extension, die Text auf jeder Webseite mit KI
 - **Multi-Anbieter KI-Unterstützung**: Wählen Sie zwischen OpenAI, Claude oder Gemini mit Ihrem eigenen API-Schlüssel
 - **Text-Polierung**: Wählen Sie beliebigen Text aus und polieren Sie ihn mit KI
 - **Mehrere Voreinstellungen**: Standard-, professionelle, native, vereinfachte, emotionale Intelligenz- oder benutzerdefinierte Prompts
+- **Modellauswahl**: Wählen Sie pro Anbieter jedes Modell, auf das Ihr API-Schlüssel Zugriff hat — die Liste wird live abgerufen
 - **Schnellschalter**: Erweiterung über das Symbolleisten-Popup aktivieren oder deaktivieren
 - **Visuelle Unterschiede**: Sehen Sie hervorgehobene Änderungen mit Einfügungen (grün) und Löschungen (rot)
 - **Datenschutz zuerst**: Ihr API-Schlüssel bleibt lokal, keine Datenerfassung oder Telemetrie
@@ -80,8 +81,9 @@ npm run build
 
 Greifen Sie auf die Einstellungen zu, indem Sie auf das Extension-Symbol klicken oder mit der rechten Maustaste klicken und "Optionen" auswählen:
 
-- **KI-Anbieter**: Wählen Sie zwischen OpenAI (GPT-4o Mini), Claude (3.5 Haiku) oder Gemini (2.5 Flash)
+- **KI-Anbieter**: Wählen Sie zwischen OpenAI (GPT-5.6 Luna), Claude (Haiku 4.5) oder Gemini (3.1 Flash Lite)
 - **API-Schlüssel**: Ihr anbieterspezifischer API-Schlüssel (sicher im Chrome-Synchronisierungsspeicher gespeichert)
+- **Modell**: Wählen Sie das Modell des ausgewählten Anbieters; die Liste wird mit Ihrem API-Schlüssel abgerufen (Standard: das Modell oben)
 - **Prompt-Voreinstellungen**: Wählen Sie zwischen Standard, professionell, nativ, vereinfacht, Emotionale Intelligenz oder benutzerdefiniert
 - **Maximum Token**: Kontrollieren Sie die Antwortlänge (100-4000 Token, Standard: 2000)
 
@@ -91,10 +93,10 @@ Greifen Sie auf die Einstellungen zu, indem Sie auf das Extension-Symbol klicken
 - **Vite** - Build-System mit @crxjs/vite-plugin
 - **Tailwind CSS** - Styling
 - **Chrome Extension Manifest V3** - Extension-Architektur
-- **Multi-Anbieter KI**: OpenAI (GPT-4o Mini), Claude (3.5 Haiku) oder Gemini (2.5 Flash)
+- **Multi-Anbieter KI**: OpenAI (GPT-5.6 Luna), Claude (Haiku 4.5) oder Gemini (3.1 Flash Lite)
 - **Shadow DOM** - Stil-Isolation für Content-Script
 - **chrome.i18n** - Native Internationalisierung (10 Sprachen)
-- **Vitest** + **happy-dom** - Unit-Tests (187 Tests)
+- **Vitest** + **happy-dom** - Unit-Tests (264 Tests)
 
 ## Entwicklung
 

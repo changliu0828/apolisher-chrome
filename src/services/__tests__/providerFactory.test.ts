@@ -1,18 +1,25 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { polishTextWithProvider, getProviderDisplayName } from '../providerFactory';
+import {
+  polishTextWithProvider,
+  listModelsForProvider,
+  getProviderDisplayName,
+} from '../providerFactory';
 import type { AIPolishResult } from '@/types/api';
 
 // Mock the service modules
 vi.mock('../openai', () => ({
   polishText: vi.fn(),
+  listModels: vi.fn(),
 }));
 
 vi.mock('../claude', () => ({
   polishText: vi.fn(),
+  listModels: vi.fn(),
 }));
 
 vi.mock('../gemini', () => ({
   polishText: vi.fn(),
+  listModels: vi.fn(),
 }));
 
 import * as openaiService from '../openai';
@@ -43,14 +50,16 @@ describe('providerFactory', () => {
         mockApiKey,
         mockText,
         mockPromptInstruction,
-        mockMaxTokens
+        mockMaxTokens,
+        undefined
       );
 
       expect(openaiService.polishText).toHaveBeenCalledWith(
         mockApiKey,
         mockText,
         mockPromptInstruction,
-        mockMaxTokens
+        mockMaxTokens,
+        undefined
       );
       expect(openaiService.polishText).toHaveBeenCalledTimes(1);
       expect(claudeService.polishText).not.toHaveBeenCalled();
@@ -66,14 +75,16 @@ describe('providerFactory', () => {
         mockApiKey,
         mockText,
         mockPromptInstruction,
-        mockMaxTokens
+        mockMaxTokens,
+        undefined
       );
 
       expect(claudeService.polishText).toHaveBeenCalledWith(
         mockApiKey,
         mockText,
         mockPromptInstruction,
-        mockMaxTokens
+        mockMaxTokens,
+        undefined
       );
       expect(claudeService.polishText).toHaveBeenCalledTimes(1);
       expect(openaiService.polishText).not.toHaveBeenCalled();
@@ -89,14 +100,16 @@ describe('providerFactory', () => {
         mockApiKey,
         mockText,
         mockPromptInstruction,
-        mockMaxTokens
+        mockMaxTokens,
+        undefined
       );
 
       expect(geminiService.polishText).toHaveBeenCalledWith(
         mockApiKey,
         mockText,
         mockPromptInstruction,
-        mockMaxTokens
+        mockMaxTokens,
+        undefined
       );
       expect(geminiService.polishText).toHaveBeenCalledTimes(1);
       expect(openaiService.polishText).not.toHaveBeenCalled();
@@ -177,14 +190,16 @@ describe('providerFactory', () => {
         mockApiKey,
         '',
         mockPromptInstruction,
-        mockMaxTokens
+        mockMaxTokens,
+        undefined
       );
 
       expect(openaiService.polishText).toHaveBeenCalledWith(
         mockApiKey,
         '',
         mockPromptInstruction,
-        mockMaxTokens
+        mockMaxTokens,
+        undefined
       );
       expect(result.polishedText).toBe('');
     });
@@ -197,14 +212,16 @@ describe('providerFactory', () => {
         mockApiKey,
         mockText,
         mockPromptInstruction,
-        4000
+        4000,
+        undefined
       );
 
       expect(openaiService.polishText).toHaveBeenCalledWith(
         mockApiKey,
         mockText,
         mockPromptInstruction,
-        4000
+        4000,
+        undefined
       );
     });
   });
@@ -225,6 +242,45 @@ describe('providerFactory', () => {
     it('should return the provider string for unknown providers', () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       expect(getProviderDisplayName('unknown' as any)).toBe('unknown');
+    });
+  });
+  describe('listModelsForProvider', () => {
+    const mockModels = [{ id: 'model-1', label: 'Model 1' }];
+
+    it('should route to the OpenAI service', async () => {
+      vi.mocked(openaiService.listModels).mockResolvedValue(mockModels);
+
+      const result = await listModelsForProvider('openai', mockApiKey);
+
+      expect(openaiService.listModels).toHaveBeenCalledWith(mockApiKey);
+      expect(claudeService.listModels).not.toHaveBeenCalled();
+      expect(geminiService.listModels).not.toHaveBeenCalled();
+      expect(result).toEqual(mockModels);
+    });
+
+    it('should route to the Claude service', async () => {
+      vi.mocked(claudeService.listModels).mockResolvedValue(mockModels);
+
+      await listModelsForProvider('claude', mockApiKey);
+
+      expect(claudeService.listModels).toHaveBeenCalledWith(mockApiKey);
+      expect(openaiService.listModels).not.toHaveBeenCalled();
+    });
+
+    it('should route to the Gemini service', async () => {
+      vi.mocked(geminiService.listModels).mockResolvedValue(mockModels);
+
+      await listModelsForProvider('gemini', mockApiKey);
+
+      expect(geminiService.listModels).toHaveBeenCalledWith(mockApiKey);
+      expect(openaiService.listModels).not.toHaveBeenCalled();
+    });
+
+    it('should throw for an unsupported provider', async () => {
+      await expect(
+        // @ts-expect-error - testing an unsupported provider at runtime
+        listModelsForProvider('unknown', mockApiKey)
+      ).rejects.toThrow('Unsupported provider: unknown');
     });
   });
 });

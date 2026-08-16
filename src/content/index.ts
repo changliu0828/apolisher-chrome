@@ -9,6 +9,8 @@ import { calculateButtonPosition } from '@/utils/positioning';
 import { replaceText } from '@/utils/textReplacer';
 import { DEBOUNCE_DELAY } from '@/constants/ui';
 import { MESSAGE_TYPES, type PolishResponse, type PolishError } from '@/types/messages';
+import { getMessage } from '@/i18n';
+import { MessageKey } from '@/i18n/types';
 
 // Global state
 let floatingButton: FloatingButton | null = null;
@@ -155,6 +157,12 @@ function handlePolishError(payload: PolishError['payload']): void {
     errorMessage = 'Network error. Please check your connection and try again.';
   } else if (payload.code === 'INVALID_RESPONSE') {
     errorMessage = 'Received invalid response from API. Please try again.';
+  } else if (payload.code === 'INVALID_API_KEY') {
+    errorMessage = getMessage(MessageKey.ERROR_INVALID_API_KEY);
+    showSettings = true;
+  } else if (payload.code === 'INVALID_MODEL') {
+    errorMessage = getMessage(MessageKey.ERROR_INVALID_MODEL);
+    showSettings = true;
   } else if (payload.code === 'API_ERROR') {
     errorMessage = `API Error: ${payload.error}`;
   }

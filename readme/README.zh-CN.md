@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.9.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
@@ -37,6 +37,7 @@
 - **多提供商 AI 支持**：使用您自己的 API 密钥，在 OpenAI、Claude 或 Gemini 之间选择
 - **文本润色**：选择任何文本并使用 AI 进行润色
 - **多种预设**：标准、专业、母语、简化、情商润色或自定义提示词
+- **模型可选**：按服务商选择你的 API Key 能访问的任意模型，列表实时从 API 获取
 - **快速开关**：从工具栏弹窗启用或停用扩展
 - **可视化对比**：查看突出显示的更改，插入（绿色）和删除（红色）
 - **隐私优先**：您的 API 密钥保存在本地，不收集数据或遥测
@@ -80,8 +81,9 @@ npm run build
 
 通过点击扩展图标或右键选择"选项"来访问设置：
 
-- **AI 提供商**：在 OpenAI (GPT-4o Mini)、Claude (3.5 Haiku) 或 Gemini (2.5 Flash) 之间选择
+- **AI 提供商**：在 OpenAI (GPT-5.6 Luna)、Claude (Haiku 4.5) 或 Gemini (3.1 Flash Lite) 之间选择
 - **API 密钥**：您的提供商特定的 API 密钥（安全存储在 Chrome 同步存储中）
+- **模型**：为所选提供商挑选模型，列表通过你的 API 密钥获取（默认使用上面的模型）
 - **提示词预设**：从标准、专业、母语、简化、情商润色或自定义中选择
 - **最大Token数**：控制响应长度（100-4000 Token，默认：2000）
 
@@ -91,10 +93,10 @@ npm run build
 - **Vite** - 构建系统，带 @crxjs/vite-plugin
 - **Tailwind CSS** - 样式
 - **Chrome Extension Manifest V3** - 扩展架构
-- **多提供商 AI**：OpenAI (GPT-4o Mini)、Claude (3.5 Haiku) 或 Gemini (2.5 Flash)
+- **多提供商 AI**：OpenAI (GPT-5.6 Luna)、Claude (Haiku 4.5) 或 Gemini (3.1 Flash Lite)
 - **Shadow DOM** - 内容脚本的样式隔离
 - **chrome.i18n** - 原生国际化（10 种语言）
-- **Vitest** + **happy-dom** - 单元测试（187 个测试）
+- **Vitest** + **happy-dom** - 单元测试（264 个测试）
 
 ## 开发
 

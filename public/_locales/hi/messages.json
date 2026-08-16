@@ -51,6 +51,12 @@
   "error_api": {
     "message": "टेक्स्ट पॉलिश करने में विफल। कृपया पुनः प्रयास करें।"
   },
+  "error_invalid_model": {
+    "message": "चुना गया मॉडल आपकी API key के लिए उपलब्ध नहीं है। एक्सटेंशन सेटिंग्स में दूसरा मॉडल चुनें।"
+  },
+  "error_invalid_api_key": {
+    "message": "आपकी API key में ऐसे अक्षर हैं जो भेजे नहीं जा सकते (केवल सामान्य ASCII मान्य है)। इसे प्रोवाइडर कंसोल से दोबारा कॉपी करें।"
+  },
   "options_title": {
     "message": "$BRAND$ सेटिंग्स",
     "placeholders": {
@@ -79,13 +85,43 @@
     "message": "टेक्स्ट पॉलिश करने के लिए अपना पसंदीदा AI प्रदाता चुनें"
   },
   "provider_openai": {
-    "message": "OpenAI (GPT-4o Mini)"
+    "message": "OpenAI"
   },
   "provider_claude": {
-    "message": "Claude (3.5 Haiku)"
+    "message": "Claude"
   },
   "provider_gemini": {
-    "message": "Gemini (2.5 Flash)"
+    "message": "Gemini"
+  },
+  "model_label": {
+    "message": "मॉडल"
+  },
+  "model_description": {
+    "message": "चुनें कि यह प्रोवाइडर कौन सा मॉडल उपयोग करेगा। सूची आपकी API key से प्राप्त की जाती है।"
+  },
+  "model_default_option": {
+    "message": "डिफ़ॉल्ट ($MODEL$)",
+    "placeholders": {
+      "model": {
+        "content": "$1",
+        "example": "gpt-4o-mini"
+      }
+    }
+  },
+  "model_loading": {
+    "message": "मॉडल लोड हो रहे हैं…"
+  },
+  "model_refresh": {
+    "message": "रिफ़्रेश करें"
+  },
+  "model_error_fetch": {
+    "message": "मॉडल सूची लोड नहीं हो सकी। पिछली ज्ञात सूची दिखाई जा रही है।"
+  },
+  "model_needs_api_key": {
+    "message": "पूरी मॉडल सूची लोड करने के लिए ऊपर API key जोड़ें।"
+  },
+  "model_cached_notice": {
+    "message": "कैश्ड सूची दिखाई जा रही है। अपडेट करने के लिए रिफ़्रेश करें।"
   },
   "api_key_section_title": {
     "message": "$PROVIDER$ API की",

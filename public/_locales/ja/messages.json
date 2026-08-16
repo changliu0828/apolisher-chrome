@@ -51,6 +51,12 @@
   "error_api": {
     "message": "テキスト校正に失敗しました。再試行してください。"
   },
+  "error_invalid_model": {
+    "message": "選択したモデルはこの API キーでは利用できません。拡張機能の設定で別のモデルを選択してください。"
+  },
+  "error_invalid_api_key": {
+    "message": "API キーに送信できない文字が含まれています（ASCII のみ使用できます）。プロバイダーのコンソールから再度コピーしてください。"
+  },
   "options_title": {
     "message": "$BRAND$ 設定",
     "placeholders": {
@@ -79,13 +85,43 @@
     "message": "テキスト校正に使用する AI プロバイダーを選択してください"
   },
   "provider_openai": {
-    "message": "OpenAI (GPT-4o Mini)"
+    "message": "OpenAI"
   },
   "provider_claude": {
-    "message": "Claude (3.5 Haiku)"
+    "message": "Claude"
   },
   "provider_gemini": {
-    "message": "Gemini (2.5 Flash)"
+    "message": "Gemini"
+  },
+  "model_label": {
+    "message": "モデル"
+  },
+  "model_description": {
+    "message": "このプロバイダーで使用するモデルを選択します。一覧は API キーを使って取得されます。"
+  },
+  "model_default_option": {
+    "message": "デフォルト（$MODEL$）",
+    "placeholders": {
+      "model": {
+        "content": "$1",
+        "example": "gpt-4o-mini"
+      }
+    }
+  },
+  "model_loading": {
+    "message": "モデルを読み込み中…"
+  },
+  "model_refresh": {
+    "message": "再読み込み"
+  },
+  "model_error_fetch": {
+    "message": "モデル一覧を取得できませんでした。前回取得した一覧を表示しています。"
+  },
+  "model_needs_api_key": {
+    "message": "完全なモデル一覧を読み込むには、上で API キーを入力してください。"
+  },
+  "model_cached_notice": {
+    "message": "キャッシュされた一覧を表示しています。「再読み込み」で更新できます。"
   },
   "api_key_section_title": {
     "message": "$PROVIDER$ API キー",

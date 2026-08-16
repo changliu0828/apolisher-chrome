@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.9.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
@@ -37,6 +37,7 @@ Uma extensão do Chrome que prioriza a privacidade e pule texto em qualquer pág
 - **Suporte Multi-Provedor de IA**: Escolha entre OpenAI, Claude ou Gemini usando sua própria chave API
 - **Polimento de Texto**: Selecione qualquer texto e pula-o com IA
 - **Múltiplos Presets**: Prompts padrão, profissional, nativo, simplificado, inteligência emocional ou personalizado
+- **Escolha de Modelo**: Escolha qualquer modelo ao qual a sua chave de API tenha acesso, por provedor; a lista é obtida em tempo real
 - **Alternância Rápida**: Ative ou desative a extensão pelo popup da barra de ferramentas
 - **Diferenças Visuais**: Veja as alterações destacadas com inserções (verde) e exclusões (vermelho)
 - **Privacidade Primeiro**: Sua chave API fica local, sem coleta de dados ou telemetria
@@ -80,8 +81,9 @@ npm run build
 
 Acesse as configurações clicando no ícone da extensão ou clicando com o botão direito e selecionando "Opções":
 
-- **Provedor de IA**: Escolha entre OpenAI (GPT-4o Mini), Claude (3.5 Haiku) ou Gemini (2.5 Flash)
+- **Provedor de IA**: Escolha entre OpenAI (GPT-5.6 Luna), Claude (Haiku 4.5) ou Gemini (3.1 Flash Lite)
 - **Chave API**: Sua chave API específica do provedor (armazenada com segurança no armazenamento de sincronização do Chrome)
+- **Modelo**: Escolha o modelo do provedor selecionado; a lista é obtida com a sua chave de API (padrão: o modelo acima)
 - **Presets de Prompt**: Escolha entre padrão, profissional, nativo, simplificado, Inteligência Emocional ou personalizado
 - **Máximo de Token**: Controle o comprimento da resposta (100-4000 Token, padrão: 2000)
 
@@ -91,10 +93,10 @@ Acesse as configurações clicando no ícone da extensão ou clicando com o bot�
 - **Vite** - Sistema de construção com @crxjs/vite-plugin
 - **Tailwind CSS** - Estilos
 - **Chrome Extension Manifest V3** - Arquitetura de extensão
-- **IA Multi-Provedor**: OpenAI (GPT-4o Mini), Claude (3.5 Haiku) ou Gemini (2.5 Flash)
+- **IA Multi-Provedor**: OpenAI (GPT-5.6 Luna), Claude (Haiku 4.5) ou Gemini (3.1 Flash Lite)
 - **Shadow DOM** - Isolamento de estilos para script de conteúdo
 - **chrome.i18n** - Internacionalização nativa (10 idiomas)
-- **Vitest** + **happy-dom** - Testes unitários (187 testes)
+- **Vitest** + **happy-dom** - Testes unitários (264 testes)
 
 ## Desenvolvimento
 

@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.9.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
@@ -37,6 +37,7 @@
 - **मल्टी-प्रोवाइडर AI समर्थन**: अपनी खुद की API key का उपयोग करके OpenAI, Claude या Gemini के बीच चुनें
 - **टेक्स्ट पॉलिशिंग**: किसी भी टेक्स्ट को चुनें और इसे AI के साथ पॉलिश करें
 - **एकाधिक प्रीसेट**: मानक, पेशेवर, देशी, सरलीकृत, भावनात्मक बुद्धिमत्ता या कस्टम prompts
+- **मॉडल चुनाव**: प्रति प्रोवाइडर, अपनी API key से उपलब्ध कोई भी मॉडल चुनें — सूची सीधे API से आती है
 - **त्वरित टॉगल**: टूलबार popup से एक्सटेंशन को सक्षम या अक्षम करें
 - **विज़ुअल अंतर**: सम्मिलन (हरा) और विलोपन (लाल) के साथ हाइलाइट किए गए परिवर्तन देखें
 - **गोपनीयता पहले**: आपकी API key स्थानीय रहती है, कोई डेटा संग्रह या टेलीमेट्री नहीं
@@ -80,8 +81,9 @@ npm run build
 
 एक्सटेंशन आइकन पर क्लिक करके या राइट-क्लिक करके और "विकल्प" चुनकर सेटिंग्स तक पहुंचें:
 
-- **AI प्रोवाइडर**: OpenAI (GPT-4o Mini), Claude (3.5 Haiku) या Gemini (2.5 Flash) के बीच चुनें
+- **AI प्रोवाइडर**: OpenAI (GPT-5.6 Luna), Claude (Haiku 4.5) या Gemini (3.1 Flash Lite) के बीच चुनें
 - **API Key**: आपकी प्रोवाइडर-विशिष्ट API key (Chrome sync storage में सुरक्षित रूप से संग्रहीत)
+- **मॉडल**: चुने गए प्रोवाइडर के लिए मॉडल चुनें; सूची आपकी API key से प्राप्त होती है (डिफ़ॉल्ट: ऊपर दिया गया मॉडल)
 - **Prompt प्रीसेट**: मानक, पेशेवर, देशी, सरलीकृत, भावनात्मक बुद्धिमत्ता या कस्टम के बीच चुनें
 - **अधिकतम Token**: प्रतिक्रिया की लंबाई नियंत्रित करें (100-4000 Token, डिफ़ॉल्ट: 2000)
 
@@ -91,10 +93,10 @@ npm run build
 - **Vite** - @crxjs/vite-plugin के साथ बिल्ड सिस्टम
 - **Tailwind CSS** - स्टाइलिंग
 - **Chrome Extension Manifest V3** - एक्सटेंशन आर्किटेक्चर
-- **मल्टी-प्रोवाइडर AI**: OpenAI (GPT-4o Mini), Claude (3.5 Haiku) या Gemini (2.5 Flash)
+- **मल्टी-प्रोवाइडर AI**: OpenAI (GPT-5.6 Luna), Claude (Haiku 4.5) या Gemini (3.1 Flash Lite)
 - **Shadow DOM** - Content script के लिए स्टाइल आइसोलेशन
 - **chrome.i18n** - नेटिव अंतरराष्ट्रीयकरण (10 भाषाएं)
-- **Vitest** + **happy-dom** - यूनिट टेस्ट (187 टेस्ट)
+- **Vitest** + **happy-dom** - यूनिट टेस्ट (264 टेस्ट)
 
 ## डेवलपमेंट
 

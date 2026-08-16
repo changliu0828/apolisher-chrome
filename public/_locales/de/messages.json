@@ -51,6 +51,12 @@
   "error_api": {
     "message": "Fehler beim Polieren des Textes. Bitte versuchen Sie es erneut."
   },
+  "error_invalid_model": {
+    "message": "Das ausgewählte Modell ist für Ihren API-Schlüssel nicht verfügbar. Wählen Sie in den Einstellungen ein anderes Modell."
+  },
+  "error_invalid_api_key": {
+    "message": "Ihr API-Schlüssel enthält Zeichen, die nicht gesendet werden können (nur einfaches ASCII). Kopieren Sie ihn erneut aus der Anbieter-Konsole."
+  },
   "options_title": {
     "message": "$BRAND$ Einstellungen",
     "placeholders": {
@@ -79,13 +85,43 @@
     "message": "Wählen Sie Ihren bevorzugten KI-Anbieter zum Textpolieren"
   },
   "provider_openai": {
-    "message": "OpenAI (GPT-4o Mini)"
+    "message": "OpenAI"
   },
   "provider_claude": {
-    "message": "Claude (3.5 Haiku)"
+    "message": "Claude"
   },
   "provider_gemini": {
-    "message": "Gemini (2.5 Flash)"
+    "message": "Gemini"
+  },
+  "model_label": {
+    "message": "Modell"
+  },
+  "model_description": {
+    "message": "Wählen Sie das Modell, das dieser Anbieter verwenden soll. Die Liste wird mit Ihrem API-Schlüssel abgerufen."
+  },
+  "model_default_option": {
+    "message": "Standard ($MODEL$)",
+    "placeholders": {
+      "model": {
+        "content": "$1",
+        "example": "gpt-4o-mini"
+      }
+    }
+  },
+  "model_loading": {
+    "message": "Modelle werden geladen…"
+  },
+  "model_refresh": {
+    "message": "Aktualisieren"
+  },
+  "model_error_fetch": {
+    "message": "Die Modellliste konnte nicht geladen werden. Es werden die zuletzt bekannten Modelle angezeigt."
+  },
+  "model_needs_api_key": {
+    "message": "Fügen Sie oben einen API-Schlüssel hinzu, um die vollständige Modellliste zu laden."
+  },
+  "model_cached_notice": {
+    "message": "Es wird eine zwischengespeicherte Liste angezeigt. Klicken Sie auf „Aktualisieren“."
   },
   "api_key_section_title": {
     "message": "$PROVIDER$ API-Schlüssel",

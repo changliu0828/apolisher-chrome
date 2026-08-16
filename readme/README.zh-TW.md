@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.9.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
@@ -37,6 +37,7 @@
 - **多供應商 AI 支援**：使用自己的 API 金鑰在 OpenAI、Claude 或 Gemini 之間選擇
 - **文字潤飾**：選擇任何文字並使用 AI 進行潤飾
 - **多種預設**：標準、專業、母語人士、簡化、情商潤色或自訂提示
+- **模型可選**：依服務供應商選擇你的 API Key 能存取的任意模型，清單即時從 API 取得
 - **快速開關**：從工具列彈出視窗啟用或停用擴充功能
 - **視覺化差異**：以插入（綠色）和刪除（紅色）突顯顯示變更
 - **隱私優先**：您的 API 金鑰保存在本地，無資料收集或遙測
@@ -80,8 +81,9 @@ npm run build
 
 點擊擴充功能圖示或右鍵點擊並選擇「選項」來存取設定：
 
-- **AI 供應商**：在 OpenAI (GPT-4o Mini)、Claude (3.5 Haiku) 或 Gemini (2.5 Flash) 之間選擇
+- **AI 供應商**：在 OpenAI (GPT-5.6 Luna)、Claude (Haiku 4.5) 或 Gemini (3.1 Flash Lite) 之間選擇
 - **API 金鑰**：您的供應商特定 API 金鑰（安全儲存在 Chrome 同步儲存空間中）
+- **模型**：為所選供應商挑選模型，清單會透過你的 API 金鑰取得（預設使用上面的模型）
 - **提示預設**：從標準、專業、母語人士、簡化、情商潤色或自訂中選擇
 - **最大Token數**：控制回應長度（100-4000 Token，預設：2000）
 
@@ -91,10 +93,10 @@ npm run build
 - **Vite** - 使用 @crxjs/vite-plugin 的建置系統
 - **Tailwind CSS** - 樣式設計
 - **Chrome Extension Manifest V3** - 擴充功能架構
-- **多供應商 AI**：OpenAI (GPT-4o Mini)、Claude (3.5 Haiku) 或 Gemini (2.5 Flash)
+- **多供應商 AI**：OpenAI (GPT-5.6 Luna)、Claude (Haiku 4.5) 或 Gemini (3.1 Flash Lite)
 - **Shadow DOM** - 內容腳本的樣式隔離
 - **chrome.i18n** - 原生國際化（10 種語言）
-- **Vitest** + **happy-dom** - 單元測試（187 個測試）
+- **Vitest** + **happy-dom** - 單元測試（264 個測試）
 
 ## 開發
 

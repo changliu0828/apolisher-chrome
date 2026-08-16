@@ -3,6 +3,7 @@ import { APP_VERSION } from '@/constants/version';
 import { useTranslation } from '@/i18n/useTranslation';
 import { MessageKey } from '@/i18n/types';
 import ProviderSelector from './components/ProviderSelector';
+import ModelSelector from './components/ModelSelector';
 import ApiKeyInput from './components/ApiKeyInput';
 import PromptPresets from './components/PromptPresets';
 import CustomPrompt from './components/CustomPrompt';
@@ -13,6 +14,7 @@ export default function App() {
   const {
     settings,
     updateProvider,
+    updateModel,
     updateApiKey,
     updatePreset,
     updateCustomPrompt,
@@ -64,6 +66,16 @@ export default function App() {
             <ProviderSelector
               value={settings.selectedProvider}
               onChange={updateProvider}
+            />
+          </div>
+
+          {/* Model Selection Section */}
+          <div>
+            <ModelSelector
+              provider={settings.selectedProvider}
+              value={settings.models?.[settings.selectedProvider] ?? ''}
+              hasApiKey={Boolean(settings.apiKeys[settings.selectedProvider]?.trim())}
+              onChange={updateModel}
             />
           </div>
 
