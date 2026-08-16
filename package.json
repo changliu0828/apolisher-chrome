@@ -14,7 +14,7 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "package": "npm run build && cd dist && zip -r ../apolisher-chrome-v$npm_package_version.zip . && cd .. && echo \"✅ Package created: apolisher-chrome-v$npm_package_version.zip\""
+    "package": "npm run build && mkdir -p release && cd dist && zip -r ../release/apolisher-chrome-v$npm_package_version.zip . && cd .. && echo \"✅ Package created: release/apolisher-chrome-v$npm_package_version.zip\""
   },
   "repository": {
     "type": "git",
