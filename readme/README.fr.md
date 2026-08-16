@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.9.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
@@ -37,6 +37,7 @@ Une extension Chrome axée sur la confidentialité qui polit le texte sur n'impo
 - **Support Multi-Fournisseur IA**: Choisissez entre OpenAI, Claude ou Gemini en utilisant votre propre clé API
 - **Polissage de Texte**: Sélectionnez n'importe quel texte et polissez-le avec l'IA
 - **Préréglages Multiples**: Prompts standard, professionnel, natif, simplifié, intelligence émotionnelle ou personnalisé
+- **Choix du Modèle** : Choisissez n'importe quel modèle accessible à votre clé API, par fournisseur ; la liste est récupérée en direct
 - **Activation Rapide**: Activez ou désactivez l'extension depuis le popup de la barre d'outils
 - **Différences Visuelles**: Visualisez les modifications mises en évidence avec insertions (vert) et suppressions (rouge)
 - **Confidentialité d'Abord**: Votre clé API reste locale, aucune collecte de données ni télémétrie
@@ -80,8 +81,9 @@ npm run build
 
 Accédez aux paramètres en cliquant sur l'icône de l'extension ou en faisant un clic droit et en sélectionnant "Options":
 
-- **Fournisseur IA**: Choisissez entre OpenAI (GPT-4o Mini), Claude (3.5 Haiku) ou Gemini (2.5 Flash)
+- **Fournisseur IA**: Choisissez entre OpenAI (GPT-5.6 Luna), Claude (Haiku 4.5) ou Gemini (3.1 Flash Lite)
 - **Clé API**: Votre clé API spécifique au fournisseur (stockée en toute sécurité dans le stockage de synchronisation Chrome)
+- **Modèle** : Choisissez le modèle du fournisseur sélectionné ; la liste est récupérée avec votre clé API (par défaut, le modèle ci-dessus)
 - **Préréglages de Prompt**: Choisissez entre standard, professionnel, natif, simplifié, Intelligence Émotionnelle ou personnalisé
 - **Maximum Token**: Contrôlez la longueur de la réponse (100-4000 Token, par défaut: 2000)
 
@@ -91,10 +93,10 @@ Accédez aux paramètres en cliquant sur l'icône de l'extension ou en faisant u
 - **Vite** - Système de construction avec @crxjs/vite-plugin
 - **Tailwind CSS** - Styles
 - **Chrome Extension Manifest V3** - Architecture de l'extension
-- **IA Multi-Fournisseur**: OpenAI (GPT-4o Mini), Claude (3.5 Haiku) ou Gemini (2.5 Flash)
+- **IA Multi-Fournisseur**: OpenAI (GPT-5.6 Luna), Claude (Haiku 4.5) ou Gemini (3.1 Flash Lite)
 - **Shadow DOM** - Isolation des styles pour le script de contenu
 - **chrome.i18n** - Internationalisation native (10 langues)
-- **Vitest** + **happy-dom** - Tests unitaires (187 tests)
+- **Vitest** + **happy-dom** - Tests unitaires (264 tests)
 
 ## Développement
 

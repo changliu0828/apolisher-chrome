@@ -1,9 +1,15 @@
-import { Settings, AIProvider, ProviderApiKeys } from '@/types/settings';
+import { Settings, AIProvider, ProviderApiKeys, ProviderModels } from '@/types/settings';
 
 export const mockApiKeys: ProviderApiKeys = {
   openai: 'sk-test-openai-key-123456789',
   claude: 'sk-ant-test-claude-key-123456789',
   gemini: 'test-gemini-key-123456789',
+};
+
+export const mockModels: ProviderModels = {
+  openai: '',
+  claude: '',
+  gemini: '',
 };
 
 export const defaultSettings: Settings = {
@@ -13,6 +19,7 @@ export const defaultSettings: Settings = {
     claude: '',
     gemini: '',
   },
+  models: mockModels,
   selectedPreset: 'standard',
   customPrompt: '',
   maxCompletionTokens: 2000,
@@ -21,6 +28,7 @@ export const defaultSettings: Settings = {
 export const settingsWithOpenAI: Settings = {
   selectedProvider: 'openai',
   apiKeys: mockApiKeys,
+  models: mockModels,
   selectedPreset: 'professional',
   customPrompt: '',
   maxCompletionTokens: 1500,
@@ -29,6 +37,7 @@ export const settingsWithOpenAI: Settings = {
 export const settingsWithClaude: Settings = {
   selectedProvider: 'claude',
   apiKeys: mockApiKeys,
+  models: mockModels,
   selectedPreset: 'native',
   customPrompt: '',
   maxCompletionTokens: 2500,
@@ -37,6 +46,7 @@ export const settingsWithClaude: Settings = {
 export const settingsWithGemini: Settings = {
   selectedProvider: 'gemini',
   apiKeys: mockApiKeys,
+  models: mockModels,
   selectedPreset: 'simplified',
   customPrompt: '',
   maxCompletionTokens: 3000,
@@ -45,6 +55,7 @@ export const settingsWithGemini: Settings = {
 export const settingsWithCustomPrompt: Settings = {
   selectedProvider: 'openai',
   apiKeys: mockApiKeys,
+  models: mockModels,
   selectedPreset: 'custom',
   customPrompt: 'Make the text more formal and professional.',
   maxCompletionTokens: 2000,
@@ -53,6 +64,7 @@ export const settingsWithCustomPrompt: Settings = {
 export const settingsWithEmotionalIntelligence: Settings = {
   selectedProvider: 'openai',
   apiKeys: mockApiKeys,
+  models: mockModels,
   selectedPreset: 'emotionalIntelligence',
   customPrompt: '',
   maxCompletionTokens: 2000,

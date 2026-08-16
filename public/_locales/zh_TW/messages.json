@@ -51,6 +51,12 @@
   "error_api": {
     "message": "文字潤飾失敗。請重試。"
   },
+  "error_invalid_model": {
+    "message": "所選模型對目前的 API Key 不可用，請在擴充功能設定中更換模型。"
+  },
+  "error_invalid_api_key": {
+    "message": "你的 API Key 含有無法傳送的字元（必須是純 ASCII）。請從服務供應商控制台重新複製一次。"
+  },
   "options_title": {
     "message": "$BRAND$ 設定",
     "placeholders": {
@@ -79,13 +85,43 @@
     "message": "選擇您偏好的 AI 提供者進行文字潤飾"
   },
   "provider_openai": {
-    "message": "OpenAI (GPT-4o Mini)"
+    "message": "OpenAI"
   },
   "provider_claude": {
-    "message": "Claude (3.5 Haiku)"
+    "message": "Claude"
   },
   "provider_gemini": {
-    "message": "Gemini (2.5 Flash)"
+    "message": "Gemini"
+  },
+  "model_label": {
+    "message": "模型"
+  },
+  "model_description": {
+    "message": "選擇此服務供應商使用的模型。清單會透過你的 API Key 取得。"
+  },
+  "model_default_option": {
+    "message": "預設（$MODEL$）",
+    "placeholders": {
+      "model": {
+        "content": "$1",
+        "example": "gpt-4o-mini"
+      }
+    }
+  },
+  "model_loading": {
+    "message": "正在載入模型…"
+  },
+  "model_refresh": {
+    "message": "重新載入"
+  },
+  "model_error_fetch": {
+    "message": "無法載入模型清單，顯示的是上次取得的結果。"
+  },
+  "model_needs_api_key": {
+    "message": "請先在上方填入 API Key 以載入完整的模型清單。"
+  },
+  "model_cached_notice": {
+    "message": "顯示的是快取清單，點選「重新載入」可更新。"
   },
   "api_key_section_title": {
     "message": "$PROVIDER$ API 金鑰",

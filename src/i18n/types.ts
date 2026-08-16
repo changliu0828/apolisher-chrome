@@ -12,10 +12,12 @@ export enum MessageKey {
   MODAL_SETTINGS_LABEL = 'modal_settings_label',
   MODAL_POWERED_BY = 'modal_powered_by',
 
-  // Errors (3 keys)
+  // Errors (5 keys)
   ERROR_NO_API_KEY = 'error_no_api_key',
   ERROR_NETWORK = 'error_network',
   ERROR_API = 'error_api',
+  ERROR_INVALID_MODEL = 'error_invalid_model',
+  ERROR_INVALID_API_KEY = 'error_invalid_api_key',
 
   // Options Page (3 keys)
   OPTIONS_TITLE = 'options_title',
@@ -28,6 +30,16 @@ export enum MessageKey {
   PROVIDER_OPENAI = 'provider_openai',
   PROVIDER_CLAUDE = 'provider_claude',
   PROVIDER_GEMINI = 'provider_gemini',
+
+  // Model Selector (8 keys)
+  MODEL_LABEL = 'model_label',
+  MODEL_DESCRIPTION = 'model_description',
+  MODEL_DEFAULT_OPTION = 'model_default_option',
+  MODEL_LOADING = 'model_loading',
+  MODEL_REFRESH = 'model_refresh',
+  MODEL_ERROR_FETCH = 'model_error_fetch',
+  MODEL_NEEDS_API_KEY = 'model_needs_api_key',
+  MODEL_CACHED_NOTICE = 'model_cached_notice',
 
   // API Key Input (5 keys)
   API_KEY_SECTION_TITLE = 'api_key_section_title',

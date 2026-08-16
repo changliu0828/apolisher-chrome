@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.9.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
@@ -37,6 +37,7 @@ A privacy-first Chrome extension that polishes text on any webpage using AI. Sel
 - **Multi-Provider AI Support**: Choose between OpenAI, Claude, or Gemini using your own API key
 - **Text Polishing**: Select any text and polish it with AI
 - **Multiple Presets**: Standard, Professional, Native Speaker, Simplified, Emotional Intelligence, or Custom prompts
+- **Model Choice**: Pick any model your API key can access, per provider — the list is fetched live
 - **Quick Toggle**: Enable or disable the extension from the toolbar popup
 - **Visual Diff**: See changes highlighted with insertions (green) and deletions (red)
 - **Privacy First**: Your API key stays local, no data collection or telemetry
@@ -80,8 +81,9 @@ npm run build
 
 Access settings by clicking the extension icon or right-clicking and selecting "Options":
 
-- **AI Provider**: Choose between OpenAI (GPT-4o Mini), Claude (3.5 Haiku), or Gemini (2.5 Flash)
+- **AI Provider**: Choose between OpenAI (GPT-5.6 Luna), Claude (Haiku 4.5), or Gemini (3.1 Flash Lite)
 - **API Key**: Your provider-specific API key (stored securely in Chrome sync storage)
+- **Model**: Pick the model for the selected provider; the list is fetched with your API key (defaults to the model above)
 - **Prompt Presets**: Choose from Standard, Professional, Native, Simplified, Emotional Intelligence, or Custom
 - **Max Tokens**: Control response length (100-4000 tokens, default: 2000)
 
@@ -91,10 +93,10 @@ Access settings by clicking the extension icon or right-clicking and selecting "
 - **Vite** - Build system with @crxjs/vite-plugin
 - **Tailwind CSS** - Styling
 - **Chrome Extension Manifest V3** - Extension architecture
-- **Multi-Provider AI**: OpenAI (GPT-4o Mini), Claude (3.5 Haiku), or Gemini (2.5 Flash)
+- **Multi-Provider AI**: OpenAI (GPT-5.6 Luna), Claude (Haiku 4.5), or Gemini (3.1 Flash Lite)
 - **Shadow DOM** - Style isolation for content script
 - **chrome.i18n** - Native internationalization (10 locales)
-- **Vitest** + **happy-dom** - Unit tests (187 tests)
+- **Vitest** + **happy-dom** - Unit tests (264 tests)
 
 ## Development
 

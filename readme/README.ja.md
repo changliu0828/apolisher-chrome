@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.9.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/chrome-extension-red" alt="Chrome">
   <img src="https://img.shields.io/badge/typescript-5.x-blue" alt="TypeScript">
@@ -37,6 +37,7 @@
 - **マルチプロバイダー AI サポート**：独自の API キーを使用して、OpenAI、Claude、または Gemini から選択
 - **テキスト校正**：任意のテキストを選択して AI で校正
 - **複数のプリセット**：標準、プロフェッショナル、ネイティブスピーカー、簡潔、気遣いのある発言、またはカスタムプロンプト
+- **モデル選択**：プロバイダーごとに、API キーで利用できる任意のモデルを選択できます（一覧は API から取得）
 - **クイック切り替え**：ツールバーのポップアップから拡張機能を有効/無効にできます
 - **視覚的差分**：挿入（緑色）と削除（赤色）で強調表示された変更を確認
 - **プライバシー優先**：API キーはローカルに保存され、データ収集やテレメトリはありません
@@ -80,8 +81,9 @@ npm run build
 
 拡張機能アイコンをクリックするか、右クリックして「オプション」を選択して設定にアクセス：
 
-- **AI プロバイダー**：OpenAI (GPT-4o Mini)、Claude (3.5 Haiku)、または Gemini (2.5 Flash) から選択
+- **AI プロバイダー**：OpenAI (GPT-5.6 Luna)、Claude (Haiku 4.5)、または Gemini (3.1 Flash Lite) から選択
 - **API キー**：プロバイダー固有の API キー（Chrome 同期ストレージに安全に保存）
+- **モデル**：選択したプロバイダーで使うモデルを選べます。一覧は API キーで取得されます（既定は上記のモデル）
 - **プロンプトプリセット**：標準、プロフェッショナル、ネイティブ、簡潔、気遣いのある発言、またはカスタムから選択
 - **最大Token数**：応答の長さを制御（100-4000 Token、デフォルト：2000）
 
@@ -91,10 +93,10 @@ npm run build
 - **Vite** - @crxjs/vite-plugin を使用したビルドシステム
 - **Tailwind CSS** - スタイリング
 - **Chrome Extension Manifest V3** - 拡張機能アーキテクチャ
-- **マルチプロバイダー AI**：OpenAI (GPT-4o Mini)、Claude (3.5 Haiku)、または Gemini (2.5 Flash)
+- **マルチプロバイダー AI**：OpenAI (GPT-5.6 Luna)、Claude (Haiku 4.5)、または Gemini (3.1 Flash Lite)
 - **Shadow DOM** - コンテンツスクリプトのスタイル分離
 - **chrome.i18n** - ネイティブの国際化（10 言語）
-- **Vitest** + **happy-dom** - ユニットテスト（187 テスト）
+- **Vitest** + **happy-dom** - ユニットテスト（264 テスト）
 
 ## 開発
 

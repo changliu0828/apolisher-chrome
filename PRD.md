@@ -29,8 +29,8 @@
 
 ### 3.1 Settings (Options Page)
 *The user configures these global preferences once:*
-* **AI Provider Selection:** Choose between OpenAI (GPT-4o Mini), Claude (3.5 Haiku), or Gemini (2.5 Flash)
-* **Model Selection (planned, v1.0):** Pick the model to use for the selected provider — see §3.5
+* **AI Provider Selection:** Choose between OpenAI, Claude, or Gemini (each with its own default model — see §3.5)
+* **Model Selection:** Pick the model to use for the selected provider — see §3.5
 * **API Key:** User inputs API Key for selected provider
 * **Prompt Presets (Style):** Each preset is stored in `src/prompts/` directory
     * *Standard:* "Fix grammar and flow."
@@ -58,13 +58,16 @@
 * **Primary Method:** Direct DOM manipulation for `contentEditable` elements and standard inputs.
 * **Fallback:** If direct replacement is blocked (e.g., specific complex web apps), copy the result to the clipboard and show a toast notification ("Copied to clipboard").
 
-### 3.5 Model Selection (planned, v1.0)
-*Today the model is hardcoded per provider in `src/types/api.ts` (`gpt-4o-mini`, `claude-3-5-haiku-20241022`, `gemini-2.5-flash`) and is not user-configurable. v1.0 makes it a setting.*
+### 3.5 Model Selection
+*Shipped in v1.0. The models in `src/types/api.ts` (`gpt-5.6-luna`, `claude-haiku-4-5-20251001`, `gemini-3.1-flash-lite`) are defaults rather than fixed values.*
 * **Goal:** The user picks which model to use for each provider from the Options Page, so they can trade cost against quality without waiting for an extension release.
-* **UI:** A model dropdown in the Options Page, shown below the provider selector and scoped to the currently selected provider (only that provider's models are listed).
+* **Defaults are the cheapest model that does the job**, judged on effective cost rather than sticker price - a model that spends hundreds of thinking tokens per call is not cheap. Verified against live pricing and real calls.
+* **UI:** A model dropdown in the Options Page, shown below the provider selector and scoped to the currently selected provider. The list is fetched live from the provider's list-models endpoint, with a Refresh action.
 * **Per-provider persistence:** The choice is stored per provider in `chrome.storage.sync`, so switching provider and switching back restores that provider's previously chosen model.
-* **Model catalog:** Each provider declares its selectable models in code (id + display label), with one marked as the default. Defaults are the models currently hardcoded, so existing users see no behavior change after upgrading.
-* **Defaults & migration:** Settings saved before v1.0 have no model field; those fall back to the provider's default model rather than erroring.
+* **Model catalog:** The list comes from the provider's own list-models API, cached for 24 hours in `chrome.storage.local` and invalidated when the API key changes. A small bundled fallback list (starting with the provider default) is shown when there is no key or the fetch fails. OpenAI's endpoint reports no chat capability, so its list is filtered by naming convention.
+* **Defaults & migration:** Settings saved before v1.0 have no model field; those fall back to the provider's default model rather than erroring. The OpenAI default moved from `gpt-4o-mini` to `gpt-5.6-luna` in v1.0 (the older model no longer appears in the offered list), and the Claude default moved from `claude-3-5-haiku-20241022` to `claude-haiku-4-5-20251001` because Anthropic retired the former in Feb 2026.
+* **Narrowing the list:** A raw list is too long to choose from (135 models for OpenAI, 53 for Gemini), and includes models that cannot do the job. Each provider's list is narrowed to general-purpose text models: OpenAI drops non-chat families, coding/research/`-pro` tiers, dated snapshots, superseded families, and anything older than 180 days relative to its newest model; Gemini keeps only `gemini-*` text models (dropping TTS, image, robotics, computer-use, deep-research, Gemma, Lyria) and hides a `-preview` when its stable counterpart exists; Claude's endpoint already returns only text models.
+* **Sampling parameters:** `temperature` is not sent to any provider. OpenAI's GPT-5+ families and Anthropic's models from Opus 4.7 onward reject a custom value with a 400, and both vendors are moving away from the parameter, so every request runs at the provider default rather than maintaining a per-model allowlist.
 * **Request path:** The background service worker sends the chosen model instead of the provider constant. For Gemini this also changes the request URL, since the model id is part of the path.
 * **Feedback:** The diff modal footer already displays provider and model — it must reflect the user's selection, not a constant.
 * **Error handling:** If the API rejects the model (unknown id, no account access), surface a provider-aware error telling the user to pick a different model, rather than a generic failure.
@@ -93,4 +96,4 @@
 - [x] **v0.7:** Multi-Provider Support - Gemini API (Gemini API adapter, unified provider interface, Gemini 2.5 Flash model).
 - [x] **v0.8:** Internationalization (i18n support with Chrome native API, type-safe MessageKey enum; now 10 locales).
 - [x] **v0.9:** Emotional Intelligence style preset, popup menu with enable/disable toggle, Vitest test suite, IME input support, PRIVACY.md, packaging command.
-- [ ] **v1.0:** Per-provider model selection in the Options Page (model dropdown scoped to the selected provider, per-provider persistence, model catalog with defaults matching today's hardcoded models). See §3.5.
+- [x] **v1.0:** Per-provider model selection in the Options Page (live model list from each provider's API with a 24h cache and bundled fallback, per-provider persistence, defaults matching the previously hardcoded models). See §3.5.

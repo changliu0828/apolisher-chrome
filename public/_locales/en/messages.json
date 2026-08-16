@@ -51,6 +51,12 @@
   "error_api": {
     "message": "Failed to polish text. Please try again."
   },
+  "error_invalid_model": {
+    "message": "The selected model is not available for your API key. Please choose another model in the extension settings."
+  },
+  "error_invalid_api_key": {
+    "message": "Your API key contains characters that cannot be sent in a request (it must be plain ASCII). Re-copy it from the provider console."
+  },
   "options_title": {
     "message": "$BRAND$ Settings",
     "placeholders": {
@@ -79,13 +85,43 @@
     "message": "Choose your preferred AI provider for text polishing"
   },
   "provider_openai": {
-    "message": "OpenAI (GPT-4o Mini)"
+    "message": "OpenAI"
   },
   "provider_claude": {
-    "message": "Claude (3.5 Haiku)"
+    "message": "Claude"
   },
   "provider_gemini": {
-    "message": "Gemini (2.5 Flash)"
+    "message": "Gemini"
+  },
+  "model_label": {
+    "message": "Model"
+  },
+  "model_description": {
+    "message": "Choose which model this provider should use. The list is loaded with your API key."
+  },
+  "model_default_option": {
+    "message": "Default ($MODEL$)",
+    "placeholders": {
+      "model": {
+        "content": "$1",
+        "example": "gpt-4o-mini"
+      }
+    }
+  },
+  "model_loading": {
+    "message": "Loading models…"
+  },
+  "model_refresh": {
+    "message": "Refresh"
+  },
+  "model_error_fetch": {
+    "message": "Could not load the model list. Showing the last known models."
+  },
+  "model_needs_api_key": {
+    "message": "Add an API key above to load the full model list."
+  },
+  "model_cached_notice": {
+    "message": "Showing a cached list. Click Refresh to update it."
   },
   "api_key_section_title": {
     "message": "$PROVIDER$ API Key",

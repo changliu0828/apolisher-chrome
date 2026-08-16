@@ -51,6 +51,12 @@
   "error_api": {
     "message": "Не удалось отполировать текст. Пожалуйста, попробуйте снова."
   },
+  "error_invalid_model": {
+    "message": "Выбранная модель недоступна для вашего API-ключа. Выберите другую модель в настройках расширения."
+  },
+  "error_invalid_api_key": {
+    "message": "Ваш API-ключ содержит символы, которые нельзя отправить (допустим только ASCII). Скопируйте его заново в консоли провайдера."
+  },
   "options_title": {
     "message": "Настройки $BRAND$",
     "placeholders": {
@@ -79,13 +85,43 @@
     "message": "Выберите предпочитаемого поставщика ИИ для полировки текста"
   },
   "provider_openai": {
-    "message": "OpenAI (GPT-4o Mini)"
+    "message": "OpenAI"
   },
   "provider_claude": {
-    "message": "Claude (3.5 Haiku)"
+    "message": "Claude"
   },
   "provider_gemini": {
-    "message": "Gemini (2.5 Flash)"
+    "message": "Gemini"
+  },
+  "model_label": {
+    "message": "Модель"
+  },
+  "model_description": {
+    "message": "Выберите модель для этого провайдера. Список загружается с помощью вашего API-ключа."
+  },
+  "model_default_option": {
+    "message": "По умолчанию ($MODEL$)",
+    "placeholders": {
+      "model": {
+        "content": "$1",
+        "example": "gpt-4o-mini"
+      }
+    }
+  },
+  "model_loading": {
+    "message": "Загрузка моделей…"
+  },
+  "model_refresh": {
+    "message": "Обновить"
+  },
+  "model_error_fetch": {
+    "message": "Не удалось загрузить список моделей. Показаны последние известные модели."
+  },
+  "model_needs_api_key": {
+    "message": "Добавьте API-ключ выше, чтобы загрузить полный список моделей."
+  },
+  "model_cached_notice": {
+    "message": "Показан кэшированный список. Нажмите «Обновить», чтобы его обновить."
   },
   "api_key_section_title": {
     "message": "API-ключ $PROVIDER$",

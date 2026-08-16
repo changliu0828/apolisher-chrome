@@ -1,6 +1,6 @@
 {
   "name": "apolisher-chrome",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "A polish for your text with AI",
   "main": "index.js",
   "scripts": {

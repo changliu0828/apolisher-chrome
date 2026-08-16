@@ -51,6 +51,12 @@
   "error_api": {
     "message": "文本润色失败。请重试。"
   },
+  "error_invalid_model": {
+    "message": "所选模型对当前 API Key 不可用，请在扩展设置中更换模型。"
+  },
+  "error_invalid_api_key": {
+    "message": "你的 API Key 含有无法发送的字符（必须是纯 ASCII）。请从服务商控制台重新复制一次。"
+  },
   "options_title": {
     "message": "$BRAND$ 设置",
     "placeholders": {
@@ -79,13 +85,43 @@
     "message": "选择您偏好的 AI 提供商进行文本润色"
   },
   "provider_openai": {
-    "message": "OpenAI (GPT-4o Mini)"
+    "message": "OpenAI"
   },
   "provider_claude": {
-    "message": "Claude (3.5 Haiku)"
+    "message": "Claude"
   },
   "provider_gemini": {
-    "message": "Gemini (2.5 Flash)"
+    "message": "Gemini"
+  },
+  "model_label": {
+    "message": "模型"
+  },
+  "model_description": {
+    "message": "选择该服务商使用的模型。列表通过你的 API Key 获取。"
+  },
+  "model_default_option": {
+    "message": "默认（$MODEL$）",
+    "placeholders": {
+      "model": {
+        "content": "$1",
+        "example": "gpt-4o-mini"
+      }
+    }
+  },
+  "model_loading": {
+    "message": "正在加载模型…"
+  },
+  "model_refresh": {
+    "message": "刷新"
+  },
+  "model_error_fetch": {
+    "message": "无法加载模型列表，显示的是上次获取的结果。"
+  },
+  "model_needs_api_key": {
+    "message": "请先在上方填入 API Key 以加载完整的模型列表。"
+  },
+  "model_cached_notice": {
+    "message": "显示的是缓存列表，点击“刷新”可更新。"
   },
   "api_key_section_title": {
     "message": "$PROVIDER$ API 密钥",

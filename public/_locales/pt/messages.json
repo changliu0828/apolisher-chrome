@@ -51,6 +51,12 @@
   "error_api": {
     "message": "Falha ao polir o texto. Por favor, tente novamente."
   },
+  "error_invalid_model": {
+    "message": "O modelo selecionado não está disponível para a sua chave de API. Escolha outro modelo nas configurações da extensão."
+  },
+  "error_invalid_api_key": {
+    "message": "Sua chave de API contém caracteres que não podem ser enviados (deve ser ASCII simples). Copie-a novamente no console do provedor."
+  },
   "options_title": {
     "message": "Configurações do $BRAND$",
     "placeholders": {
@@ -79,13 +85,43 @@
     "message": "Escolha seu provedor de IA preferido para polir texto"
   },
   "provider_openai": {
-    "message": "OpenAI (GPT-4o Mini)"
+    "message": "OpenAI"
   },
   "provider_claude": {
-    "message": "Claude (3.5 Haiku)"
+    "message": "Claude"
   },
   "provider_gemini": {
-    "message": "Gemini (2.5 Flash)"
+    "message": "Gemini"
+  },
+  "model_label": {
+    "message": "Modelo"
+  },
+  "model_description": {
+    "message": "Escolha o modelo que este provedor usará. A lista é obtida com a sua chave de API."
+  },
+  "model_default_option": {
+    "message": "Padrão ($MODEL$)",
+    "placeholders": {
+      "model": {
+        "content": "$1",
+        "example": "gpt-4o-mini"
+      }
+    }
+  },
+  "model_loading": {
+    "message": "Carregando modelos…"
+  },
+  "model_refresh": {
+    "message": "Atualizar"
+  },
+  "model_error_fetch": {
+    "message": "Não foi possível carregar a lista de modelos. Exibindo os últimos modelos conhecidos."
+  },
+  "model_needs_api_key": {
+    "message": "Adicione uma chave de API acima para carregar a lista completa de modelos."
+  },
+  "model_cached_notice": {
+    "message": "Exibindo uma lista em cache. Clique em Atualizar para renová-la."
   },
   "api_key_section_title": {
     "message": "Chave API do $PROVIDER$",

@@ -12,4 +12,5 @@ export const ROADMAP = {
   'v0.7': 'Multi-provider AI Support (Gemini API)',
   'v0.8': 'Internationalization (i18n)',
   'v0.9': 'Emotional Intelligence Style',
+  'v1.0': 'Per-Provider Model Selection',
 } as const;
