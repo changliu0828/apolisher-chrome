@@ -100,6 +100,9 @@ Access settings by clicking the extension icon or right-clicking and selecting "
 
 ## Development
 
+Every command below is also available via `make` (`make` on its own lists the
+targets, `make check` runs type-check + lint + tests):
+
 ```bash
 # Install dependencies
 npm install

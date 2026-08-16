@@ -27,3 +27,6 @@ coverage/
 
 # Claude plans
 .claude/
+
+# Packaged extension zips
+release/
